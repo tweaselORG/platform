@@ -23,8 +23,11 @@
     ],
     "type": "module",
     "scripts": {
+        "build": "astro build",
+        "dev": "astro dev",
         "fix": "yarn eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --fix",
-        "lint": "tsc && eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx && git diff --check"
+        "lint": "tsc && eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx && git diff --check",
+        "preview": "astro preview"
     },
     "husky": {
         "hooks": {
@@ -40,7 +43,9 @@
         ]
     },
     "prettier": "@baltpeter/prettier-config",
-    "dependencies": {},
+    "dependencies": {
+        "astro": "^4.8.5"
+    },
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",
         "@baltpeter/prettier-config": "2.0.0",

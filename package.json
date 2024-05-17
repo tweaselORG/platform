@@ -46,6 +46,7 @@
     "dependencies": {
         "@astrojs/node": "^8.2.5",
         "@astrojs/preact": "^3.3.0",
+        "@datenanfragen/components": "^1.0.0",
         "astro": "^4.8.5",
         "preact": "^10.22.0"
     },
@@ -59,6 +60,7 @@
         "husky": "4.3.7",
         "lint-staged": "13.2.2",
         "prettier": "2.8.8",
+        "sass": "^1.77.2",
         "typescript": "5.1.3"
     }
 }

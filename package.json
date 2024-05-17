@@ -44,6 +44,7 @@
     },
     "prettier": "@baltpeter/prettier-config",
     "dependencies": {
+        "@astrojs/node": "^8.2.5",
         "astro": "^4.8.5"
     },
     "devDependencies": {

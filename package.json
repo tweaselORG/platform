@@ -45,7 +45,9 @@
     "prettier": "@baltpeter/prettier-config",
     "dependencies": {
         "@astrojs/node": "^8.2.5",
-        "astro": "^4.8.5"
+        "@astrojs/preact": "^3.3.0",
+        "astro": "^4.8.5",
+        "preact": "^10.22.0"
     },
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",

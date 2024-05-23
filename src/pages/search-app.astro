@@ -1,0 +1,128 @@
+---
+import { t } from '../i18n/server';
+import Base from '../layouts/base.astro';
+import { searchApps } from '../lib/app-store/search';
+import { absUrl } from '../lib/util';
+
+const term = Astro.url.searchParams.get('q');
+const platform = (Astro.url.searchParams.get('platform') as 'android') || 'android';
+
+const results =
+    term &&
+    (await searchApps({
+        term,
+        platform,
+        language: (Astro.currentLocale as 'EN') || 'EN',
+        country: 'DE',
+    }).then((r) => r.slice(0, 10)));
+---
+
+<Base title={t('search-app', 'heading')}>
+    <form method="GET" action="" role="search">
+        <label for="search-term" class="sr-only">{t('search-app', 'app')}</label>
+        <input
+            id="search-term"
+            name="q"
+            type="search"
+            class="ais-SearchBox-input"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            required
+            maxlength="512"
+            placeholder={t('search-app', 'input-placeholder')}
+            value={term}
+        />
+
+        <button type="submit" title={t('search-app', 'search')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40">
+                <path
+                    d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z">
+                </path>
+            </svg>
+        </button>
+
+        <label>
+            <input type="radio" name="platform" value="android" checked={platform === 'android'} />
+            {t('common', 'android')}
+        </label>
+        <!-- {' '}
+        <label>
+            <input type="radio" name="platform" value="ios" checked={platform === 'ios'} />
+            {t('common', 'ios')}
+        </label> -->
+    </form>
+
+    {
+        results && (
+            <ul>
+                {results.map((r) => (
+                    <li class="box box-thin" style="margin-bottom: 10px;">
+                        <a class="no-link-decoration" href={absUrl(`/app/${r.platform}/${r.id}`)}>
+                            <div class="anchor-overlay" aria-hidden="true" />
+                            <h4>{r.name}</h4>
+                            {r.developer} &bull;{' '}
+                            {r.platform === 'android' ? t('common', 'android') : t('common', 'ios')}
+                            <br />
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+</Base>
+
+<style>
+    /* Search bar */
+    form {
+        position: relative;
+    }
+
+    #search-term,
+    #search-term:required {
+        border-width: 4px;
+        padding: 12px 28px 12px 12px;
+        width: 100%;
+        background: none;
+    }
+
+    form button[type='submit'] {
+        position: absolute;
+        right: 10px;
+        top: 12px;
+
+        appearance: none;
+        background: none;
+        border: none;
+
+        cursor: pointer;
+    }
+
+    /* Results */
+    ul {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+        position: relative;
+    }
+
+    li a {
+        color: unset;
+    }
+
+    .anchor-overlay {
+        bottom: 0;
+        display: block;
+        height: 100%;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
+</style>

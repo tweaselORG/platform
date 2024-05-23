@@ -1,6 +1,16 @@
 {
+    "common": {
+        "android": "Android",
+        "ios": "iOS"
+    },
     "base": {
         "skip-to-content": "Skip to content",
         "back-to-home": "Back to homepage"
+    },
+    "search-app": {
+        "heading": "Select an app to analyse",
+        "input-placeholder": "Search for an app…",
+        "app": "App:",
+        "search": "Search"
     }
 }

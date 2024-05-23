@@ -42,7 +42,6 @@
             "eslint --fix"
         ]
     },
-    "prettier": "@baltpeter/prettier-config",
     "dependencies": {
         "@astrojs/node": "^8.2.5",
         "@astrojs/preact": "^3.3.0",
@@ -52,14 +51,15 @@
     },
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",
-        "@baltpeter/prettier-config": "2.0.0",
+        "@baltpeter/prettier-config": "^3.0.0",
         "@typescript-eslint/eslint-plugin": "5.60.0",
         "eslint": "8.43.0",
         "eslint-plugin-eslint-comments": "3.2.0",
         "eslint-plugin-import": "2.27.5",
         "husky": "4.3.7",
         "lint-staged": "13.2.2",
-        "prettier": "2.8.8",
+        "prettier": "3.2.5",
+        "prettier-plugin-astro": "^0.13.0",
         "sass": "^1.77.2",
         "typescript": "5.1.3"
     }

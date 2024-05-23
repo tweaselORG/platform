@@ -1,0 +1,51 @@
+---
+import '@datenanfragen/components/dist/index.css';
+import '../styles/main.scss';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+
+export interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang={Astro.currentLocale}>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title ? `${title} · Tweasel` : 'Tweasel'}</title>
+    </head>
+    <body>
+        <a id="skip-to-content" href="#heading">Skip to content</a>
+
+        <aside id="flash-messages"></aside>
+
+        <header id="nav-header">
+            <div id="nav-header-bg"></div>
+
+            <div id="header-main" class="container">
+                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en')} title="Back to homepage">Tweasel</a>
+
+                <nav id="main-nav">
+                    <div id="menu-items"></div>
+                </nav>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="heading-bg">
+                <div id="heading" class="container">
+                    <h1>{title}</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <main>
+                <slot />
+            </main>
+        </div>
+    </body>
+</html>

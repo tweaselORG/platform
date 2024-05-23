@@ -10,4 +10,8 @@ export default defineConfig({
         mode: 'standalone',
     }),
     integrations: [preact()],
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en'],
+    },
 });

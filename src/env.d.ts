@@ -1,2 +1,4 @@
-// eslint-disable-next-line spaced-comment
+/* eslint-disable spaced-comment */
 /// <reference types="astro/client" />
+/// <reference types="astro-global/client" />
+/* eslint-enable spaced-comment */

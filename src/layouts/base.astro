@@ -2,12 +2,22 @@
 import '@datenanfragen/components/dist/index.css';
 import '../styles/main.scss';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { t, i18nDefinitions } from '../i18n/server';
 
 export interface Props {
     title?: string;
 }
 
 const { title } = Astro.props;
+
+const i18nDefinition = Object.fromEntries(
+    Object.entries(i18nDefinitions[(Astro.currentLocale as 'en') || 'en'])
+        .map(([scope, scopeTranslations]) => [
+            scope,
+            Object.fromEntries(Object.entries(scopeTranslations).filter(([key]) => key.endsWith('!'))),
+        ])
+        .filter(([, scopeTranslations]) => Object.keys(scopeTranslations || {}).length > 0)
+);
 ---
 
 <!doctype html>
@@ -19,7 +29,7 @@ const { title } = Astro.props;
         <title>{title ? `${title} · Tweasel` : 'Tweasel'}</title>
     </head>
     <body>
-        <a id="skip-to-content" href="#heading">Skip to content</a>
+        <a id="skip-to-content" href="#heading">{t('base', 'skip-to-content')}</a>
 
         <aside id="flash-messages"></aside>
 
@@ -27,7 +37,8 @@ const { title } = Astro.props;
             <div id="nav-header-bg"></div>
 
             <div id="header-main" class="container">
-                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en')} title="Back to homepage">Tweasel</a>
+                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en')} title={t('base', 'back-to-home')}>Tweasel</a
+                >
 
                 <nav id="main-nav">
                     <div id="menu-items"></div>
@@ -47,5 +58,9 @@ const { title } = Astro.props;
                 <slot />
             </main>
         </div>
+
+        <script define:vars={{ i18nDefinition }} is:inline>
+            window.I18N_DEFINITION = i18nDefinition;
+        </script>
     </body>
 </html>

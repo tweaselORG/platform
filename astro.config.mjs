@@ -2,6 +2,7 @@ import node from '@astrojs/node';
 import { defineConfig } from 'astro/config';
 
 import preact from '@astrojs/preact';
+import global from 'astro-global';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
     adapter: node({
         mode: 'standalone',
     }),
-    integrations: [preact()],
+    integrations: [preact(), global()],
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],

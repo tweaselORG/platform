@@ -1,0 +1,27 @@
+diff --git a/node_modules/astro-global/integration.ts b/node_modules/astro-global/integration.ts
+index 2a40ef2..bc626fd 100644
+--- a/node_modules/astro-global/integration.ts
++++ b/node_modules/astro-global/integration.ts
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import fs from "node:fs"
+ import type { AstroConfig, AstroIntegration } from "astro"
+ 
+diff --git a/node_modules/astro-global/runtime/als.ts b/node_modules/astro-global/runtime/als.ts
+index ce66157..26bf110 100644
+--- a/node_modules/astro-global/runtime/als.ts
++++ b/node_modules/astro-global/runtime/als.ts
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import { AsyncLocalStorage } from "node:async_hooks"
+ import type { APIContext } from "astro"
+ 
+diff --git a/node_modules/astro-global/runtime/virtual-module.ts b/node_modules/astro-global/runtime/virtual-module.ts
+index dea9768..130747e 100644
+--- a/node_modules/astro-global/runtime/virtual-module.ts
++++ b/node_modules/astro-global/runtime/virtual-module.ts
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import storage from "./als.ts"
+ import type { APIContext } from "astro"
+ 

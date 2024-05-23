@@ -26,6 +26,7 @@
         "build": "astro build",
         "dev": "astro dev",
         "fix": "yarn eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --fix",
+        "postinstall": "patch-package",
         "lint": "tsc && eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx && git diff --check",
         "preview": "astro preview"
     },
@@ -47,11 +48,16 @@
         "@astrojs/preact": "^3.3.0",
         "@datenanfragen/components": "^1.0.0",
         "astro": "^4.8.5",
-        "preact": "^10.22.0"
+        "astro-global": "^1.2.1",
+        "patch-package": "^8.0.0",
+        "postinstall-postinstall": "^2.1.0",
+        "preact": "^10.22.0",
+        "preact-i18n": "2.4.0-preactx"
     },
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",
         "@baltpeter/prettier-config": "^3.0.0",
+        "@types/preact-i18n": "^2.3.6",
         "@typescript-eslint/eslint-plugin": "5.60.0",
         "eslint": "8.43.0",
         "eslint-plugin-eslint-comments": "3.2.0",

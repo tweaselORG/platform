@@ -5,6 +5,8 @@ tmp.*
 
 dist/
 
+dbschema/edgeql-js
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,sublimetext,jetbrains+all,visualstudiocode,astro
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,macos,windows,sublimetext,jetbrains+all,visualstudiocode,astro
 

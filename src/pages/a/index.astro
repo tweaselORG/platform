@@ -1,20 +1,42 @@
 ---
-import { t } from '../i18n/server';
-import Base from '../layouts/base.astro';
-import { searchApps } from '../lib/app-store/search';
-import { absUrl } from '../lib/util';
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { searchApps } from '../../lib/app-store/search';
+import { absUrl } from '../../lib/util';
+import { e, client } from '../../lib/db';
 
 const term = Astro.url.searchParams.get('q');
 const platform = (Astro.url.searchParams.get('platform') as 'android') || 'android';
 
-const results =
-    term &&
+const searchResults =
+    term !== null &&
     (await searchApps({
         term,
         platform,
         language: (Astro.currentLocale as 'EN') || 'EN',
         country: 'DE',
     }).then((r) => r.slice(0, 10)));
+
+const resultsWithAnalysis = searchResults
+    ? await e
+          .group(
+              e.select(e.Analysis, (a) => ({
+                  filter: e.op(
+                      e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
+                      'and',
+                      e.op(a.app.app_id, 'in', e.set(...searchResults.map((r) => r.id)))
+                  ),
+              })),
+              (a) => ({ id: true, by: { app_id: a.app.app_id } })
+          )
+          .run(client)
+    : [];
+const results =
+    searchResults &&
+    searchResults.map((r) => ({
+        ...r,
+        analysisCount: resultsWithAnalysis.find((a) => a.key.app_id === r.id)?.elements.length ?? 0,
+    }));
 ---
 
 <Base title={t('search-app', 'heading')}>
@@ -59,12 +81,16 @@ const results =
             <ul>
                 {results.map((r) => (
                     <li class="box box-thin" style="margin-bottom: 10px;">
-                        <a class="no-link-decoration" href={absUrl(`/app/${r.platform}/${r.id}`)}>
+                        <a
+                            class="no-link-decoration"
+                            href={
+                                r.analysisCount > 0
+                                    ? absUrl(`/a/${r.platform}/${r.id}`)
+                                    : absUrl(`/p/confirm-platform/${r.platform}/${r.id}`)
+                            }>
                             <div class="anchor-overlay" aria-hidden="true" />
                             <h4>{r.name}</h4>
-                            {r.developer} &bull;{' '}
-                            {r.platform === 'android' ? t('common', 'android') : t('common', 'ios')}
-                            <br />
+                            {r.developer} &bull; {t('search-app', 'analysed-times', { n: '' + r.analysisCount })}
                         </a>
                     </li>
                 ))}

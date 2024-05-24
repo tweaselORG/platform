@@ -2,6 +2,11 @@
     "extends": "astro/tsconfigs/strictest",
     "compilerOptions": {
         "jsx": "react-jsx",
-        "jsxImportSource": "preact"
+        "jsxImportSource": "preact",
+
+        // TODO: These are unfortunately necessary until https://github.com/edgedb/edgedb-js/issues/1031 is fixed.
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "exactOptionalPropertyTypes": false
     }
 }

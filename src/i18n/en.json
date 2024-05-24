@@ -11,6 +11,11 @@
         "heading": "Select an app to analyse",
         "input-placeholder": "Search for an app…",
         "app": "App:",
-        "search": "Search"
+        "search": "Search",
+        "analysed-times": "analysed {{n}} times"
+    },
+    "app-details": {
+        "heading": "{{name}} ({{platform}})",
+        "analyses": "Analyses for this app"
     }
 }

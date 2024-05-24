@@ -49,6 +49,7 @@
         "@datenanfragen/components": "^1.0.0",
         "astro": "^4.8.5",
         "astro-global": "^1.2.1",
+        "edgedb": "^1.5.7",
         "lru-cache": "^10.2.2",
         "p-memoize": "^7.1.1",
         "parse-play": "^2.2.0",
@@ -60,6 +61,7 @@
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",
         "@baltpeter/prettier-config": "^3.0.0",
+        "@edgedb/generate": "^0.5.3",
         "@types/preact-i18n": "^2.3.6",
         "@typescript-eslint/eslint-plugin": "5.60.0",
         "eslint": "8.43.0",

@@ -324,10 +324,10 @@
     prettier-plugin-organize-imports "^3.2.4"
     prettier-plugin-packagejson "^2.5.0"
 
-"@datenanfragen/components@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@datenanfragen/components/-/components-1.0.0.tgz#51f83a681544fedaa8d2a48c867766da89131dc1"
-  integrity sha512-Jo9zoAiYODEpAUwY1ifC4bWwDvjwHxiMmI7HXGkhH2RBmp8dAKlURjQPfcm9n0JtGX7av8eAr2SMgGI0Vki9bA==
+"@datenanfragen/components@^1.0.0-cssupdate0":
+  version "1.0.0-cssupdate0"
+  resolved "https://registry.yarnpkg.com/@datenanfragen/components/-/components-1.0.0-cssupdate0.tgz#e0dfbbadaa6b275a6c98103be2e679ec1a0eedb6"
+  integrity sha512-olI6TDzkyFN14Q2f66kh4fVBFisBYWv9+6WgJ5Tm+d7I98QM0JEfzMzlKYxLSgSp6ishseBf1K6MrpK392ndtw==
   dependencies:
     autocomplete.js "^0.37.0"
     brutusin-json-forms "https://github.com/brutusin/json-forms"

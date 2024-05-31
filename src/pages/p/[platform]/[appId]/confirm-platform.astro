@@ -1,0 +1,32 @@
+---
+import { t } from '../../../../i18n/server';
+import Base from '../../../../layouts/base.astro';
+import { absUrl } from '../../../../lib/util';
+import TextRaw from '../../../../components/TextRaw.astro';
+
+const { platform, appId } = Astro.params;
+---
+
+<Base title={t('confirm-platform', 'heading')}>
+    <TextRaw scope="confirm-platform" id="explanation" />
+
+    <div class="col66 col100-mobile">
+        <div class="radio-group radio-group-vertical radio-group-padded">
+            {
+                (['android', 'ios'] as const).map((p) => (
+                    <div class="radio-wrapper">
+                        {p === platform ? (
+                            <button class="radio-label">{t('common', p)}</button>
+                        ) : (
+                            <a
+                                class="radio-label no-link-decoration"
+                                href={absUrl(`/p/${platform}/${appId}/wrong-platform/${p}`)}>
+                                {t('common', p)}
+                            </a>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</Base>

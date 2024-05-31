@@ -86,7 +86,7 @@ const results =
                             href={
                                 r.analysisCount > 0
                                     ? absUrl(`/a/${r.platform}/${r.id}`)
-                                    : absUrl(`/p/confirm-platform/${r.platform}/${r.id}`)
+                                    : absUrl(`/p/${r.platform}/${r.id}/confirm-platform`)
                             }>
                             <div class="anchor-overlay" aria-hidden="true" />
                             <h4>{r.name}</h4>

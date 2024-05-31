@@ -46,7 +46,7 @@
     "dependencies": {
         "@astrojs/node": "^8.2.5",
         "@astrojs/preact": "^3.3.0",
-        "@datenanfragen/components": "^1.0.0",
+        "@datenanfragen/components": "^1.0.0-cssupdate0",
         "astro": "^4.8.5",
         "astro-global": "^1.2.1",
         "edgedb": "^1.5.7",

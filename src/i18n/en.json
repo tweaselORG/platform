@@ -17,5 +17,14 @@
     "app-details": {
         "heading": "{{name}} ({{platform}})",
         "analyses": "Analyses for this app"
+    },
+    "confirm-platform": {
+        "heading": "Did you select the correct platform?",
+        "explanation": "<p>We will analyse the app’s tracking behaviour for you. But first, we need to check one more thing: Apps may behave differently depending on which platform they are running on.</p><p>Which operating system does your device run?</p>"
+    },
+    "wrong-platform": {
+        "heading": "Sorry, we cannot analyse this app on {{actualPlatform}}.",
+        "explanation": "You have been looking at the {{platform}} version of the app. Please search for the {{actualPlatform}} version instead.",
+        "back-to-search": "Go back to search"
     }
 }

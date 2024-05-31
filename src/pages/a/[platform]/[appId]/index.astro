@@ -12,18 +12,18 @@ if (platform !== 'android' && platform !== 'ios') return new Response('Invalid p
 const analyses = await e
     .select(e.Analysis, (a) => ({
         id: true,
-        start_date: true,
-        app_name: true,
+        startDate: true,
+        appName: true,
 
-        filter: e.op(e.op(a.app.platform, '=', e.literal(e.Platform, platform)), 'and', e.op(a.app.app_id, '=', appId)),
-        order_by: { expression: a.start_date, direction: e.DESC },
+        filter: e.op(e.op(a.app.platform, '=', e.literal(e.Platform, platform)), 'and', e.op(a.app.appId, '=', appId)),
+        order_by: { expression: a.startDate, direction: e.DESC },
     }))
     .run(client);
 
 if (analyses.length === 0) return new Response('We have not analyzed this app yet.', { status: 404 });
 
 // An app can theoretically change its name with each new version, we thus use the one we saw in the most recent analysis.
-const name = analyses[0]!.app_name;
+const name = analyses[0]!.appName;
 ---
 
 <Base title={t('app-details', 'heading', { name, platform: t('common', platform) })}>
@@ -33,7 +33,7 @@ const name = analyses[0]!.app_name;
         {
             analyses.map((a) => (
                 <li>
-                    <a href={absUrl(`/a/${platform}/${appId}/${a.id}`)}>{a.start_date}</a>
+                    <a href={absUrl(`/a/${platform}/${appId}/${a.id}`)}>{a.startDate}</a>
                 </li>
             ))
         }

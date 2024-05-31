@@ -3,20 +3,20 @@ module default {
 
     type App {
         required platform: Platform;
-        required app_id: str { constraint max_len_value(150); };
+        required appId: str { constraint max_len_value(150); };
 
-        constraint exclusive on ((.platform, .app_id));
+        constraint exclusive on ((.platform, .appId));
     }
 
     type Analysis {
         required app: App;
 
-        required start_date: datetime;
-        required end_date: datetime;
+        required startDate: datetime;
+        required endDate: datetime;
 
-        required app_name: str { constraint max_len_value(150); };
-        required app_version: str { constraint max_len_value(20); };
-        required app_version_code: str { constraint max_len_value(20); };
+        required appName: str { constraint max_len_value(150); };
+        required appVersion: str { constraint max_len_value(20); };
+        required appVersionCode: str { constraint max_len_value(20); };
 
         required har: json;
         required trackHarResult: json;
@@ -29,6 +29,6 @@ module default {
         initialAnalysis: Analysis { constraint exclusive; };
         secondAnalysis: Analysis { constraint exclusive; };
 
-        required started_at: datetime;
+        required startedAt: datetime { default := datetime_current(); };
     }
 }

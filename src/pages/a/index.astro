@@ -24,10 +24,10 @@ const resultsWithAnalysis = searchResults
                   filter: e.op(
                       e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
                       'and',
-                      e.op(a.app.app_id, 'in', e.set(...searchResults.map((r) => r.id)))
+                      e.op(a.app.appId, 'in', e.set(...searchResults.map((r) => r.id))),
                   ),
               })),
-              (a) => ({ id: true, by: { app_id: a.app.app_id } })
+              (a) => ({ id: true, by: { app_id: a.app.appId } }),
           )
           .run(client)
     : [];

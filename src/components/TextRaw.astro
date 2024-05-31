@@ -1,0 +1,16 @@
+---
+import { t } from '../i18n/server';
+import type i18nDefinitionEn from '../i18n/en.json';
+
+export interface Props<ScopeT extends keyof typeof i18nDefinitionEn> {
+    scope: ScopeT;
+    id: keyof (typeof i18nDefinitionEn)[ScopeT];
+    fields?: Record<string, string>;
+    plural?: number;
+    fallback?: string;
+}
+
+const { scope, id, fields, plural, fallback } = Astro.props;
+---
+
+<Fragment set:html={t(scope, id, fields, plural, fallback)} />

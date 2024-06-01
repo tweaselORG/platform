@@ -26,5 +26,9 @@
         "heading": "Sorry, we cannot analyse this app on {{actualPlatform}}.",
         "explanation": "You have been looking at the {{platform}} version of the app. Please search for the {{actualPlatform}} version instead.",
         "back-to-search": "Go back to search"
+    },
+    "proceeding-landing": {
+        "heading-needsInitialAnalysis": "Analysing app…",
+        "explanation-needsInitialAnalysis": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
     }
 }

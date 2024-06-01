@@ -26,6 +26,18 @@ module default {
         required app: App;
         required token: str;
 
+          state := (
+            'needsInitialAnalysis' if not exists(.initialAnalysis)  else
+            # initialAnalysisFoundNothing
+            # awaitingControllerNotice
+            # awaitingControllerResponse
+            # 'needsSecondAnalysis' if not exists(.initialAnalysis)  else
+            # secondAnalysisFoundNothing
+            # awaitingComplaint
+            # complaintSent
+            '<invalid>'
+        );
+
         initialAnalysis: Analysis { constraint exclusive; };
         secondAnalysis: Analysis { constraint exclusive; };
 

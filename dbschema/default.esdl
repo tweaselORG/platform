@@ -18,7 +18,7 @@ module default {
         required appVersion: str { constraint max_len_value(20); };
         required appVersionCode: str { constraint max_len_value(20); };
 
-        required har: json;
+        required har: str { constraint max_len_value(13000000); };
         required trackHarResult: json;
     }
 

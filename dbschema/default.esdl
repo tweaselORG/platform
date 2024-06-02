@@ -1,5 +1,6 @@
 module default {
     scalar type Platform extending enum<android, ios>;
+    scalar type AnalysisType extending enum<initial, second>;
 
     type App {
         required platform: Platform;
@@ -9,7 +10,8 @@ module default {
     }
 
     type Analysis {
-        required app: App;
+        required proceeding: Proceeding;
+        required type: AnalysisType;
 
         required startDate: datetime;
         required endDate: datetime;
@@ -20,6 +22,10 @@ module default {
 
         required har: str { constraint max_len_value(13000000); };
         required trackHarResult: json;
+
+        single app := .proceeding.app;
+
+        constraint exclusive on ((.proceeding, .type));
     }
 
     type Proceeding {
@@ -38,8 +44,8 @@ module default {
             '<invalid>'
         );
 
-        initialAnalysis: Analysis { constraint exclusive; };
-        secondAnalysis: Analysis { constraint exclusive; };
+        single initialAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'initial' limit 1);
+        single secondAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'second' limit 1);
 
         required startedAt: datetime { default := datetime_current(); };
     }

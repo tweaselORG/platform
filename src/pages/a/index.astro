@@ -17,20 +17,21 @@ const searchResults =
         country: 'DE',
     }).then((r) => r.slice(0, 10)));
 
-const resultsWithAnalysis = searchResults
-    ? await e
-          .group(
-              e.select(e.Analysis, (a) => ({
-                  filter: e.op(
-                      e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
-                      'and',
-                      e.op(a.app.appId, 'in', e.set(...searchResults.map((r) => r.id))),
-                  ),
-              })),
-              (a) => ({ id: true, by: { app_id: a.app.appId } }),
-          )
-          .run(client)
-    : [];
+const resultsWithAnalysis =
+    searchResults && searchResults.length > 0
+        ? await e
+              .group(
+                  e.select(e.Analysis, (a) => ({
+                      filter: e.op(
+                          e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
+                          'and',
+                          e.op(a.app.appId, 'in', e.set(...searchResults.map((r) => r.id))),
+                      ),
+                  })),
+                  (a) => ({ id: true, by: { app_id: a.app.appId } }),
+              )
+              .run(client)
+        : [];
 const results =
     searchResults &&
     searchResults.map((r) => ({

@@ -38,6 +38,12 @@
         "what-explanation": "This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something."
     },
     "proceeding-landing-awaitingControllerNotice": {
-        "heading": "Analysis of “{{appName}}”"
+        "heading": "Analysis of “{{appName}}”",
+        "explanation": "<p>The analysis of “{{appName}}” has finished. We <strong>have detected</strong> tracking data transmissions without consent, which you can see below.</p><p>This could be in violation of applicable data protection law. You can now send a notice to the developer giving them the opportunity to remedy the problem.</p>",
+        "send-notice-button": "Send notice to developer",
+        "tracker-intro": "The app has sent {{n}} request(s) to the tracker “{{trackerName}}”, transmitting at least the following information.",
+        "more-information": "More information",
+        "data-type": "Data type",
+        "transmitted-values": "Transmitted value(s)"
     }
 }

@@ -58,6 +58,7 @@
         "postinstall-postinstall": "^2.1.0",
         "preact": "^10.22.0",
         "preact-i18n": "2.4.0-preactx",
+        "trackhar": "file:.yalc/trackhar",
         "zod": "^3.23.8"
     },
     "devDependencies": {

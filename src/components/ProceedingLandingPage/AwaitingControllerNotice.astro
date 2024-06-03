@@ -1,0 +1,114 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+import { absUrl } from '../../lib/util';
+import { prepareTraffic } from '../../lib/reporthar-shim';
+import trackHarTranslationsEn from 'trackhar/i18n/en.json';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, (p) => ({
+        initialAnalysis: {
+            appName: true,
+            trackHarResult: true,
+        },
+
+        filter: e.op(p.token, '=', token),
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
+
+const { appName, trackHarResult } = proceeding.initialAnalysis;
+
+const { findings } = prepareTraffic({ trackHarResult: trackHarResult as any });
+
+const trackHarTranslations = {
+    en: trackHarTranslationsEn,
+};
+const trackHarT = <TScope extends keyof typeof trackHarTranslationsEn>(
+    scope: TScope,
+    key: keyof (typeof trackHarTranslationsEn)[TScope],
+) => trackHarTranslations[(Astro.currentLocale || 'en') as 'en'][scope][key];
+---
+
+<Base title={t('proceeding-landing-awaitingControllerNotice', `heading`, { appName })}>
+    <TextRaw scope="proceeding-landing-awaitingControllerNotice" id="explanation" fields={{ appName }} />
+
+    <a class="button button-primary" href={absUrl(`/p/${token}/send-notice`)}>
+        {t('proceeding-landing-awaitingControllerNotice', `send-notice-button`)}
+    </a>
+
+    {
+        Object.entries(findings).map(([adapterSlug, adapterResult]) => (
+            <>
+                <h2>{adapterResult.adapter.name}</h2>
+                {t('proceeding-landing-awaitingControllerNotice', 'tracker-intro', {
+                    n: adapterResult.requests.length,
+                    trackerName: adapterResult.adapter.name,
+                })}{' '}
+                <a href={`https://trackers.tweasel.org/t/${adapterSlug}`}>
+                    {t('proceeding-landing-awaitingControllerNotice', 'more-information')}
+                </a>
+                <table class="table fancy-table">
+                    <thead>
+                        <tr>
+                            <th>{t('proceeding-landing-awaitingControllerNotice', 'data-type')}</th>
+                            <th>{t('proceeding-landing-awaitingControllerNotice', 'transmitted-values')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.entries(adapterResult.receivedData).map(([property, value]) => (
+                            <tr>
+                                <td>{trackHarT('properties', property as 'appName')}</td>
+                                <td>
+                                    <code>{value.join(', ')}</code>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </>
+        ))
+    }
+</Base>
+
+<style lang="scss">
+    h2 {
+        margin-top: 1.5em;
+    }
+
+    table.fancy-table {
+        width: 100%;
+        margin-top: 15px;
+        border-width: 2px;
+
+        thead {
+            border-bottom-width: 2px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            word-break: break-word;
+            hyphens: auto;
+
+            @supports not (hyphens: auto) {
+                word-break: break-all;
+            }
+        }
+
+        td:nth-child(1),
+        th:nth-child(1) {
+            width: 30%;
+        }
+    }
+</style>

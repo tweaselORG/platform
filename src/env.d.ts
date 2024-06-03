@@ -1,5 +1,3 @@
-// / <reference path="../.astro/actions.d.ts" />
-// / <reference path="../.astro/actions.d.ts" />
 /* eslint-disable spaced-comment */
 /// <reference types="astro/client" />
 /// <reference types="astro-global/client" />

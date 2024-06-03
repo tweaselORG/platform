@@ -3,6 +3,7 @@ import { e, client } from '../../../lib/db';
 import { isValidProceedingState } from '../../../lib/typeguard';
 import NeedsInitialAnalysis from '../../../components/ProceedingLandingPage/NeedsInitialAnalysis.astro';
 import InitialAnalysisFoundNothing from '../../../components/ProceedingLandingPage/InitialAnalysisFoundNothing.astro';
+import AwaitingControllerNotice from '../../../components/ProceedingLandingPage/AwaitingControllerNotice.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -27,6 +28,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
         <NeedsInitialAnalysis />
     ) : state === 'initialAnalysisFoundNothing' ? (
         <InitialAnalysisFoundNothing token={token} />
+    ) : state === 'awaitingControllerNotice' ? (
+        <AwaitingControllerNotice token={token} />
     ) : (
         ''
     )

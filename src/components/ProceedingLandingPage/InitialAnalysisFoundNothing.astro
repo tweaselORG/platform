@@ -1,0 +1,40 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, (p) => ({
+        initialAnalysis: {
+            appName: true,
+        },
+
+        filter: e.op(p.token, '=', token),
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
+---
+
+<Base
+    title={t('proceeding-landing-initialAnalysisFoundNothing', `heading`, {
+        appName: proceeding.initialAnalysis.appName,
+    })}>
+    <p>
+        <TextRaw scope="proceeding-landing-initialAnalysisFoundNothing" id="explanation" />
+    </p>
+
+    <h2>{t('proceeding-landing-initialAnalysisFoundNothing', `what-heading`)}</h2>
+
+    <p>
+        {t('proceeding-landing-initialAnalysisFoundNothing', `what-explanation`)}
+    </p>
+</Base>

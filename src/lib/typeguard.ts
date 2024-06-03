@@ -3,5 +3,6 @@ const validProceedingStates = [
     'initialAnalysisFoundNothing',
     'awaitingControllerNotice',
 ] as const;
-export const isValidProceedingState = (state: string): state is (typeof validProceedingStates)[number] =>
+export type ProceedingState = (typeof validProceedingStates)[number];
+export const isValidProceedingState = (state: string): state is ProceedingState =>
     (validProceedingStates as readonly string[]).includes(state);

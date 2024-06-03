@@ -1,11 +1,8 @@
 ---
-import { t } from '../../../i18n/server';
-import Base from '../../../layouts/base.astro';
-import { absUrl } from '../../../lib/util';
 import { e, client } from '../../../lib/db';
 import { isValidProceedingState } from '../../../lib/typeguard';
-import TextRaw from '../../../components/TextRaw.astro';
-import LoadingIndicator from '../../../components/LoadingIndicator.astro';
+import NeedsInitialAnalysis from '../../../components/ProceedingLandingPage/NeedsInitialAnalysis.astro';
+import InitialAnalysisFoundNothing from '../../../components/ProceedingLandingPage/InitialAnalysisFoundNothing.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -23,22 +20,14 @@ if (!proceeding) return new Response('Invalid token.', { status: 403 });
 
 const state = proceeding.state;
 if (!isValidProceedingState(state)) throw new Error('This should never happen.');
-
-const tokenUrl = `/p/${token}`;
 ---
 
-<Base title={t('proceeding-landing', `heading-${state}`)}>
-    {
-        state === 'needsInitialAnalysis' ? (
-            <>
-                <LoadingIndicator shown={true} style="margin: 50px 0;" />
-
-                <TextRaw scope="proceeding-landing" id="explanation-needsInitialAnalysis" />
-
-                <a href={absUrl(tokenUrl)}>{tokenUrl}</a>
-            </>
-        ) : (
-            ''
-        )
-    }
-</Base>
+{
+    state === 'needsInitialAnalysis' ? (
+        <NeedsInitialAnalysis />
+    ) : state === 'initialAnalysisFoundNothing' ? (
+        <InitialAnalysisFoundNothing token={token} />
+    ) : (
+        ''
+    )
+}

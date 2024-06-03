@@ -27,10 +27,17 @@
         "explanation": "You have been looking at the {{platform}} version of the app. Please search for the {{actualPlatform}} version instead.",
         "back-to-search": "Go back to search"
     },
-    "proceeding-landing": {
-        "heading-needsInitialAnalysis": "Analysing app…",
-        "explanation-needsInitialAnalysis": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>",
-        "heading-initialAnalysisFoundNothing": "Analysis of “{{appName}}” found nothing",
-        "heading-awaitingControllerNotice": "Analysis of “{{appName}}”"
+    "proceeding-landing-needsInitialAnalysis": {
+        "heading": "Analysing app…",
+        "explanation": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
+    },
+    "proceeding-landing-initialAnalysisFoundNothing": {
+        "heading": "Analysis of “{{appName}}” found nothing",
+        "explanation": "The analysis of the app has finished. We did <strong>not</strong> detect any tracking data transmissions without consent.",
+        "what-heading": "What does that mean?",
+        "what-explanation": "This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something."
+    },
+    "proceeding-landing-awaitingControllerNotice": {
+        "heading": "Analysis of “{{appName}}”"
     }
 }

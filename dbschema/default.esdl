@@ -33,11 +33,11 @@ module default {
         required token: str;
 
           state := (
-            'needsInitialAnalysis' if not exists(.initialAnalysis)  else
-            # initialAnalysisFoundNothing
-            # awaitingControllerNotice
+            'needsInitialAnalysis' if not exists(.initialAnalysis) else
+            'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
+            'awaitingControllerNotice' if any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             # awaitingControllerResponse
-            # 'needsSecondAnalysis' if not exists(.initialAnalysis)  else
+            # 'needsSecondAnalysis' if not exists(.initialAnalysis) else
             # secondAnalysisFoundNothing
             # awaitingComplaint
             # complaintSent

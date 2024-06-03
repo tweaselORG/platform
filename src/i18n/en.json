@@ -29,6 +29,8 @@
     },
     "proceeding-landing": {
         "heading-needsInitialAnalysis": "Analysing app…",
-        "explanation-needsInitialAnalysis": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
+        "explanation-needsInitialAnalysis": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>",
+        "heading-initialAnalysisFoundNothing": "Analysis of “{{appName}}” found nothing",
+        "heading-awaitingControllerNotice": "Analysis of “{{appName}}”"
     }
 }

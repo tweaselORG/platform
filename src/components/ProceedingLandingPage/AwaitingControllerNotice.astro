@@ -4,7 +4,7 @@ import { e, client } from '../../lib/db';
 import Base from '../../layouts/base.astro';
 import TextRaw from '../TextRaw.astro';
 import { absUrl } from '../../lib/util';
-import { prepareTraffic } from '../../lib/reporthar-shim';
+import { prepareTraffic } from 'reporthar';
 import trackHarTranslationsEn from 'trackhar/i18n/en.json';
 
 interface Props {
@@ -29,7 +29,12 @@ if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should nev
 
 const { appName, trackHarResult } = proceeding.initialAnalysis;
 
-const { findings } = prepareTraffic({ trackHarResult: trackHarResult as any });
+const { findings } = prepareTraffic({
+    trackHarResult: trackHarResult as any,
+    // We don't care about the additional processing the function does on the HAR file for ReportHAR, so we can just
+    // stub the HAR.
+    har: { log: { entries: [] } },
+});
 
 const trackHarTranslations = {
     en: trackHarTranslationsEn,

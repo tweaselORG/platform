@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "trackhar": {
+      "signature": "f7b6721ddf5a813609292d44e50392ac",
+      "file": true,
+      "replaced": "^0.3.1"
+    }
+  }
+}

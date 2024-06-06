@@ -45,5 +45,25 @@
         "more-information": "More information",
         "data-type": "Data type",
         "transmitted-values": "Transmitted value(s)"
+    },
+    "send-notice": {
+        "heading": "Send notice to developer",
+        "intro": "<p>We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.<br><strong>Make sure to attach the files listed below to the email!</strong></p>",
+        "subject": "Subject",
+        "recipient": "Recipient",
+        "verify-recipient": "Please verify this email address in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "find-recipient": "You should be able to find the email address in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "find-recipient-no-pp": "You should be able to find the email address in the app’s privacy policy.",
+        "text": "Text",
+        "template-subject": "Data protection violations in your {{platform}} app “{{appName}}”",
+        "template-text": "To Whom It May Concern:\n\nI unfortunately had to notice that your {{platform}} app “{{appName}}” ({{appId}}) performs tracking data transmissions without consent. I believe that this is in violation of applicable data protection law.\n\nPlease refer to the attached notice and technical report for further details. Please especially note the voluntary 60 day grace period that I am giving you before filing a complaint with the data protection authorities.\n\nYours sincerely,",
+        "attachments": "Attachments",
+        "notice": "Notice (PDF)",
+        "technical-report": "Technical report (PDF)",
+        "traffic-recording": "Traffic recording (HAR)",
+        "upload-heading": "Upload sent message",
+        "upload-explanation": "After you've sent the email, upload it here as an EML or PDF file. Why do we need this? If the developer doesn’t actually remove the tracking within the 60 day deadline you have given them, you can send a complaint to the data protection authorities and ask them to intervene. In this case, you will need to attach the previous communication with the developer.",
+        "choose-file": "Choose file",
+        "upload": "Upload"
     }
 }

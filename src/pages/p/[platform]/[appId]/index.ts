@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { nanoid } from 'nanoid';
 import { z } from 'zod';
 import { client, e } from '../../../../lib/db';
+import { generateReference } from '../../../../lib/util';
 
 const createProceedingSchema = z.object({
     platform: z.enum(['android', 'ios']),
@@ -26,6 +27,7 @@ export const POST: APIRoute = async ({ params, redirect }) => {
                 })),
 
             token,
+            reference: generateReference(new Date()),
         })
         .run(client);
 

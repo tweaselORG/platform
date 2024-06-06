@@ -1,0 +1,113 @@
+---
+import { t } from '../../../i18n/server';
+import { e, client } from '../../../lib/db';
+import { getAppMeta } from '../../../lib/app-store/meta';
+import Base from '../../../layouts/base.astro';
+import TextRaw from '../../../components/TextRaw.astro';
+import { absUrl } from '../../../lib/util';
+
+const { token } = Astro.params;
+if (!token) throw new Error('This should never happen.');
+
+const proceeding = await e
+    .select(e.Proceeding, (p) => ({
+        app: {
+            appId: true,
+            platform: true,
+        },
+        initialAnalysis: {
+            appName: true,
+        },
+        state: true,
+
+        filter: e.op(p.token, '=', token),
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.initialAnalysis) return new Response('Invalid token.', { status: 403 });
+
+if (proceeding.state !== 'awaitingControllerNotice')
+    return new Response(
+        'You cannot send a notice to the developer regarding this proceeding yet or you have already sent it.',
+        { status: 400 },
+    );
+
+const appMeta = await getAppMeta({
+    appId: proceeding.app.appId,
+    platform: proceeding.app.platform,
+    language: (Astro.currentLocale as 'EN') || 'EN',
+});
+const recipientEmail = appMeta?.developerEmail;
+const privacyPolicyUrl = appMeta?.privacyPolicyUrl?.replace(/'"/g, '');
+
+const fields = {
+    platform: t('common', proceeding.app.platform),
+    appName: proceeding.initialAnalysis.appName,
+    appId: proceeding.app.appId,
+};
+---
+
+<Base title={t('send-notice', 'heading')}>
+    <TextRaw scope="send-notice" id="intro" />
+
+    <div class="form-group">
+        <strong><label for="subject-input">{t('send-notice', 'subject')}</label></strong>
+        <input
+            type="text"
+            id="subject-input"
+            class="form-element"
+            readonly
+            value={t('send-notice', 'template-subject', fields)}
+        />
+
+        <strong><label for="recipient-input">{t('send-notice', 'recipient')}</label></strong><br />
+        {
+            !privacyPolicyUrl ? (
+                t('send-notice', 'find-recipient-no-pp')
+            ) : recipientEmail ? (
+                <>
+                    <input type="email" id="recipient-input" class="form-element" readonly value={recipientEmail} />
+                    <TextRaw scope="send-notice" id="verify-recipient" fields={{ privacyPolicyUrl }} />
+                </>
+            ) : (
+                <TextRaw scope="send-notice" id="find-recipient" fields={{ privacyPolicyUrl }} />
+            )
+        }<br />
+
+        <strong><label for="body-input">{t('send-notice', 'text')}</label></strong>
+        <textarea
+            id="body-input"
+            class="form-element"
+            rows="11"
+            readonly
+            set:text={t('send-notice', 'template-text', fields)}
+        />
+    </div>
+
+    <h2>{t('send-notice', 'attachments')}</h2>
+
+    <ul>
+        <li><a href={absUrl(`/p/${token}/attachment/notice`)}>{t('send-notice', 'notice')}</a></li>
+        <li><a href={absUrl(`/p/${token}/attachment/initial-report`)}>{t('send-notice', 'technical-report')}</a></li>
+        <li><a href={absUrl(`/p/${token}/attachment/initial-har`)}>{t('send-notice', 'traffic-recording')}</a></li>
+    </ul>
+
+    <hr />
+
+    <h2>{t('send-notice', 'upload-heading')}</h2>
+
+    <p>{t('send-notice', 'upload-explanation')}</p>
+
+    <form action={absUrl(`/p/${token}/upload`)} enctype="multipart/form-data" method="post">
+        <label for="upload" class="sr-only">{t('send-notice', 'choose-file')}</label>
+        <input type="file" id="upload" name="upload" accept=".pdf,.eml" required />
+        <button type="submit">{t('send-notice', 'upload')}</button>
+    </form>
+</Base>
+
+<style>
+    hr {
+        margin: 2em 0;
+    }
+</style>

@@ -2,6 +2,19 @@ module default {
     scalar type Platform extending enum<android, ios>;
     scalar type AnalysisType extending enum<initial, second>;
 
+    abstract type CreatedOn {
+        required property createdOn: datetime {
+            default := datetime_current();
+            readonly := true;
+        };
+    }
+
+    abstract constraint max_size_bytes(size: int64) {
+        errmessage := 'Maximum allowed size for {__subject__} is {size} bytes.';
+
+        using (len(__subject__) <= size);
+    }
+
     type App {
         required platform: Platform;
         required appId: str { constraint max_len_value(150); };
@@ -28,9 +41,10 @@ module default {
         constraint exclusive on ((.proceeding, .type));
     }
 
-    type Proceeding {
+    type Proceeding extending CreatedOn {
         required app: App;
         required token: str;
+        required reference: str { constraint exclusive; };
 
           state := (
             'needsInitialAnalysis' if not exists(.initialAnalysis) else
@@ -47,6 +61,13 @@ module default {
         single initialAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'initial' limit 1);
         single secondAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'second' limit 1);
 
-        required startedAt: datetime { default := datetime_current(); };
+        multi uploads := .<proceeding[is MessageUpload];
+    }
+
+    type MessageUpload extending CreatedOn {
+        required proceeding: Proceeding;
+
+        required filename: str { constraint max_len_value(255); };
+        required file: bytes { constraint max_size_bytes(20971520); };
     }
 }

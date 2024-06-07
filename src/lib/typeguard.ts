@@ -2,6 +2,7 @@ const validProceedingStates = [
     'needsInitialAnalysis',
     'initialAnalysisFoundNothing',
     'awaitingControllerNotice',
+    'awaitingControllerResponse',
 ] as const;
 export type ProceedingState = (typeof validProceedingStates)[number];
 export const isValidProceedingState = (state: string): state is ProceedingState =>

@@ -10,16 +10,17 @@ export const POST: APIRoute = async ({ request, params, redirect }) => {
     const { token } = uploadSchema.parse(params);
 
     const proceeding = await e
-        .select(e.Proceeding, (p) => ({
+        .select(e.Proceeding, () => ({
             state: true,
 
-            filter: e.op(p.token, '=', token),
+            // eslint-disable-next-line camelcase
+            filter_single: { token },
         }))
         .assert_single()
         .run(client);
     if (!proceeding) return new Response('Invalid token.', { status: 403 });
 
-    if (proceeding.state !== 'awaitingControllerNotice')
+    if (!['awaitingControllerNotice', 'awaitingControllerResponse'].includes(proceeding.state))
         return new Response('You cannot upload this now.', { status: 400 });
 
     const data = await request.formData();
@@ -32,8 +33,9 @@ export const POST: APIRoute = async ({ request, params, redirect }) => {
     await e
         .insert(e.MessageUpload, {
             proceeding: e
-                .select(e.Proceeding, (p) => ({
-                    filter: e.op(p.token, '=', token),
+                .select(e.Proceeding, () => ({
+                    // eslint-disable-next-line camelcase
+                    filter_single: { token },
                 }))
                 .assert_single(),
 
@@ -41,7 +43,19 @@ export const POST: APIRoute = async ({ request, params, redirect }) => {
             file,
         })
         .run(client);
+    if (proceeding.state === 'awaitingControllerNotice')
+        await e
+            .update(e.Proceeding, () => ({
+                // eslint-disable-next-line camelcase
+                filter_single: { token },
 
-    if (proceeding.state === 'awaitingControllerNotice') return redirect(`/p/${token}`);
+                set: {
+                    noticeSent: new Date(),
+                },
+            }))
+            .run(client);
+
+    if (['awaitingControllerNotice', 'awaitingControllerResponse'].includes(proceeding.state))
+        return redirect(`/p/${token}`);
     throw new Error('This should never happen.');
 };

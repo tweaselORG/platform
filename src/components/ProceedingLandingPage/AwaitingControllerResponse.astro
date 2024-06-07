@@ -1,0 +1,59 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+import { absUrl } from '../../lib/util';
+import MessageUploader from '../MessageUploader.astro';
+import { calculateDeadline } from '../../lib/proceeding';
+import { formatDate } from '../../lib/util';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, (p) => ({
+        initialAnalysis: {
+            appName: true,
+        },
+        noticeSent: true,
+        uploads: { filename: true },
+
+        filter: e.op(p.token, '=', token),
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.initialAnalysis || !proceeding.noticeSent) throw new Error('This should never happen.');
+
+const appName = proceeding.initialAnalysis.appName;
+const deadline = calculateDeadline(proceeding.noticeSent);
+---
+
+<Base title={t('proceeding-landing-awaitingControllerResponse', `heading`, { appName })}>
+    <p>
+        <TextRaw
+            scope="proceeding-landing-awaitingControllerResponse"
+            id="explanation"
+            fields={{ appName, deadline: formatDate(deadline, { language: Astro.currentLocale }) }}
+        />
+    </p>
+
+    <MessageUploader {token} />
+
+    <h2>{t('proceeding-landing-awaitingControllerResponse', 'uploaded-messages')}</h2>
+    <ul>
+        {proceeding.uploads.map((upload) => <li>{upload.filename}</li>)}
+    </ul>
+
+    <hr />
+
+    <p>{t('proceeding-landing-awaitingControllerResponse', 'next-steps')}</p>
+
+    <a href={absUrl(`/p/${token}/evaluate-response`)} class="button button-primary">
+        {t('proceeding-landing-awaitingControllerResponse', 'continue')}
+    </a>
+</Base>

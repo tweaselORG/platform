@@ -46,6 +46,13 @@
         "data-type": "Data type",
         "transmitted-values": "Transmitted value(s)"
     },
+    "proceeding-landing-awaitingControllerResponse": {
+        "heading": "Waiting for the developer of “{{appName}}” to respond…",
+        "explanation": "The developer of “{{appName}}” has until {{deadline}} to respond to your notice. Please upload all correspondence you have with them in the meantime so that we can attach it to a potential complaint in the future.",
+        "uploaded-messages": "Uploaded messages",
+        "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages before you continue.",
+        "continue": "Continue with the process"
+    },
     "send-notice": {
         "heading": "Send notice to developer",
         "intro": "<p>We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.<br><strong>Make sure to attach the files listed below to the email!</strong></p>",

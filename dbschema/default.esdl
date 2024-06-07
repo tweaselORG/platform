@@ -43,23 +43,25 @@ module default {
 
     type Proceeding extending CreatedOn {
         required app: App;
-        required token: str;
+        required token: str { constraint exclusive; };
         required reference: str { constraint exclusive; };
 
-          state := (
+        state := (
             'needsInitialAnalysis' if not exists(.initialAnalysis) else
-            'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
-            'awaitingControllerNotice' if any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
-            # awaitingControllerResponse
+            'initialAnalysisFoundNothing' if not exists(.uploads) and all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
+            'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
+            'awaitingControllerResponse'
             # 'needsSecondAnalysis' if not exists(.initialAnalysis) else
             # secondAnalysisFoundNothing
             # awaitingComplaint
             # complaintSent
-            '<invalid>'
+            # '<invalid>'
         );
 
         single initialAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'initial' limit 1);
         single secondAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'second' limit 1);
+
+        noticeSent: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
     }

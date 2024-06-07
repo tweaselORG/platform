@@ -14,13 +14,13 @@ interface Props {
 const { token } = Astro.props;
 
 const proceeding = await e
-    .select(e.Proceeding, (p) => ({
+    .select(e.Proceeding, () => ({
         initialAnalysis: {
             appName: true,
             trackHarResult: true,
         },
 
-        filter: e.op(p.token, '=', token),
+        filter_single: { token },
     }))
     .assert_single()
     .run(client);

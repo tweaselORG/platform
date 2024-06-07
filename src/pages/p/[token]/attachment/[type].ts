@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ params, currentLocale }) => {
     const { token, type } = getAttachmentSchema.parse(params);
 
     const proceeding = await e
-        .select(e.Proceeding, (p) => ({
+        .select(e.Proceeding, () => ({
             reference: true,
             state: true,
 
@@ -21,7 +21,8 @@ export const GET: APIRoute = async ({ params, currentLocale }) => {
                 trackHarResult: true,
             },
 
-            filter: e.op(p.token, '=', token),
+            // eslint-disable-next-line camelcase
+            filter_single: { token },
         }))
         .assert_single()
         .run(client);

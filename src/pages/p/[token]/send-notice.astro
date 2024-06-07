@@ -11,7 +11,7 @@ const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
 
 const proceeding = await e
-    .select(e.Proceeding, (p) => ({
+    .select(e.Proceeding, () => ({
         app: {
             appId: true,
             platform: true,
@@ -21,7 +21,7 @@ const proceeding = await e
         },
         state: true,
 
-        filter: e.op(p.token, '=', token),
+        filter_single: { token },
     }))
     .assert_single()
     .run(client);

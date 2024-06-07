@@ -29,11 +29,11 @@ if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should nev
 const { appName, trackHarResult } = proceeding.initialAnalysis;
 ---
 
-<Base title={t('proceeding-landing-awaitingControllerNotice', `heading`, { appName })}>
-    <TextRaw scope="proceeding-landing-awaitingControllerNotice" id="explanation" fields={{ appName }} />
+<Base title={t('proceeding-landing-awaitingComplaint', `heading`, { appName })}>
+    <TextRaw scope="proceeding-landing-awaitingComplaint" id="explanation" fields={{ appName }} />
 
-    <a class="button button-primary" href={absUrl(`/p/${token}/send-notice`)}>
-        {t('proceeding-landing-awaitingControllerNotice', `send-notice-button`)}
+    <a class="button button-primary" href={absUrl(`/p/${token}/complain`)}>
+        {t('proceeding-landing-awaitingComplaint', `contact-button`)}
     </a>
 
     <TransmittedData trackHarResult={trackHarResult as any} />

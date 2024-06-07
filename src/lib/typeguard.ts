@@ -5,6 +5,7 @@ const validProceedingStates = [
     'awaitingControllerResponse',
     'needsSecondAnalysis',
     'secondAnalysisFoundNothing',
+    'awaitingComplaint',
 ] as const;
 export type ProceedingState = (typeof validProceedingStates)[number];
 export const isValidProceedingState = (state: string): state is ProceedingState =>

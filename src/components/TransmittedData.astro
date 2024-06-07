@@ -1,0 +1,87 @@
+---
+import { prepareTraffic, type PrepareTrafficOptions } from 'reporthar';
+import trackHarTranslationsEn from 'trackhar/i18n/en.json';
+import { t } from '../i18n/server';
+
+interface Props {
+    trackHarResult: PrepareTrafficOptions['trackHarResult'];
+}
+
+const { findings } = prepareTraffic({
+    trackHarResult: Astro.props.trackHarResult,
+    // We don't care about the additional processing the function does on the HAR file for ReportHAR, so we can just
+    // stub the HAR.
+    har: { log: { entries: [] } },
+});
+
+const trackHarTranslations = {
+    en: trackHarTranslationsEn,
+};
+const trackHarT = <TScope extends keyof typeof trackHarTranslationsEn>(
+    scope: TScope,
+    key: keyof (typeof trackHarTranslationsEn)[TScope],
+) => trackHarTranslations[(Astro.currentLocale || 'en') as 'en'][scope][key];
+---
+
+{
+    Object.entries(findings).map(([adapterSlug, adapterResult]) => (
+        <>
+            <h2>{adapterResult.adapter.name}</h2>
+            {t('trackhar-result', 'tracker-intro', {
+                n: adapterResult.requests.length,
+                trackerName: adapterResult.adapter.name,
+            })}{' '}
+            <a href={`https://trackers.tweasel.org/t/${adapterSlug}`}>{t('trackhar-result', 'more-information')}</a>
+            <table class="table fancy-table">
+                <thead>
+                    <tr>
+                        <th>{t('trackhar-result', 'data-type')}</th>
+                        <th>{t('trackhar-result', 'transmitted-values')}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.entries(adapterResult.receivedData).map(([property, value]) => (
+                        <tr>
+                            <td>{trackHarT('properties', property as 'appName')}</td>
+                            <td>
+                                <code>{value.join(', ')}</code>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
+    ))
+}
+
+<style lang="scss">
+    h2 {
+        margin-top: 1.5em;
+    }
+
+    table.fancy-table {
+        width: 100%;
+        margin-top: 15px;
+        border-width: 2px;
+
+        thead {
+            border-bottom-width: 2px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            word-break: break-word;
+            hyphens: auto;
+
+            @supports not (hyphens: auto) {
+                word-break: break-all;
+            }
+        }
+
+        td:nth-child(1),
+        th:nth-child(1) {
+            width: 30%;
+        }
+    }
+</style>

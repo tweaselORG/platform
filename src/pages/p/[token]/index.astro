@@ -7,6 +7,7 @@ import AwaitingControllerResponse from '../../../components/ProceedingLandingPag
 import AwaitingControllerNotice from '../../../components/ProceedingLandingPage/AwaitingControllerNotice.astro';
 import NeedsSecondAnalysis from '../../../components/ProceedingLandingPage/NeedsSecondAnalysis.astro';
 import SecondAnalysisFoundNothing from '../../../components/ProceedingLandingPage/SecondAnalysisFoundNothing.astro';
+import AwaitingComplaint from '../../../components/ProceedingLandingPage/AwaitingComplaint.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -39,6 +40,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
         <NeedsSecondAnalysis {token} />
     ) : state === 'secondAnalysisFoundNothing' ? (
         <SecondAnalysisFoundNothing {token} />
+    ) : state === 'awaitingComplaint' ? (
+        <AwaitingComplaint {token} />
     ) : (
         ''
     )

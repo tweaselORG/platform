@@ -16,7 +16,8 @@
     },
     "app-details": {
         "heading": "{{name}} ({{platform}})",
-        "analyses": "Analyses for this app"
+        "analyses": "Analyses for this app",
+        "analyse-again": "Analyse again"
     },
     "confirm-platform": {
         "heading": "Did you select the correct platform?",

@@ -53,6 +53,10 @@
         "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages before you continue.",
         "continue": "Continue with the process"
     },
+    "proceeding-landing-needsSecondAnalysis": {
+        "heading": "Analysing app again…",
+        "explanation": "<p>We are currently re-analysing the app to detect whether it still performs tracking without consent. This process will take a while.</p><p>Try checking back in ~10 minutes at this page.</p>"
+    },
     "send-notice": {
         "heading": "Send notice to developer",
         "intro": "<p>We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.<br><strong>Make sure to attach the files listed below to the email!</strong></p>",

@@ -14,10 +14,10 @@ const { token } = Astro.props;
 const tokenUrl = `/p/${token}`;
 ---
 
-<Base title={t('proceeding-landing-needsInitialAnalysis', `heading`)}>
+<Base title={t('proceeding-landing-needsSecondAnalysis', `heading`)}>
     <LoadingIndicator shown={true} style="margin: 50px 0;" />
 
-    <TextRaw scope="proceeding-landing-needsInitialAnalysis" id="explanation" />
+    <TextRaw scope="proceeding-landing-needsSecondAnalysis" id="explanation" />
 
     <a href={absUrl(tokenUrl)}>{tokenUrl}</a>
 </Base>

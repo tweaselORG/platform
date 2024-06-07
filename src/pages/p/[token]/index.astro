@@ -5,6 +5,7 @@ import NeedsInitialAnalysis from '../../../components/ProceedingLandingPage/Need
 import InitialAnalysisFoundNothing from '../../../components/ProceedingLandingPage/InitialAnalysisFoundNothing.astro';
 import AwaitingControllerResponse from '../../../components/ProceedingLandingPage/AwaitingControllerResponse.astro';
 import AwaitingControllerNotice from '../../../components/ProceedingLandingPage/AwaitingControllerNotice.astro';
+import NeedsSecondAnalysis from '../../../components/ProceedingLandingPage/NeedsSecondAnalysis.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -26,13 +27,15 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
 
 {
     state === 'needsInitialAnalysis' ? (
-        <NeedsInitialAnalysis />
+        <NeedsInitialAnalysis {token} />
     ) : state === 'initialAnalysisFoundNothing' ? (
-        <InitialAnalysisFoundNothing token={token} />
+        <InitialAnalysisFoundNothing {token} />
     ) : state === 'awaitingControllerNotice' ? (
-        <AwaitingControllerNotice token={token} />
+        <AwaitingControllerNotice {token} />
     ) : state === 'awaitingControllerResponse' ? (
-        <AwaitingControllerResponse token={token} />
+        <AwaitingControllerResponse {token} />
+    ) : state === 'needsSecondAnalysis' ? (
+        <NeedsSecondAnalysis {token} />
     ) : (
         ''
     )

@@ -52,7 +52,7 @@ module default {
             'initialAnalysisFoundNothing' if not exists(.uploads) and all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
             'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             'awaitingControllerResponse' if not exists(.controllerResponse) else
-            # 'needsSecondAnalysis' if not exists(.initialAnalysis) else
+            'needsSecondAnalysis' if not exists(.secondAnalysis) else
             # secondAnalysisFoundNothing
             # awaitingComplaint
             # complaintSent

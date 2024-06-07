@@ -22,10 +22,12 @@ const resultsWithAnalysis =
         ? await e
               .group(
                   e.select(e.Analysis, (a) => ({
-                      filter: e.op(
-                          e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
-                          'and',
-                          e.op(a.app.appId, 'in', e.set(...searchResults.map((r) => r.id))),
+                      filter: e.all(
+                          e.set(
+                              e.op(a.app.platform, '=', e.literal(e.Platform, platform)),
+                              e.op(a.type, '=', e.literal(e.AnalysisType, 'initial')),
+                              e.op(a.app.appId, 'in', e.set(...searchResults.map((r) => r.id))),
+                          ),
                       ),
                   })),
                   (a) => ({ id: true, by: { app_id: a.app.appId } }),

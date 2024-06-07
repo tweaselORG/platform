@@ -2,6 +2,7 @@ module default {
     scalar type Platform extending enum<android, ios>;
     scalar type AnalysisType extending enum<initial, second>;
     scalar type ControllerResponse extending enum<promise, denial, none>;
+    scalar type ComplaintType extending enum<formal, informal>;
 
     abstract type CreatedOn {
         required property createdOn: datetime {
@@ -53,8 +54,8 @@ module default {
             'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             'awaitingControllerResponse' if not exists(.controllerResponse) else
             'needsSecondAnalysis' if not exists(.secondAnalysis) else
-            # secondAnalysisFoundNothing
-            # awaitingComplaint
+            'secondAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) = 'null') else
+            'awaitingComplaint' if any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
             # complaintSent
             '<invalid>'
         );
@@ -64,6 +65,10 @@ module default {
 
         noticeSent: datetime;
         controllerResponse: ControllerResponse;
+
+        complaintType: ComplaintType;
+        complaintSent: datetime;
+        complaintAuthority: str { constraint max_len_value(255); };
 
         multi uploads := .<proceeding[is MessageUpload];
     }

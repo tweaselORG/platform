@@ -1,0 +1,34 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        secondAnalysis: {
+            appName: true,
+        },
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.secondAnalysis) throw new Error('This should never happen.');
+---
+
+<Base
+    title={t('proceeding-landing-secondAnalysisFoundNothing', `heading`, {
+        appName: proceeding.secondAnalysis.appName,
+    })}>
+    <p>
+        <TextRaw scope="proceeding-landing-secondAnalysisFoundNothing" id="explanation" />
+    </p>
+</Base>

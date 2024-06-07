@@ -72,5 +72,12 @@
         "upload-explanation": "After you've sent the email, upload it here as an EML or PDF file. Why do we need this? If the developer doesn’t actually remove the tracking within the 60 day deadline you have given them, you can send a complaint to the data protection authorities and ask them to intervene. In this case, you will need to attach the previous communication with the developer.",
         "choose-file": "Choose file",
         "upload": "Upload"
+    },
+    "evaluate-response": {
+        "heading": "How did the developer react?",
+        "explanation": "We are only interested in statements that actually respond to the tracking data transmissions that you mentioned in your notice. For this question, you can disregard confirmations of receipt, deflections, etc.",
+        "reponse-promise": "The developer told me that they removed the tracking.",
+        "reponse-denial": "The developer has denied that there are violations.",
+        "reponse-none": "The developer has not responded (concerning the tracking)."
     }
 }

@@ -7,7 +7,7 @@ import { dpas } from '../../../../lib/dpas';
 
 const complaintQuestionSchema = z.object({
     token: z.string(),
-    question: z.enum(['askIsUserOfApp', 'askAuthority']),
+    question: z.enum(['askIsUserOfApp', 'askAuthority', 'askComplaintType']),
 });
 
 export const POST: APIRoute = async ({ params, request, redirect }) => {
@@ -45,6 +45,14 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
             .parse(await request.formData());
 
         set.complaintAuthority = answer;
+    } else if (question === 'askComplaintType') {
+        const { answer } = zfd
+            .formData({
+                answer: zfd.text(z.enum(['formal', 'informal'])),
+            })
+            .parse(await request.formData());
+
+        set.complaintType = answer;
     }
 
     await e

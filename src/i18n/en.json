@@ -107,5 +107,13 @@
     "complaint-landing-askAuthority": {
         "heading": "Which authority do you want to contact?",
         "question": "<p>Please select the data protection authority that you want to contact about this matter. You can choose the authority at the your place of habitual residence (i.e. where you live), your place of work, or the place of the alleged infringement (i.e. where the developer is based).</p><p>You’ll note that the list below is not complete. Unfortunately, we can only support authorities that support complaints in languages we have templates for.</p>"
+    },
+    "complaint-landing-askComplaintType": {
+        "heading": "How to contact the DPA about the app?",
+        "explanation": "There are two ways you can ask the data protection authorities to look into the tracking data transmissions you have found in the app:",
+        "formal-complaint-explanation": "<p>You can send a formal complaint. The DPA will have to investigate this complaint and inform you of the outcome.</p><p>However, to do so, you will need to show that you are personally affected by the tracking. We can guide you through this process, but it will required a bit of effort and technical knowledge.</p>",
+        "informal-complaint-explanation": "Alternatively, you can informally ask the DPA to investigate the app. This does not require any additional effort by you but the DPA will also not be legally required to investigate or tell you what they did.",
+        "informal-complaint-button": "Informally ask the DPA to look in the app",
+        "formal-complaint-button": "Check whether I am personally affected to send a complaint"
     }
 }

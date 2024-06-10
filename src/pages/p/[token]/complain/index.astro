@@ -3,6 +3,7 @@ import { e, client } from '../../../../lib/db';
 import { isValidComplaintState } from '../../../../lib/typeguard';
 import AskIsUserOfApp from '../../../../components/ComplaintLandingPage/AskIsUserOfApp.astro';
 import AskAuthority from '../../../../components/ComplaintLandingPage/AskAuthority.astro';
+import AskComplaintType from '../../../../components/ComplaintLandingPage/AskComplaintType.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -24,4 +25,14 @@ const state = proceeding.complaintState;
 if (!state || !isValidComplaintState(state)) throw new Error('This should never happen.');
 ---
 
-{state === 'askIsUserOfApp' ? <AskIsUserOfApp {token} /> : state === 'askAuthority' ? <AskAuthority {token} /> : ''}
+{
+    state === 'askIsUserOfApp' ? (
+        <AskIsUserOfApp {token} />
+    ) : state === 'askAuthority' ? (
+        <AskAuthority {token} />
+    ) : state === 'askComplaintType' ? (
+        <AskComplaintType {token} />
+    ) : (
+        ''
+    )
+}

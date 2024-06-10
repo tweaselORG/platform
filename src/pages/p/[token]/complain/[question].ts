@@ -3,10 +3,11 @@ import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 import type { UpdateShape } from '../../../../../dbschema/edgeql-js/update';
 import { client, e } from '../../../../lib/db';
+import { dpas } from '../../../../lib/dpas';
 
 const complaintQuestionSchema = z.object({
     token: z.string(),
-    question: z.enum(['askIsUserOfApp']),
+    question: z.enum(['askIsUserOfApp', 'askAuthority']),
 });
 
 export const POST: APIRoute = async ({ params, request, redirect }) => {
@@ -36,6 +37,14 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
             .parse(await request.formData());
 
         set.complainantIsUserOfApp = answer === 'yes';
+    } else if (question === 'askAuthority') {
+        const { answer } = zfd
+            .formData({
+                answer: zfd.text(z.enum(Object.keys(dpas) as [string])),
+            })
+            .parse(await request.formData());
+
+        set.complaintAuthority = answer;
     }
 
     await e

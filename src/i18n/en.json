@@ -103,5 +103,9 @@
     "complaint-landing-askIsUserOfApp": {
         "heading": "Are you a user of the app?",
         "question": "Do you have the app installed on your personal device, which is used exclusively by you?"
+    },
+    "complaint-landing-askAuthority": {
+        "heading": "Which authority do you want to contact?",
+        "question": "<p>Please select the data protection authority that you want to contact about this matter. You can choose the authority at the your place of habitual residence (i.e. where you live), your place of work, or the place of the alleged infringement (i.e. where the developer is based).</p><p>You’ll note that the list below is not complete. Unfortunately, we can only support authorities that support complaints in languages we have templates for.</p>"
     }
 }

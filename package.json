@@ -60,7 +60,8 @@
         "preact-i18n": "2.4.0-preactx",
         "reporthar": "/home/benni/coding/JS/tweasel/ReportHAR/reporthar-v0.0.0-6.tgz",
         "trackhar": "file:.yalc/trackhar",
-        "zod": "^3.23.8"
+        "zod": "^3.23.8",
+        "zod-form-data": "^2.0.2"
     },
     "devDependencies": {
         "@baltpeter/eslint-config": "2.1.2",

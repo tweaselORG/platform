@@ -1,0 +1,26 @@
+---
+import { e, client } from '../../../../lib/db';
+import { isValidComplaintState } from '../../../../lib/typeguard';
+import AskIsUserOfApp from '../../../../components/ComplaintLandingPage/AskIsUserOfApp.astro';
+
+const { token } = Astro.params;
+if (!token) throw new Error('This should never happen.');
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        state: true,
+        complaintState: true,
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding) return new Response('Invalid token.', { status: 403 });
+if (proceeding.state !== 'awaitingComplaint') return new Response('You cannot send a complaint now.', { status: 400 });
+
+const state = proceeding.complaintState;
+if (!state || !isValidComplaintState(state)) throw new Error('This should never happen.');
+---
+
+{state === 'askIsUserOfApp' ? <AskIsUserOfApp {token} /> : ''}

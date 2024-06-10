@@ -50,14 +50,21 @@ module default {
 
         state := (
             'needsInitialAnalysis' if not exists(.initialAnalysis) else
-            'initialAnalysisFoundNothing' if not exists(.uploads) and all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
+            'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
             'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             'awaitingControllerResponse' if not exists(.controllerResponse) else
             'needsSecondAnalysis' if not exists(.secondAnalysis) else
             'secondAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) = 'null') else
-            'awaitingComplaint' if any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
-            # complaintSent
-            '<invalid>'
+            'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
+            'complaintSent'
+        );
+        complaintState := (
+            'notYet' if .state != 'awaitingComplaint' else
+            'askIsUserOfApp' if not exists(.complainantIsUserOfApp) else
+            'askAuthority' if not exists(.complaintAuthority) else
+            'askComplaintType' if .complainantIsUserOfApp and not exists(.complaintType) else
+            'askUserNetworkActivity' if .complaintType = <ComplaintType>'formal' and not exists(.userNetworkActivity) else
+            'readyToSend'
         );
 
         single initialAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'initial' limit 1);
@@ -66,9 +73,11 @@ module default {
         noticeSent: datetime;
         controllerResponse: ControllerResponse;
 
+        complainantIsUserOfApp: bool;
         complaintType: ComplaintType;
-        complaintSent: datetime;
         complaintAuthority: str { constraint max_len_value(255); };
+        userNetworkActivity: json;
+        complaintSent: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
     }

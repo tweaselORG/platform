@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { client, e } from '../../../../lib/db';
+import { calculateDeadline } from '../../../../lib/proceeding';
 
 const evaluateResponseSchema = z.object({
     token: z.string(),
@@ -13,6 +14,7 @@ export const POST: APIRoute = async ({ params, redirect }) => {
     const proceeding = await e
         .select(e.Proceeding, () => ({
             state: true,
+            noticeSent: true,
 
             // eslint-disable-next-line camelcase
             filter_single: { token },
@@ -21,8 +23,11 @@ export const POST: APIRoute = async ({ params, redirect }) => {
         .run(client);
     if (!proceeding) return new Response('Invalid token.', { status: 403 });
 
-    if (!['awaitingControllerResponse'].includes(proceeding.state))
+    if (!['awaitingControllerResponse'].includes(proceeding.state) || !proceeding.noticeSent)
         return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 });
+
+    if (response === 'none' && new Date() < calculateDeadline(proceeding.noticeSent))
+        return new Response('Give the developer until the end of the deadline to respond.', { status: 400 });
 
     await e
         .update(e.Proceeding, () => ({

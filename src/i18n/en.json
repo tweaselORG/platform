@@ -95,6 +95,7 @@
     "evaluate-response": {
         "heading": "How did the developer react?",
         "explanation": "We are only interested in statements that actually respond to the tracking data transmissions that you mentioned in your notice. For this question, you can disregard confirmations of receipt, deflections, etc.",
+        "explanation-deadline": "If the developer has not responded yet, please wait until the deadline has expired ({{deadline}}) before continuing.",
         "reponse-promise": "The developer told me that they removed the tracking.",
         "reponse-denial": "The developer has denied that there are violations.",
         "reponse-none": "The developer has not responded (concerning the tracking)."

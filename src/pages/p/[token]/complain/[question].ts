@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { parseNetworkActivityReport } from 'reporthar';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 import type { UpdateShape } from '../../../../../dbschema/edgeql-js/update';
@@ -7,7 +8,7 @@ import { dpas } from '../../../../lib/dpas';
 
 const complaintQuestionSchema = z.object({
     token: z.string(),
-    question: z.enum(['askIsUserOfApp', 'askAuthority', 'askComplaintType']),
+    question: z.enum(['askIsUserOfApp', 'askAuthority', 'askComplaintType', 'askUserNetworkActivity']),
 });
 
 export const POST: APIRoute = async ({ params, request, redirect }) => {
@@ -17,6 +18,11 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
         .select(e.Proceeding, () => ({
             state: true,
             complaintState: true,
+
+            app: {
+                appId: true,
+                platform: true,
+            },
 
             // eslint-disable-next-line camelcase
             filter_single: { token },
@@ -53,6 +59,23 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
             .parse(await request.formData());
 
         set.complaintType = answer;
+    } else if (question === 'askUserNetworkActivity') {
+        const { upload } = zfd
+            .formData({
+                upload: zfd.file(),
+            })
+            .parse(await request.formData());
+
+        set.userNetworkActivityRaw = new Uint8Array(await upload.arrayBuffer());
+        set.userNetworkActivity = parseNetworkActivityReport(
+            proceeding.app.platform === 'android' ? 'tracker-control-csv' : 'ios-app-privacy-report-ndjson',
+            await upload.text(),
+        ).filter(
+            (e) =>
+                // The `appId` is always `undefined` in the case of single app exports but we do also want to support full
+                // exports across all apps.
+                e.appId === undefined || e.appId === proceeding.app.appId,
+        );
     }
 
     await e

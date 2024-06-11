@@ -4,12 +4,17 @@ import { isValidComplaintState } from '../../../../lib/typeguard';
 import AskIsUserOfApp from '../../../../components/ComplaintLandingPage/AskIsUserOfApp.astro';
 import AskAuthority from '../../../../components/ComplaintLandingPage/AskAuthority.astro';
 import AskComplaintType from '../../../../components/ComplaintLandingPage/AskComplaintType.astro';
+import AskUserNetworkActivity from '../../../../components/ComplaintLandingPage/AskUserNetworkActivity.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
 
 const proceeding = await e
     .select(e.Proceeding, () => ({
+        app: {
+            platform: true,
+        },
+
         state: true,
         complaintState: true,
 
@@ -32,6 +37,8 @@ if (!state || !isValidComplaintState(state)) throw new Error('This should never 
         <AskAuthority {token} />
     ) : state === 'askComplaintType' ? (
         <AskComplaintType {token} />
+    ) : state === 'askUserNetworkActivity' ? (
+        <AskUserNetworkActivity {token} platform={proceeding.app.platform} />
     ) : (
         ''
     )

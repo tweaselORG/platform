@@ -76,6 +76,7 @@ module default {
         complainantIsUserOfApp: bool;
         complaintType: ComplaintType;
         complaintAuthority: str { constraint max_len_value(255); };
+        userNetworkActivityRaw: bytes { constraint max_size_bytes(1048576); };
         userNetworkActivity: json;
         complaintSent: datetime;
 

@@ -14,8 +14,9 @@ const { token } = Astro.props;
 
 const proceeding = await e
     .select(e.Proceeding, () => ({
+        appName: true,
+
         initialAnalysis: {
-            appName: true,
             trackHarResult: true,
         },
 
@@ -26,7 +27,10 @@ const proceeding = await e
 
 if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
 
-const { appName, trackHarResult } = proceeding.initialAnalysis;
+const {
+    appName,
+    initialAnalysis: { trackHarResult },
+} = proceeding;
 ---
 
 <Base title={t('proceeding-landing-awaitingComplaint', `heading`, { appName })}>

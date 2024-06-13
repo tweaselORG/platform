@@ -16,9 +16,11 @@ const proceeding = await e
             appId: true,
             platform: true,
         },
-        initialAnalysis: {
-            appName: true,
-        },
+
+        appName: true,
+        developerEmail: true,
+        privacyPolicyUrl: true,
+
         state: true,
 
         filter_single: { token },
@@ -26,7 +28,7 @@ const proceeding = await e
     .assert_single()
     .run(client);
 
-if (!proceeding || !proceeding.initialAnalysis) return new Response('Invalid token.', { status: 403 });
+if (!proceeding) return new Response('Invalid token.', { status: 403 });
 
 if (proceeding.state !== 'awaitingControllerNotice')
     return new Response(
@@ -34,17 +36,12 @@ if (proceeding.state !== 'awaitingControllerNotice')
         { status: 400 },
     );
 
-const appMeta = await getAppMeta({
-    appId: proceeding.app.appId,
-    platform: proceeding.app.platform,
-    language: (Astro.currentLocale as 'EN') || 'EN',
-});
-const recipientEmail = appMeta?.developerEmail;
-const privacyPolicyUrl = appMeta?.privacyPolicyUrl?.replace(/'"/g, '');
+const recipientEmail = proceeding.developerEmail;
+const privacyPolicyUrl = proceeding.privacyPolicyUrl?.replace(/'"/g, '');
 
 const fields = {
     platform: t('common', proceeding.app.platform),
-    appName: proceeding.initialAnalysis.appName,
+    appName: proceeding.appName,
     appId: proceeding.app.appId,
 };
 ---

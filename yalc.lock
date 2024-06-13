@@ -5,6 +5,11 @@
       "signature": "f7b6721ddf5a813609292d44e50392ac",
       "file": true,
       "replaced": "^0.3.1"
+    },
+    "parse-play": {
+      "signature": "b8c91a5ee9a341e9f54df868cc6a4853",
+      "file": true,
+      "replaced": "^2.2.0"
     }
   }
 }

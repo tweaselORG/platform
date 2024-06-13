@@ -31,7 +31,6 @@ module default {
         required startDate: datetime;
         required endDate: datetime;
 
-        required appName: str { constraint max_len_value(150); };
         required appVersion: str { constraint max_len_value(20); };
         required appVersionCode: str { constraint max_len_value(20); };
 
@@ -47,6 +46,13 @@ module default {
         required app: App;
         required token: str { constraint exclusive; };
         required reference: str { constraint exclusive; };
+
+        required appName: str { constraint max_len_value(150); };
+        required developerName: str { constraint max_len_value(150); };
+        developerEmail: str { constraint max_len_value(150); };
+        developerAddress: str { constraint max_len_value(300); };
+        developerAddressSourceUrl: str { constraint max_len_value(200); };
+        privacyPolicyUrl: str { constraint max_len_value(250); };
 
         state := (
             'needsInitialAnalysis' if not exists(.initialAnalysis) else
@@ -78,6 +84,8 @@ module default {
         complaintAuthority: str { constraint max_len_value(255); };
         userNetworkActivityRaw: bytes { constraint max_size_bytes(1048576); };
         userNetworkActivity: json;
+        loggedIntoAppStore: bool;
+        deviceHasRegisteredSimCard: bool;
         complaintSent: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];

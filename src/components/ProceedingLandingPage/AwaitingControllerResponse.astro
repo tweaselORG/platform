@@ -16,9 +16,8 @@ const { token } = Astro.props;
 
 const proceeding = await e
     .select(e.Proceeding, () => ({
-        initialAnalysis: {
-            appName: true,
-        },
+        appName: true,
+        initialAnalysis: {},
         noticeSent: true,
         uploads: { filename: true },
 
@@ -29,7 +28,7 @@ const proceeding = await e
 
 if (!proceeding || !proceeding.initialAnalysis || !proceeding.noticeSent) throw new Error('This should never happen.');
 
-const appName = proceeding.initialAnalysis.appName;
+const { appName } = proceeding;
 const deadline = calculateDeadline(proceeding.noticeSent);
 ---
 

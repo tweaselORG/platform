@@ -13,7 +13,7 @@ const analyses = await e
     .select(e.Analysis, (a) => ({
         id: true,
         startDate: true,
-        appName: true,
+        proceeding: { appName: true },
 
         filter: e.op(e.op(a.app.platform, '=', e.literal(e.Platform, platform)), 'and', e.op(a.app.appId, '=', appId)),
         order_by: { expression: a.startDate, direction: e.DESC },
@@ -22,8 +22,8 @@ const analyses = await e
 
 if (analyses.length === 0) return new Response('We have not analyzed this app yet.', { status: 404 });
 
-// An app can theoretically change its name with each new version, we thus use the one we saw in the most recent analysis.
-const name = analyses[0]!.appName;
+// An app can theoretically change its name with each new version, we thus use the one we saw in the most recent proceeding.
+const name = analyses[0]!.proceeding.appName;
 ---
 
 <Base title={t('app-details', 'heading', { name, platform: t('common', platform) })}>

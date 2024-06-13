@@ -12,21 +12,19 @@ const { token } = Astro.props;
 
 const proceeding = await e
     .select(e.Proceeding, () => ({
-        initialAnalysis: {
-            appName: true,
-        },
+        appName: true,
 
         filter_single: { token },
     }))
     .assert_single()
     .run(client);
 
-if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
+if (!proceeding) throw new Error('This should never happen.');
 ---
 
 <Base
     title={t('proceeding-landing-initialAnalysisFoundNothing', `heading`, {
-        appName: proceeding.initialAnalysis.appName,
+        appName: proceeding.appName,
     })}>
     <p>
         <TextRaw scope="proceeding-landing-initialAnalysisFoundNothing" id="explanation" />

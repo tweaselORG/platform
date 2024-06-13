@@ -53,7 +53,7 @@
         "lru-cache": "^10.2.2",
         "nanoid": "^5.0.7",
         "p-memoize": "^7.1.1",
-        "parse-play": "^2.2.0",
+        "parse-play": "file:.yalc/parse-play",
         "patch-package": "^8.0.0",
         "postinstall-postinstall": "^2.1.0",
         "preact": "^10.22.0",

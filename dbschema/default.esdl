@@ -54,7 +54,7 @@ module default {
         developerAddressSourceUrl: str { constraint max_len_value(200); };
         privacyPolicyUrl: str { constraint max_len_value(250); };
 
-        state := (
+        required state := (
             'needsInitialAnalysis' if not exists(.initialAnalysis) else
             'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
             'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
@@ -64,14 +64,14 @@ module default {
             'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
             'complaintSent'
         );
-        complaintState := (
+        required complaintState := (
             'notYet' if .state != 'awaitingComplaint' else
             'askIsUserOfApp' if not exists(.complainantIsUserOfApp) else
             'askAuthority' if not exists(.complaintAuthority) else
-            'askComplaintType' if .complainantIsUserOfApp and not exists(.complaintType) else
-            'askUserNetworkActivity' if .complaintType = <ComplaintType>'formal' and not exists(.userNetworkActivity) else
-            'askLoggedIntoAppStore' if .complaintType = <ComplaintType>'formal' and not exists(.loggedIntoAppStore) else
-            'askDeviceHasRegisteredSimCard' if .complaintType = <ComplaintType>'formal' and not exists(.deviceHasRegisteredSimCard) else
+            'askComplaintType' if not exists(.complaintType) else
+            'askUserNetworkActivity' if .complaintType ?= <ComplaintType>'formal' and not exists(.userNetworkActivity) else
+            'askLoggedIntoAppStore' if .complaintType ?= <ComplaintType>'formal' and not exists(.loggedIntoAppStore) else
+            'askDeviceHasRegisteredSimCard' if .complaintType ?= <ComplaintType>'formal' and not exists(.deviceHasRegisteredSimCard) else
             'askDeveloperAddress' if not exists(.developerAddress) else
             'readyToSend'
         );

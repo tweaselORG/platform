@@ -10,6 +10,11 @@
       "signature": "b8c91a5ee9a341e9f54df868cc6a4853",
       "file": true,
       "replaced": "^2.2.0"
+    },
+    "reporthar": {
+      "signature": "d66694930d48ab1cea66a49bbabc8d5a",
+      "file": true,
+      "replaced": "/home/benni/coding/JS/tweasel/ReportHAR/reporthar-v0.0.0-7.tgz"
     }
   }
 }

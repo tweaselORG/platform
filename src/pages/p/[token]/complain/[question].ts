@@ -51,6 +51,7 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
             .parse(await request.formData());
 
         set.complainantIsUserOfApp = answer === 'yes';
+        if (answer === 'no') set.complaintType = 'informal';
     } else if (question === 'askAuthority') {
         const { answer } = zfd
             .formData({

@@ -141,7 +141,7 @@
     },
     "complaint-landing-askDeveloperAddress": {
         "heading": "Who is responsible for the app?",
-        "explanation": "Unfortunately, we were not able to find out the address of the company responsible for the app. According to the app store, the developer is: “{{developerName}}“. Please find their address.",
+        "explanation": "Unfortunately, we were not able to automatically find the address of the company responsible for the app. According to the app store, the developer is: “{{developerName}}“. Please find their address.",
         "hint-pp": "You should be able to find this information listed as the “controller” in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
         "hint-no-pp": "You should be able to find this information listed as the “controller” in the app’s privacy policy.",
         "address": "Developer address",
@@ -149,5 +149,27 @@
         "find-source": "Please also tell us the URL to the source where you found the address.",
         "source": "Source for the developer address",
         "source-placeholder": "https://example.com/privacy-policy"
+    },
+    "complaint-landing-readyToSend": {
+        "heading": "Almost done",
+        "explanation": "You’re almost done. The DPA will need to know who the complainant is—that’s you. Since this is quite sensitive information, we will only use what you enter on this page to generate your complaint but not store it on our servers.",
+        "complainant-explanation": "You will at least need to provide your name. Some authorities also require you to provide your full address.",
+        "contact-details-explanation": "Additionally, you also need to provide the authority with a way to contact you. This can be an email address or a postal address.",
+        "agree-to-unencrypted-communication": "Finally, do you agree to being contacted via unencrypted email?",
+        "generate-complaint": "Generate complaint",
+        "send-explanation": "After you’ve downloaded the generated complaint, you can send it to the DPA yourself.<br><strong>Make sure to attach the files listed below to the email!</strong>",
+        "attachments": "Attachments",
+        "technical-report": "Technical report (PDF)",
+        "traffic-recording": "Traffic recording (HAR)",
+        "developer-communication": "Communication with the developer (ZIP)",
+        "user-network-activity-android": "TrackerControl export (CSV)",
+        "user-network-activity-ios": "App Privacy Report export (NDJSON)",
+        "dpa-contact-details": "Contact details of the DPA",
+        "dpa-contact-details-explanation": "Here’s how you can contact the DPA to send them your complaint.",
+        "address": "Address:",
+        "email": "Email address:",
+        "webform": "Webform:",
+        "pgp-key": "PGP key",
+        "complaint-sent": "I have sent the complaint"
     }
 }

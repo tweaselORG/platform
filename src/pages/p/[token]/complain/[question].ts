@@ -8,7 +8,14 @@ import { dpas } from '../../../../lib/dpas';
 
 const complaintQuestionSchema = z.object({
     token: z.string(),
-    question: z.enum(['askIsUserOfApp', 'askAuthority', 'askComplaintType', 'askUserNetworkActivity']),
+    question: z.enum([
+        'askIsUserOfApp',
+        'askAuthority',
+        'askComplaintType',
+        'askUserNetworkActivity',
+        'askLoggedIntoAppStore',
+        'askDeviceHasRegisteredSimCard',
+    ]),
 });
 
 export const POST: APIRoute = async ({ params, request, redirect }) => {
@@ -76,6 +83,22 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
                 // exports across all apps.
                 e.appId === undefined || e.appId === proceeding.app.appId,
         );
+    } else if (question === 'askLoggedIntoAppStore') {
+        const { answer } = zfd
+            .formData({
+                answer: zfd.text(z.enum(['yes', 'no'])),
+            })
+            .parse(await request.formData());
+
+        set.loggedIntoAppStore = answer === 'yes';
+    } else if (question === 'askDeviceHasRegisteredSimCard') {
+        const { answer } = zfd
+            .formData({
+                answer: zfd.text(z.enum(['yes', 'no'])),
+            })
+            .parse(await request.formData());
+
+        set.deviceHasRegisteredSimCard = answer === 'yes';
     }
 
     await e

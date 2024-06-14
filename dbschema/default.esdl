@@ -70,6 +70,8 @@ module default {
             'askAuthority' if not exists(.complaintAuthority) else
             'askComplaintType' if .complainantIsUserOfApp and not exists(.complaintType) else
             'askUserNetworkActivity' if .complaintType = <ComplaintType>'formal' and not exists(.userNetworkActivity) else
+            'askLoggedIntoAppStore' if .complaintType = <ComplaintType>'formal' and not exists(.loggedIntoAppStore) else
+            'askDeviceHasRegisteredSimCard' if .complaintType = <ComplaintType>'formal' and not exists(.deviceHasRegisteredSimCard) else
             'readyToSend'
         );
 

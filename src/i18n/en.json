@@ -2,6 +2,8 @@
     "common": {
         "android": "Android",
         "ios": "iOS",
+        "store-android": "Google Play Store",
+        "store-ios": "Apple App Store",
         "yes": "Yes",
         "no": "No"
     },
@@ -123,5 +125,17 @@
         "explanation-ios": "<p>To prove that you are personally affected by the tracking, we are going to use the App Privacy Report integrated into iOS to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Go into the Settings, then click on “Privacy & Security”.</li>\n    <li>Click on “App Privacy Report” and then click “Turn on App Privacy Report”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back into the App Privacy Report and click the share icon in the top right corner. Save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.<br>Note: The export file may unfortunately also contain information about sensor access and network activity of your other apps, especially if you already had the App Privacy Report enabled for a while. To mitigate this, it makes sense to disable and immediately re-enable the App Privacy Report right before your open the app to analyse. This will delete the old data.</li>\n</ol>",
         "choose-file": "Choose file",
         "upload": "Upload"
+    },
+    "complaint-landing-askLoggedIntoAppStore": {
+        "heading": "How did you install the app?",
+        "explanation": "If you installed the app through your personal {{store}} account, this can help us establish that you are personally affected by the tracking.",
+        "yes": "I installed the app through the {{store}} and I am logged in with my personal account",
+        "no": "I installed the app another way and/or I am not logged in with my personal account"
+    },
+    "complaint-landing-askDeviceHasRegisteredSimCard": {
+        "heading": "Do you have a SIM card in your phone?",
+        "explanation": "If you have a SIM card that is registered to your name in your phone, this can also help us establish that you are personally affected.",
+        "yes": "I have a SIM card that is registered to my name in my phone",
+        "no": "I don’t have a SIM card in my phone or it is not registered to my name"
     }
 }

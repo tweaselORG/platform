@@ -5,6 +5,8 @@ import AskIsUserOfApp from '../../../../components/ComplaintLandingPage/AskIsUse
 import AskAuthority from '../../../../components/ComplaintLandingPage/AskAuthority.astro';
 import AskComplaintType from '../../../../components/ComplaintLandingPage/AskComplaintType.astro';
 import AskUserNetworkActivity from '../../../../components/ComplaintLandingPage/AskUserNetworkActivity.astro';
+import AskLoggedIntoAppStore from '../../../../components/ComplaintLandingPage/AskLoggedIntoAppStore.astro';
+import AskDeviceHasRegisteredSimCard from '../../../../components/ComplaintLandingPage/AskDeviceHasRegisteredSimCard.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -39,6 +41,10 @@ if (!state || !isValidComplaintState(state)) throw new Error('This should never 
         <AskComplaintType {token} />
     ) : state === 'askUserNetworkActivity' ? (
         <AskUserNetworkActivity {token} platform={proceeding.app.platform} />
+    ) : state === 'askLoggedIntoAppStore' ? (
+        <AskLoggedIntoAppStore {token} platform={proceeding.app.platform} />
+    ) : state === 'askDeviceHasRegisteredSimCard' ? (
+        <AskDeviceHasRegisteredSimCard {token} />
     ) : (
         ''
     )

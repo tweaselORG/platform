@@ -74,6 +74,11 @@
         "explanation": "<p>The analysis of “{{appName}}” has finished. We have <strong>still detected</strong> tracking data transmissions without consent, which you can see below.</p><p>You can now raise this issue with the data protection authorities to have them check whether the app violates data protection law and order the developer to stop if so.</p>",
         "contact-button": "Contact data protection authorities"
     },
+    "proceeding-landing-complaintSent": {
+        "heading": "What’s next?",
+        "explanation-formal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. According to Art. 78(2) GDPR, the DPA has to inform you on the progress or outcome of the complaint within three months. However, in our experience, it is unfortunately common that it takes them much longer to do so. If after six months or a year you still haven’t received a meaningful response, it makes sense to send them a reminder.",
+        "explanation-informal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. Since you have only sent an informal complaint, the DPA is unfortunately not legally required to inform you about what they do regarding your complaint. You probably shouldn’t expect a meaningful response from them."
+    },
 
     "send-notice": {
         "heading": "Send notice to developer",

@@ -8,6 +8,7 @@ import AwaitingControllerNotice from '../../../components/ProceedingLandingPage/
 import NeedsSecondAnalysis from '../../../components/ProceedingLandingPage/NeedsSecondAnalysis.astro';
 import SecondAnalysisFoundNothing from '../../../components/ProceedingLandingPage/SecondAnalysisFoundNothing.astro';
 import AwaitingComplaint from '../../../components/ProceedingLandingPage/AwaitingComplaint.astro';
+import ComplaintSent from '../../../components/ProceedingLandingPage/ComplaintSent.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -15,6 +16,7 @@ if (!token) throw new Error('This should never happen.');
 const proceeding = await e
     .select(e.Proceeding, () => ({
         state: true,
+        complaintType: true,
 
         filter_single: { token },
     }))
@@ -42,6 +44,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
         <SecondAnalysisFoundNothing {token} />
     ) : state === 'awaitingComplaint' ? (
         <AwaitingComplaint {token} />
+    ) : state === 'complaintSent' ? (
+        <ComplaintSent complaintType={proceeding.complaintType!} />
     ) : (
         ''
     )

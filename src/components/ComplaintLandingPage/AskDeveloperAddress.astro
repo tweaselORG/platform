@@ -1,0 +1,62 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+    developerName: string;
+    privacyPolicyUrl: string | null;
+}
+
+const { token, developerName, privacyPolicyUrl } = Astro.props;
+---
+
+<Base title={t('complaint-landing-askDeveloperAddress', 'heading')}>
+    <p>
+        {t('complaint-landing-askDeveloperAddress', 'explanation', { developerName })}
+    </p>
+
+    <p>
+        {
+            privacyPolicyUrl ? (
+                <TextRaw scope="complaint-landing-askDeveloperAddress" id="hint-pp" fields={{ privacyPolicyUrl }} />
+            ) : (
+                t('complaint-landing-askDeveloperAddress', 'hint-no-pp')
+            )
+        }
+    </p>
+
+    <div class="col66 col100-mobile">
+        <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askDeveloperAddress`)}>
+            <div class="form-group">
+                <label for="developerAddress">{t('complaint-landing-askDeveloperAddress', 'address')}</label><br />
+                <textarea
+                    id="developerAddress"
+                    name="developerAddress"
+                    class="form-element"
+                    placeholder={t('complaint-landing-askDeveloperAddress', 'address-placeholder')}
+                    rows="4"
+                    required></textarea>
+            </div>
+
+            <p>{t('complaint-landing-askDeveloperAddress', 'find-source')}</p>
+
+            <div class="form-group">
+                <label for="developerAddressSourceUrl">{t('complaint-landing-askDeveloperAddress', 'source')}</label><br
+                />
+                <input
+                    type="url"
+                    id="developerAddressSourceUrl"
+                    name="developerAddressSourceUrl"
+                    class="form-element"
+                    placeholder={t('complaint-landing-askDeveloperAddress', 'source-placeholder')}
+                    required
+                />
+            </div>
+
+            <input type="submit" class="button button-primary" value={t('common', 'submit')} />
+        </form>
+    </div>
+</Base>

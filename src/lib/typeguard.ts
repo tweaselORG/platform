@@ -18,6 +18,7 @@ export const validComplaintStates = [
     'askUserNetworkActivity',
     'askLoggedIntoAppStore',
     'askDeviceHasRegisteredSimCard',
+    'askDeveloperAddress',
 ] as const;
 export type ComplaintState = (typeof validComplaintStates)[number];
 export const isValidComplaintState = (state: string): state is ComplaintState =>

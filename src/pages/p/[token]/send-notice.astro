@@ -37,7 +37,7 @@ if (proceeding.state !== 'awaitingControllerNotice')
     );
 
 const recipientEmail = proceeding.developerEmail;
-const privacyPolicyUrl = proceeding.privacyPolicyUrl?.replace(/'"/g, '');
+const privacyPolicyUrl = proceeding.privacyPolicyUrl;
 
 const fields = {
     platform: t('common', proceeding.app.platform),

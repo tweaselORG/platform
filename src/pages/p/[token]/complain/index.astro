@@ -7,6 +7,7 @@ import AskComplaintType from '../../../../components/ComplaintLandingPage/AskCom
 import AskUserNetworkActivity from '../../../../components/ComplaintLandingPage/AskUserNetworkActivity.astro';
 import AskLoggedIntoAppStore from '../../../../components/ComplaintLandingPage/AskLoggedIntoAppStore.astro';
 import AskDeviceHasRegisteredSimCard from '../../../../components/ComplaintLandingPage/AskDeviceHasRegisteredSimCard.astro';
+import AskDeveloperAddress from '../../../../components/ComplaintLandingPage/AskDeveloperAddress.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -16,6 +17,8 @@ const proceeding = await e
         app: {
             platform: true,
         },
+        developerName: true,
+        privacyPolicyUrl: true,
 
         state: true,
         complaintState: true,
@@ -30,6 +33,8 @@ if (proceeding.state !== 'awaitingComplaint') return new Response('You cannot se
 
 const state = proceeding.complaintState;
 if (!state || !isValidComplaintState(state)) throw new Error('This should never happen.');
+
+const { developerName, privacyPolicyUrl } = proceeding;
 ---
 
 {
@@ -45,6 +50,8 @@ if (!state || !isValidComplaintState(state)) throw new Error('This should never 
         <AskLoggedIntoAppStore {token} platform={proceeding.app.platform} />
     ) : state === 'askDeviceHasRegisteredSimCard' ? (
         <AskDeviceHasRegisteredSimCard {token} />
+    ) : state === 'askDeveloperAddress' ? (
+        <AskDeveloperAddress {token} {developerName} {privacyPolicyUrl} />
     ) : (
         ''
     )

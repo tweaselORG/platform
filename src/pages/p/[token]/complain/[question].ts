@@ -15,6 +15,7 @@ const complaintQuestionSchema = z.object({
         'askUserNetworkActivity',
         'askLoggedIntoAppStore',
         'askDeviceHasRegisteredSimCard',
+        'askDeveloperAddress',
     ]),
 });
 
@@ -99,6 +100,16 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
             .parse(await request.formData());
 
         set.deviceHasRegisteredSimCard = answer === 'yes';
+    } else if (question === 'askDeveloperAddress') {
+        const { developerAddress, developerAddressSourceUrl } = zfd
+            .formData({
+                developerAddress: zfd.text(),
+                developerAddressSourceUrl: zfd.text(),
+            })
+            .parse(await request.formData());
+
+        set.developerAddress = developerAddress;
+        set.developerAddressSourceUrl = developerAddressSourceUrl;
     }
 
     await e

@@ -52,7 +52,7 @@ export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | 
             developerName: res.developer,
             developerEmail: res.developer_email,
             developerAddress: res.developer_address,
-            privacyPolicyUrl: res.privacy_policy_url,
+            privacyPolicyUrl: res.privacy_policy_url?.replace(/'"/g, ''),
 
             ratingCount: res.rating_counts.total,
         };

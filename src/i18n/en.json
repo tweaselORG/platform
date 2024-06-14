@@ -5,7 +5,8 @@
         "store-android": "Google Play Store",
         "store-ios": "Apple App Store",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "submit": "Submit"
     },
     "base": {
         "skip-to-content": "Skip to content",
@@ -137,5 +138,16 @@
         "explanation": "If you have a SIM card that is registered to your name in your phone, this can also help us establish that you are personally affected.",
         "yes": "I have a SIM card that is registered to my name in my phone",
         "no": "I don’t have a SIM card in my phone or it is not registered to my name"
+    },
+    "complaint-landing-askDeveloperAddress": {
+        "heading": "Who is responsible for the app?",
+        "explanation": "Unfortunately, we were not able to find out the address of the company responsible for the app. According to the app store, the developer is: “{{developerName}}“. Please find their address.",
+        "hint-pp": "You should be able to find this information listed as the “controller” in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "hint-no-pp": "You should be able to find this information listed as the “controller” in the app’s privacy policy.",
+        "address": "Developer address",
+        "address-placeholder": "123 Some Street\n12345 Some City\nSome Country",
+        "find-source": "Please also tell us the URL to the source where you found the address.",
+        "source": "Source for the developer address",
+        "source-placeholder": "https://example.com/privacy-policy"
     }
 }

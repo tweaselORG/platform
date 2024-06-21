@@ -1,9 +1,11 @@
 export const validProceedingStates = [
     'needsInitialAnalysis',
+    'initialAnalysisFailed',
     'initialAnalysisFoundNothing',
     'awaitingControllerNotice',
     'awaitingControllerResponse',
     'needsSecondAnalysis',
+    'secondAnalysisFailed',
     'secondAnalysisFoundNothing',
     'awaitingComplaint',
     'complaintSent',

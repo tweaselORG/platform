@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
+import { startAnalysis } from '../../../../lib/api/analysis-runner-local';
 import { client, e } from '../../../../lib/db';
 import { calculateDeadline } from '../../../../lib/proceeding';
 
@@ -16,6 +17,11 @@ export const POST: APIRoute = async ({ params, redirect }) => {
             state: true,
             noticeSent: true,
 
+            app: {
+                appId: true,
+                platform: true,
+            },
+
             // eslint-disable-next-line camelcase
             filter_single: { token },
         }))
@@ -29,6 +35,8 @@ export const POST: APIRoute = async ({ params, redirect }) => {
     if (response === 'none' && new Date() < calculateDeadline(proceeding.noticeSent))
         return new Response('Give the developer until the end of the deadline to respond.', { status: 400 });
 
+    const { token: analysisToken } = await startAnalysis(proceeding.app.platform, proceeding.app.appId);
+
     await e
         .update(e.Proceeding, () => ({
             // eslint-disable-next-line camelcase
@@ -36,6 +44,11 @@ export const POST: APIRoute = async ({ params, redirect }) => {
 
             set: {
                 controllerResponse: response,
+
+                requestedAnalysis: e.insert(e.RequestedAnalysis, {
+                    type: 'second',
+                    token: analysisToken,
+                }),
             },
         }))
         .run(client);

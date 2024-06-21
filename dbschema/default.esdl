@@ -31,8 +31,8 @@ module default {
         required startDate: datetime;
         required endDate: datetime;
 
-        required appVersion: str { constraint max_len_value(20); };
-        required appVersionCode: str { constraint max_len_value(20); };
+        appVersion: str { constraint max_len_value(20); };
+        appVersionCode: str { constraint max_len_value(20); };
 
         required har: str { constraint max_len_value(13000000); };
         required trackHarResult: json;
@@ -55,11 +55,13 @@ module default {
         privacyPolicyUrl: str { constraint max_len_value(250); };
 
         required state := (
-            'needsInitialAnalysis' if not exists(.initialAnalysis) else
+            'needsInitialAnalysis' if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
+            'initialAnalysisFailed' if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
             'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
             'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             'awaitingControllerResponse' if not exists(.controllerResponse) else
-            'needsSecondAnalysis' if not exists(.secondAnalysis) else
+            'needsSecondAnalysis' if not exists(.secondAnalysis) and exists(.requestedAnalysis) else
+            'secondAnalysisFailed' if not exists(.secondAnalysis) and not exists(.requestedAnalysis) else
             'secondAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) = 'null') else
             'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
             'complaintSent'
@@ -92,6 +94,11 @@ module default {
         complaintSent: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
+        single requestedAnalysis: RequestedAnalysis {
+            constraint exclusive;
+            on target delete allow;
+            on source delete delete target;
+        };
     }
 
     type MessageUpload extending CreatedOn {
@@ -99,5 +106,12 @@ module default {
 
         required filename: str { constraint max_len_value(255); };
         required file: bytes { constraint max_size_bytes(20971520); };
+    }
+
+    type RequestedAnalysis extending CreatedOn {
+        required type: AnalysisType;
+        required token: str { constraint exclusive; };
+
+        single proceeding := .<requestedAnalysis[is Proceeding];
     }
 }

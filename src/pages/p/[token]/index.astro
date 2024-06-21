@@ -2,6 +2,7 @@
 import { e, client } from '../../../lib/db';
 import { isValidProceedingState } from '../../../lib/typeguard';
 import NeedsInitialAnalysis from '../../../components/ProceedingLandingPage/NeedsInitialAnalysis.astro';
+import AnalysisFailed from '../../../components/ProceedingLandingPage/AnalysisFailed.astro';
 import InitialAnalysisFoundNothing from '../../../components/ProceedingLandingPage/InitialAnalysisFoundNothing.astro';
 import AwaitingControllerResponse from '../../../components/ProceedingLandingPage/AwaitingControllerResponse.astro';
 import AwaitingControllerNotice from '../../../components/ProceedingLandingPage/AwaitingControllerNotice.astro';
@@ -32,6 +33,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
 {
     state === 'needsInitialAnalysis' ? (
         <NeedsInitialAnalysis {token} />
+    ) : state === 'initialAnalysisFailed' ? (
+        <AnalysisFailed />
     ) : state === 'initialAnalysisFoundNothing' ? (
         <InitialAnalysisFoundNothing {token} />
     ) : state === 'awaitingControllerNotice' ? (
@@ -40,6 +43,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
         <AwaitingControllerResponse {token} />
     ) : state === 'needsSecondAnalysis' ? (
         <NeedsSecondAnalysis {token} />
+    ) : state === 'secondAnalysisFailed' ? (
+        <AnalysisFailed />
     ) : state === 'secondAnalysisFoundNothing' ? (
         <SecondAnalysisFoundNothing {token} />
     ) : state === 'awaitingComplaint' ? (

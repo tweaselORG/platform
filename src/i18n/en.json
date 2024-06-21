@@ -43,6 +43,10 @@
         "heading": "Analysing app…",
         "explanation": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
     },
+    "proceeding-landing-analysisFailed": {
+        "heading": "Analysis failed",
+        "explanation": "Unfortunately, the analysis of the app failed for unknown reasons. Please try again later."
+    },
     "proceeding-landing-initialAnalysisFoundNothing": {
         "heading": "Analysis of “{{appName}}” found nothing",
         "explanation": "The analysis of the app has finished. We did <strong>not</strong> detect any tracking data transmissions without consent.",

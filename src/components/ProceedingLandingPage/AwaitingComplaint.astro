@@ -16,7 +16,7 @@ const proceeding = await e
     .select(e.Proceeding, () => ({
         appName: true,
 
-        initialAnalysis: {
+        secondAnalysis: {
             trackHarResult: true,
         },
 
@@ -25,11 +25,11 @@ const proceeding = await e
     .assert_single()
     .run(client);
 
-if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
+if (!proceeding || !proceeding.secondAnalysis) throw new Error('This should never happen.');
 
 const {
     appName,
-    initialAnalysis: { trackHarResult },
+    secondAnalysis: { trackHarResult },
 } = proceeding;
 ---
 

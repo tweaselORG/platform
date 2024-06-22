@@ -11,3 +11,10 @@
 hr {
     margin: 2em 0;
 }
+
+#home-hero .container #home-hero-content {
+    .hero-left-col,
+    .hero-right-col {
+        flex: unset;
+    }
+}

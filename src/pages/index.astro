@@ -1,5 +1,22 @@
 ---
+import { t } from '../i18n/server';
 import Base from '../layouts/base.astro';
+import { absUrl } from '../lib/util';
 ---
 
-<Base title="Home"> Hello world. </Base>
+<Base title={t('home', 'heading')}>
+    <div slot="after-header-main" id="home-hero">
+        <div class="container">
+            <div id="home-hero-content">
+                <div class="hero-left-col">
+                    <div id="home-hero-line-1">{t('home', 'hero-heading')}</div>
+                    <div id="home-hero-desc">{t('home', 'hero-desc')}</div>
+                </div>
+                <div class="hero-right-col">
+                    <a class="button" href={absUrl('/a') + '?platform=android'}>{t('home', 'android-button')}</a>
+                    <a class="button" href={absUrl('/a') + '?platform=ios'}>{t('home', 'ios-button')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</Base>

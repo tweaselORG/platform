@@ -10,7 +10,15 @@
     },
     "base": {
         "skip-to-content": "Skip to content",
-        "back-to-home": "Back to homepage"
+        "back-to-home": "Back to homepage",
+        "logo-alt": "Tweasel logo"
+    },
+    "home": {
+        "heading": "Home",
+        "hero-heading": "Complain against illegal tracking in apps",
+        "hero-desc": "Apps often collect and share tracking data without consent. Tweasel empowers you to analyse apps for data protection violations and take action. Our platform helps you identify unlawful tracking and file complaints against it—no registration required.",
+        "android-button": "Analyse an Android app",
+        "ios-button": "Analyse an iOS app"
     },
     "search-app": {
         "heading": "Select an app to analyse",

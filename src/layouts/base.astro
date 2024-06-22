@@ -16,7 +16,7 @@ const i18nDefinition = Object.fromEntries(
             scope,
             Object.fromEntries(Object.entries(scopeTranslations).filter(([key]) => key.endsWith('!'))),
         ])
-        .filter(([, scopeTranslations]) => Object.keys(scopeTranslations || {}).length > 0)
+        .filter(([, scopeTranslations]) => Object.keys(scopeTranslations || {}).length > 0),
 );
 ---
 
@@ -37,8 +37,9 @@ const i18nDefinition = Object.fromEntries(
             <div id="nav-header-bg"></div>
 
             <div id="header-main" class="container">
-                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en')} title={t('base', 'back-to-home')}>Tweasel</a
-                >
+                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en')} title={t('base', 'back-to-home')}>
+                    <img id="logo" src="/img/logo.svg" alt={t('base', 'logo-alt')} height="32" width="134" />
+                </a>
 
                 <nav id="main-nav">
                     <div id="menu-items"></div>
@@ -46,11 +47,13 @@ const i18nDefinition = Object.fromEntries(
                 <div class="clearfix"></div>
             </div>
 
-            <div id="heading-bg">
-                <div id="heading" class="container">
-                    <h1>{title}</h1>
+            <slot name="after-header-main">
+                <div id="heading-bg">
+                    <div id="heading" class="container">
+                        <h1>{title}</h1>
+                    </div>
                 </div>
-            </div>
+            </slot>
         </header>
 
         <div class="container">

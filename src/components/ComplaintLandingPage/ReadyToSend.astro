@@ -4,6 +4,7 @@ import Base from '../../layouts/base.astro';
 import { absUrl } from '../../lib/util';
 import TextRaw from '../TextRaw.astro';
 import { dpas } from '../../lib/dpas';
+import { makeAttachmentJwt } from '../../lib/jwt';
 
 interface Props {
     token: string;
@@ -17,6 +18,15 @@ if (!complaintAuthority) throw new Error('This should never happen.');
 
 const dpa = dpas[complaintAuthority];
 if (!dpa) throw new Error('This should never happen.');
+
+const devCommunicationJwt = await makeAttachmentJwt({
+    proceedingToken: token,
+    attachmentType: 'developer-communication',
+});
+const userNetworkActivityJwt = await makeAttachmentJwt({
+    proceedingToken: token,
+    attachmentType: 'user-network-activity',
+});
 ---
 
 <Base title={t('complaint-landing-readyToSend', 'heading')}>
@@ -98,14 +108,13 @@ if (!dpa) throw new Error('This should never happen.');
                 {t('complaint-landing-readyToSend', 'traffic-recording')}
             </a>
         </li>
-        <!-- TODO: v -->
         <li>
-            <a href={absUrl(`/p/${token}/attachment/developer-communication`)}>
+            <a href={absUrl(`/p/${token}/attachment/developer-communication`, { jwt: devCommunicationJwt })}>
                 {t('complaint-landing-readyToSend', 'developer-communication')}
             </a>
         </li>
         <li>
-            <a href={absUrl(`/p/${token}/attachment/user-network-activity`)}>
+            <a href={absUrl(`/p/${token}/attachment/user-network-activity`, { jwt: userNetworkActivityJwt })}>
                 {t('complaint-landing-readyToSend', `user-network-activity-${platform}`)}
             </a>
         </li>

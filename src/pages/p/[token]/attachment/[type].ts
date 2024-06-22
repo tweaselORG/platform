@@ -1,15 +1,25 @@
 import type { APIRoute } from 'astro';
+import JSZip from 'jszip';
 import { generate } from 'reporthar';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 import { t } from '../../../../i18n/server';
 import { client, e } from '../../../../lib/db';
+import { canDownloadAttachment } from '../../../../lib/jwt';
 
-export const GET: APIRoute = async ({ params, currentLocale }) => {
+export const GET: APIRoute = async ({ params, currentLocale, url }) => {
     const { token, type } = z
         .object({
             token: z.string(),
-            type: z.enum(['initial-har', 'initial-report', 'notice', 'second-har', 'second-report']),
+            type: z.enum([
+                'initial-har',
+                'initial-report',
+                'notice',
+                'second-har',
+                'second-report',
+                'developer-communication',
+                'user-network-activity',
+            ]),
         })
         .parse(params);
 
@@ -18,6 +28,9 @@ export const GET: APIRoute = async ({ params, currentLocale }) => {
             reference: true,
             state: true,
             complaintState: true,
+            noticeSent: true,
+
+            app: { platform: true },
 
             initialAnalysis: {
                 har: true,
@@ -27,6 +40,9 @@ export const GET: APIRoute = async ({ params, currentLocale }) => {
                 har: true,
                 trackHarResult: true,
             },
+
+            uploads: { filename: true, file: true },
+            userNetworkActivityRaw: true,
 
             // eslint-disable-next-line camelcase
             filter_single: { token },
@@ -82,6 +98,41 @@ export const GET: APIRoute = async ({ params, currentLocale }) => {
                 headers: {
                     'Content-Type': 'application/pdf',
                     'Content-Disposition': `inline; filename="${proceeding.reference}-${docType}.pdf"`,
+                },
+            });
+        }
+
+        case 'developer-communication':
+        case 'user-network-activity': {
+            if (proceeding.complaintState !== 'readyToSend' || !proceeding.noticeSent)
+                return new Response('You cannot download this file yet/anymore.', { status: 400 });
+
+            // We don't want to be abused as an arbitrary file host, thus attachments expire after 62 days.
+            const fileExpiryDate = new Date(proceeding.noticeSent.getTime() + 1000 * 60 * 60 * 24 * 62);
+            if (new Date() > fileExpiryDate) return new Response('File expired.', { status: 400 });
+
+            const jwt = url.searchParams.get('jwt');
+            if (!jwt) return new Response('No JWT provided.', { status: 403 });
+
+            if (!(await canDownloadAttachment({ jwt, proceedingToken: token, attachmentType: type })))
+                return new Response('Invalid JWT.', { status: 403 });
+
+            if (type === 'developer-communication') {
+                const zip = new JSZip();
+                for (const { filename, file } of proceeding.uploads) zip.file(filename, file);
+
+                return new Response(await zip.generateAsync({ type: 'nodebuffer' }), {
+                    headers: {
+                        'Content-Type': 'application/zip',
+                        'Content-Disposition': `attachment; filename="${proceeding.reference}-${type}.zip"`,
+                    },
+                });
+            }
+
+            return new Response(proceeding.userNetworkActivityRaw, {
+                headers: {
+                    'Content-Type': proceeding.app.platform === 'ios' ? 'application/x-ndjson' : 'text/csv',
+                    'Content-Disposition': `attachment; filename="${proceeding.reference}-${proceeding.app.platform === 'ios' ? 'app-privacy-report.ndjson' : 'trackercontrol.csv'}"`,
                 },
             });
         }

@@ -1,4 +1,6 @@
 import type { APIRoute } from 'astro';
+import { detectBufferMime } from 'mime-detect';
+import cleanFileName from 'sanitize-filename';
 import { z } from 'zod';
 import { client, e } from '../../../lib/db';
 
@@ -27,8 +29,13 @@ export const POST: APIRoute = async ({ request, params, redirect }) => {
     const upload = data.get('upload') as File | null;
     if (!upload) return new Response('No file provided.', { status: 400 });
 
-    const filename = upload.name;
-    const file = new Uint8Array(await upload.arrayBuffer());
+    const filename = cleanFileName(upload.name);
+    const fileArrayBuffer = await upload.arrayBuffer();
+    const file = new Uint8Array(fileArrayBuffer);
+
+    const mime = (await detectBufferMime(Buffer.from(fileArrayBuffer))).replace(/;.+$/, '');
+    if (!['message/rfc822', 'application/pdf'].includes(mime))
+        return new Response('Disallowed file type.', { status: 400 });
 
     await e
         .insert(e.MessageUpload, {

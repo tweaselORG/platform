@@ -1,21 +1,27 @@
 import { LRUCache } from 'lru-cache';
 import pMemoize from 'p-memoize';
 import {
-    fetchAppDetails as _fetchAppDetails,
-    type AppDetailsResult,
-    type CountryCode,
-    type LanguageCode,
+    fetchAppDetails as _fetchAppDetailsAndroid,
+    type AppDetailsResult as AppDetailsResultAndroid,
 } from 'parse-play';
+import {
+    fetchAppDetails as _fetchAppDetailsIos,
+    type AppDetailsAvailableAttribute,
+    type AppDetailsResponse as AppDetailsResultIos,
+} from 'parse-tunes';
+import { cacheOptions, languageMappingIos } from './common';
 
 export type GetAppMetaOptions = {
+    /** On iOS, this has to be the adamId. */
     appId: string;
     platform: 'android' | 'ios';
 
-    language: LanguageCode;
-    country: CountryCode;
+    language: string;
 };
 
 export type AppMeta = {
+    appId: string;
+    adamId?: number;
     appName: string;
     storeUrl: string;
 
@@ -27,25 +33,28 @@ export type AppMeta = {
     ratingCount: number;
 };
 
-const androidCache = new LRUCache<string, AppDetailsResult[]>({
-    max: 1000,
-    ttl: 24 * 60 * 60 * 1000,
-});
-const fetchAppDetailsAndroid = pMemoize(_fetchAppDetails, {
+const androidCache = new LRUCache<string, AppDetailsResultAndroid[]>(cacheOptions);
+const fetchAppDetailsAndroid = pMemoize(_fetchAppDetailsAndroid, {
     cacheKey: (args) => JSON.stringify(args),
     cache: androidCache,
 });
 
+const iosCache = new LRUCache<string, AppDetailsResultIos<'ios', AppDetailsAvailableAttribute>>(cacheOptions);
+const fetchAppDetailsIos = pMemoize(_fetchAppDetailsIos, {
+    cacheKey: (args) => JSON.stringify(args),
+    cache: iosCache,
+});
+
 export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | undefined> => {
     if (options.platform === 'android') {
-        // eslint-disable-next-line camelcase
         const res = await fetchAppDetailsAndroid(
             { appId: options.appId },
-            { language: options.language, country: options.country },
+            { language: options.language.toLocaleUpperCase() as 'EN', country: 'DE' },
         );
         if (!res) return undefined;
 
         return {
+            appId: res.app_id,
             appName: res.name,
             storeUrl: 'https://play.google.com/store/apps/details?id=' + res.app_id,
 
@@ -55,6 +64,31 @@ export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | 
             privacyPolicyUrl: res.privacy_policy_url?.replace(/'"/g, ''),
 
             ratingCount: res.rating_counts.total,
+        };
+    } else if (options.platform === 'ios') {
+        const res = await fetchAppDetailsIos({
+            appId: +options.appId,
+            platforms: ['iphone'],
+            attributes: ['bundleId', 'name', 'url', 'artistName', 'privacyPolicyUrl', 'userRating'],
+            ...languageMappingIos[options.language as 'en'],
+        });
+
+        const adamId = res.url.match(/\/id(\d+)(\?|$)/)?.[1];
+        if (!adamId) throw new Error('This should never happen');
+
+        const bundleId = res.platformAttributes.ios?.bundleId;
+        if (!bundleId) throw new Error('This should never happen');
+
+        return {
+            appId: bundleId,
+            adamId: +adamId,
+            appName: res.name,
+            storeUrl: res.url,
+
+            developerName: res.artistName,
+            privacyPolicyUrl: res.platformAttributes.ios?.privacyPolicyUrl,
+
+            ratingCount: res.userRating.ratingCount,
         };
     }
 

@@ -6,15 +6,14 @@ import { absUrl } from '../../lib/util';
 import { e, client } from '../../lib/db';
 
 const term = Astro.url.searchParams.get('q');
-const platform = (Astro.url.searchParams.get('platform') as 'android') || 'android';
+const platform = (Astro.url.searchParams.get('platform') as 'android' | 'ios') || 'android';
 
 const searchResults =
     term !== null &&
     (await searchApps({
         term,
         platform,
-        language: (Astro.currentLocale as 'EN') || 'EN',
-        country: 'DE',
+        language: Astro.currentLocale || 'en',
     }).then((r) => r.slice(0, 10)));
 
 const resultsWithAnalysis =
@@ -72,11 +71,11 @@ const results =
             <input type="radio" name="platform" value="android" checked={platform === 'android'} />
             {t('common', 'android')}
         </label>
-        <!-- {' '}
+        {' '}
         <label>
             <input type="radio" name="platform" value="ios" checked={platform === 'ios'} />
             {t('common', 'ios')}
-        </label> -->
+        </label>
     </form>
 
     {
@@ -89,7 +88,10 @@ const results =
                             href={
                                 r.analysisCount > 0
                                     ? absUrl(`/a/${r.platform}/${r.id}`)
-                                    : absUrl(`/p/${r.platform}/${r.id}/confirm-platform`)
+                                    : absUrl(
+                                          // Annoyingly, on iOS and only for the getAppMeta() endpoint, we need the adamId instead of the bundleId.
+                                          `/p/${r.platform}/${r.platform === 'android' ? r.id : r.adamId}/confirm-platform`,
+                                      )
                             }>
                             <div class="anchor-overlay" aria-hidden="true" />
                             <h4>{r.name}</h4>

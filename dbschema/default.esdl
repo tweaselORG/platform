@@ -20,12 +20,13 @@ module default {
     type App {
         required platform: Platform;
         required appId: str { constraint max_len_value(150); };
+        adamId: int64;
 
         constraint exclusive on ((.platform, .appId));
     }
 
     type Analysis {
-        required proceeding: Proceeding;
+        required proceeding: Proceeding { on target delete delete source; };
         required type: AnalysisType;
 
         required startDate: datetime;
@@ -34,7 +35,7 @@ module default {
         appVersion: str { constraint max_len_value(20); };
         appVersionCode: str { constraint max_len_value(20); };
 
-        required har: str { constraint max_len_value(13000000); };
+        required har: str { constraint max_size_bytes(52428800); };
         required trackHarResult: json;
 
         single app := .proceeding.app;
@@ -102,7 +103,7 @@ module default {
     }
 
     type MessageUpload extending CreatedOn {
-        required proceeding: Proceeding;
+        required proceeding: Proceeding { on target delete delete source; };
 
         required filename: str { constraint max_len_value(255); };
         required file: bytes { constraint max_size_bytes(20971520); };

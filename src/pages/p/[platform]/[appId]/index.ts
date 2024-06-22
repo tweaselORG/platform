@@ -16,17 +16,18 @@ export const POST: APIRoute = async ({ params, redirect, currentLocale }) => {
 
     const token = nanoid();
 
-    const appMeta = await getAppMeta({ platform, appId, language: currentLocale as 'EN', country: 'DE' });
+    const appMeta = await getAppMeta({ platform, appId, language: currentLocale || 'en' });
     if (!appMeta) return new Response('App not found.', { status: 404 });
 
-    const { token: analysisToken } = await startAnalysis(platform, appId);
+    const { token: analysisToken } = await startAnalysis(platform, appMeta.appId);
 
     await e
         .insert(e.Proceeding, {
             app: e
                 .insert(e.App, {
                     platform,
-                    appId,
+                    appId: appMeta.appId,
+                    adamId: appMeta.adamId,
                 })
                 .unlessConflict((app) => ({
                     on: e.tuple([app.platform, app.appId]),

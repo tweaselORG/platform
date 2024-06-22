@@ -15,6 +15,11 @@
       "signature": "d66694930d48ab1cea66a49bbabc8d5a",
       "file": true,
       "replaced": "/home/benni/coding/JS/tweasel/ReportHAR/reporthar-v0.0.0-7.tgz"
+    },
+    "parse-tunes": {
+      "signature": "e5703f015901dd0ff53c3fb89a46585a",
+      "file": true,
+      "replaced": "^1.0.1"
     }
   }
 }

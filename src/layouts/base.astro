@@ -29,7 +29,9 @@ const i18nDefinition = Object.fromEntries(
         <title>{title ? `${title} · Tweasel` : 'Tweasel'}</title>
     </head>
     <body>
-        <a id="skip-to-content" href="#heading">{t('base', 'skip-to-content')}</a>
+        <a id="skip-to-content" href={Astro.url.pathname === '/' ? '#home-hero' : '#heading'}>
+            {t('base', 'skip-to-content')}
+        </a>
 
         <aside id="flash-messages"></aside>
 

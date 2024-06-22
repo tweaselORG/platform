@@ -117,6 +117,7 @@ if (!dpa) throw new Error('This should never happen.');
 
     <div class="col40 col100-mobile">
         <strong>{t('complaint-landing-readyToSend', 'address')}</strong><br />
+        {dpa.name}<br />
         {dpa.address.split('\n').map((l) => [l, <br />])}
     </div>
 

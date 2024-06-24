@@ -2,7 +2,7 @@ import { LRUCache } from 'lru-cache';
 import pMemoize from 'p-memoize';
 import { searchApps as _searchAppsAndroid, type SearchAppsResults as SearchAppsResultsAndroid } from 'parse-play';
 import { searchApps as _searchAppsIos, type AppSearchResponse as SearchAppsResultsIos } from 'parse-tunes';
-import { cacheOptions, languageMappingIos } from './common';
+import { cacheOptions, languageMappingIos, throttle } from './common';
 
 export type SearchAppsOptions = {
     term: string;
@@ -27,13 +27,13 @@ export type AppSearchResult =
       }[];
 
 const androidCache = new LRUCache<string, (SearchAppsResultsAndroid | undefined)[]>(cacheOptions);
-const searchAppsAndroid = pMemoize(_searchAppsAndroid, {
+const searchAppsAndroid = pMemoize(throttle('android', _searchAppsAndroid), {
     cacheKey: (args) => JSON.stringify(args),
     cache: androidCache,
 });
 
 const iosCache = new LRUCache<string, SearchAppsResultsIos<'ios'>>(cacheOptions);
-const searchAppsIos = pMemoize(_searchAppsIos, {
+const searchAppsIos = pMemoize(throttle('ios', _searchAppsIos), {
     cacheKey: (args) => JSON.stringify(args),
     cache: iosCache,
 });

@@ -9,7 +9,7 @@ import {
     type AppDetailsAvailableAttribute,
     type AppDetailsResponse as AppDetailsResultIos,
 } from 'parse-tunes';
-import { cacheOptions, languageMappingIos } from './common';
+import { cacheOptions, languageMappingIos, throttle } from './common';
 
 export type GetAppMetaOptions = {
     /** On iOS, this has to be the adamId. */
@@ -34,13 +34,13 @@ export type AppMeta = {
 };
 
 const androidCache = new LRUCache<string, AppDetailsResultAndroid[]>(cacheOptions);
-const fetchAppDetailsAndroid = pMemoize(_fetchAppDetailsAndroid, {
+const fetchAppDetailsAndroid = pMemoize(throttle('android', _fetchAppDetailsAndroid), {
     cacheKey: (args) => JSON.stringify(args),
     cache: androidCache,
 });
 
 const iosCache = new LRUCache<string, AppDetailsResultIos<'ios', AppDetailsAvailableAttribute>>(cacheOptions);
-const fetchAppDetailsIos = pMemoize(_fetchAppDetailsIos, {
+const fetchAppDetailsIos = pMemoize(throttle('ios', _fetchAppDetailsIos), {
     cacheKey: (args) => JSON.stringify(args),
     cache: iosCache,
 });

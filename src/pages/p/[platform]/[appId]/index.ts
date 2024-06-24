@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { startAnalysis } from '../../../../lib/api/analysis-runner-local';
 import { getAppMeta } from '../../../../lib/app-store/meta';
 import { client, e } from '../../../../lib/db';
+import { ratelimit } from '../../../../lib/ratelimit';
 import { generateReference } from '../../../../lib/util';
 
 const createProceedingSchema = z.object({
@@ -11,7 +12,9 @@ const createProceedingSchema = z.object({
     appId: z.string().max(150),
 });
 
-export const POST: APIRoute = async ({ params, redirect, currentLocale }) => {
+export const POST: APIRoute = async ({ params, redirect, currentLocale, clientAddress }) => {
+    await ratelimit({ ip: clientAddress, action: 'analysis' });
+
     const { platform, appId } = createProceedingSchema.parse(params);
 
     const token = nanoid();

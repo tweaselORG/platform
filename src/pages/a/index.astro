@@ -4,9 +4,12 @@ import Base from '../../layouts/base.astro';
 import { searchApps } from '../../lib/app-store/search';
 import { absUrl } from '../../lib/util';
 import { e, client } from '../../lib/db';
+import { ratelimit } from '../../lib/ratelimit';
 
 const term = Astro.url.searchParams.get('q');
 const platform = (Astro.url.searchParams.get('platform') as 'android' | 'ios') || 'android';
+
+if (term) await ratelimit({ ip: Astro.clientAddress, action: 'search' });
 
 const searchResults =
     term !== null &&

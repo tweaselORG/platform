@@ -1,0 +1,1008 @@
+{
+    "log": {
+        "creator": { "name": "cyanoacrylate", "version": "1.1.0" },
+        "entries": [
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 266,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                        {
+                            "name": "fields",
+                            "value": "supports_implicit_sdk_logging,gdpv4_nux_content,gdpv4_nux_enabled,android_dialog_configs,android_sdk_error_categories,app_events_session_timeout,app_events_feature_bitmask,auto_event_mapping_android,seamless_login,smart_login_bookmark_icon_url,smart_login_menu_icon_url,restrictive_data_filter_params,aam_rules,suggested_events_setting,protected_mode_rules,auto_log_app_events_default,auto_log_app_events_enabled"
+                        },
+                        { "name": "format", "value": "json" },
+                        { "name": "sdk", "value": "android" }
+                    ],
+                    "url": "https://graph.facebook.com/v16.0/app?access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&fields=supports_implicit_sdk_logging%2Cgdpv4_nux_content%2Cgdpv4_nux_enabled%2Candroid_dialog_configs%2Candroid_sdk_error_categories%2Capp_events_session_timeout%2Capp_events_feature_bitmask%2Cauto_event_mapping_android%2Cseamless_login%2Csmart_login_bookmark_icon_url%2Csmart_login_menu_icon_url%2Crestrictive_data_filter_params%2Caam_rules%2Csuggested_events_setting%2Cprotected_mode_rules%2Cauto_log_app_events_default%2Cauto_log_app_events_enabled&format=json&sdk=android"
+                },
+                "response": {
+                    "bodySize": 518,
+                    "content": {
+                        "compression": 351,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 518,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "ETag", "value": "\"f11a3db1dfdf6c85721f56d42fe46aef1f371165\"" },
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin, Accept-Encoding" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "ALIxIpFJZ9uJQfSXRviOrX7" },
+                        { "name": "x-fb-trace-id", "value": "B4N7KdCiN4Q" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "xljZroEjKtfDbN+Qqg4QDPmOSelMbiae2+Pi2R1Uegmi0gZFCqcjXSElv9T7j3IClpnTuMxw9ROPFTvlovZodA=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=65, rtx=0, c=10, mss=1380, tbw=3426, tp=-1, tpl=-1, uplat=93, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "518" }
+                    ],
+                    "headersSize": 1189,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:40.667754+00:00",
+                "time": 277,
+                "timings": { "connect": 61, "receive": 0, "send": 0, "ssl": 63, "wait": 153 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 266,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                        {
+                            "name": "fields",
+                            "value": "supports_implicit_sdk_logging,gdpv4_nux_content,gdpv4_nux_enabled,android_dialog_configs,android_sdk_error_categories,app_events_session_timeout,app_events_feature_bitmask,auto_event_mapping_android,seamless_login,smart_login_bookmark_icon_url,smart_login_menu_icon_url,restrictive_data_filter_params,aam_rules,suggested_events_setting,protected_mode_rules,auto_log_app_events_default,auto_log_app_events_enabled"
+                        },
+                        { "name": "format", "value": "json" },
+                        { "name": "sdk", "value": "android" }
+                    ],
+                    "url": "https://graph.facebook.com/v16.0/app?access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&fields=supports_implicit_sdk_logging%2Cgdpv4_nux_content%2Cgdpv4_nux_enabled%2Candroid_dialog_configs%2Candroid_sdk_error_categories%2Capp_events_session_timeout%2Capp_events_feature_bitmask%2Cauto_event_mapping_android%2Cseamless_login%2Csmart_login_bookmark_icon_url%2Csmart_login_menu_icon_url%2Crestrictive_data_filter_params%2Caam_rules%2Csuggested_events_setting%2Cprotected_mode_rules%2Cauto_log_app_events_default%2Cauto_log_app_events_enabled&format=json&sdk=android"
+                },
+                "response": {
+                    "bodySize": 518,
+                    "content": {
+                        "compression": 351,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 518,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "ETag", "value": "\"f11a3db1dfdf6c85721f56d42fe46aef1f371165\"" },
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin, Accept-Encoding" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "AqzBIUXQHnmi0mTsNQZavpV" },
+                        { "name": "x-fb-trace-id", "value": "EYbnp8JBvJQ" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "V8f0qO+cg1N248ki90GvRU3ZqUpfAdEAXgG+vlAUTn0ScJ5nrrYIvvwqp7nJ/q0SFFRmap3RszSug3ig2qKmuA=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=68, rtx=0, c=10, mss=1380, tbw=3427, tp=-1, tpl=-1, uplat=94, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "518" }
+                    ],
+                    "headersSize": 1189,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:40.666480+00:00",
+                "time": 291,
+                "timings": { "connect": 64, "receive": 0, "send": 0, "ssl": 69, "wait": 158 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 266,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                        { "name": "fields", "value": "gatekeepers" },
+                        { "name": "format", "value": "json" },
+                        { "name": "sdk_version", "value": "17.0.0" },
+                        { "name": "sdk", "value": "android" },
+                        { "name": "platform", "value": "android" }
+                    ],
+                    "url": "https://graph.facebook.com/v16.0/app/mobile_sdk_gk?access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&fields=gatekeepers&format=json&sdk_version=17.0.0&sdk=android&platform=android"
+                },
+                "response": {
+                    "bodySize": 606,
+                    "content": {
+                        "compression": 2053,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 606,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "ETag", "value": "\"3e5be5c21600d4ba8e65c4b1ed5e6682516773d3\"" },
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin, Accept-Encoding" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "AJnDbs9SXCtcqbqdVr1o68H" },
+                        { "name": "x-fb-trace-id", "value": "EvtSyX0tSnn" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "MtRlhmEHlM+RgSNZEJQYCcrpEfnSSy7ILILRptg9rVTXxMqnDggmY05W260RTB02MKz5fgozZVP/b1fcPUjoeg=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=62, rtx=0, c=10, mss=1380, tbw=3427, tp=-1, tpl=-1, uplat=93, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "606" }
+                    ],
+                    "headersSize": 1189,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:40.719947+00:00",
+                "time": 287,
+                "timings": { "connect": 62, "receive": 0, "send": 0, "ssl": 69, "wait": 156 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        {
+                            "name": "X-CRASHLYTICS-DEVELOPER-TOKEN",
+                            "value": "470fa2b4ae81cd56ecbcda9735803434cec591fa"
+                        },
+                        { "name": "X-CRASHLYTICS-DEVICE-MODEL", "value": "Google/sdk_gphone_x86_64" },
+                        { "name": "X-CRASHLYTICS-INSTALLATION-ID", "value": "1f69cafc34dc4fb381ae8fab20e9f2c2" },
+                        { "name": "X-CRASHLYTICS-OS-DISPLAY-VERSION", "value": "11" },
+                        { "name": "Accept", "value": "application/json" },
+                        { "name": "X-CRASHLYTICS-API-CLIENT-VERSION", "value": "18.6.2" },
+                        { "name": "User-Agent", "value": "Crashlytics Android SDK/18.6.2" },
+                        { "name": "X-CRASHLYTICS-API-CLIENT-TYPE", "value": "android" },
+                        { "name": "X-CRASHLYTICS-GOOGLE-APP-ID", "value": "1:237281207878:android:5472310590a00189" },
+                        { "name": "X-CRASHLYTICS-OS-BUILD-VERSION", "value": "10067904" },
+                        { "name": "Host", "value": "firebase-settings.crashlytics.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 693,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "instance", "value": "929b03899363053d0c098793a423c01f9abfb7ed" },
+                        { "name": "build_version", "value": "140140462" },
+                        { "name": "display_version", "value": "1.40.14" },
+                        { "name": "source", "value": "1" }
+                    ],
+                    "url": "https://firebase-settings.crashlytics.com/spi/v2/platforms/android/gmp/1:237281207878:android:5472310590a00189/settings?instance=929b03899363053d0c098793a423c01f9abfb7ed&build_version=140140462&display_version=1.40.14&source=1"
+                },
+                "response": {
+                    "bodySize": 374,
+                    "content": {
+                        "compression": 326,
+                        "mimeType": "application/json; charset=utf-8",
+                        "size": 374,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "application/json; charset=utf-8" },
+                        { "name": "Vary", "value": "Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site" },
+                        { "name": "X-Content-Type-Options", "value": "nosniff" },
+                        { "name": "Cache-Control", "value": "no-cache, no-store, max-age=0, must-revalidate" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Expires", "value": "Mon, 01 Jan 1990 00:00:00 GMT" },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        { "name": "Cross-Origin-Resource-Policy", "value": "same-site" },
+                        { "name": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Server", "value": "ESF" },
+                        { "name": "X-XSS-Protection", "value": "0" },
+                        { "name": "X-Frame-Options", "value": "SAMEORIGIN" },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000" },
+                        { "name": "Transfer-Encoding", "value": "chunked" }
+                    ],
+                    "headersSize": 686,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "142.250.64.227",
+                "startedDateTime": "2024-06-24T09:29:40.769934+00:00",
+                "time": 497,
+                "timings": { "connect": 123, "receive": 1, "send": 0, "ssl": 170, "wait": 203 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 266,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                        { "name": "fields", "value": "gatekeepers" },
+                        { "name": "format", "value": "json" },
+                        { "name": "sdk_version", "value": "17.0.0" },
+                        { "name": "sdk", "value": "android" },
+                        { "name": "platform", "value": "android" }
+                    ],
+                    "url": "https://graph.facebook.com/v16.0/app/mobile_sdk_gk?access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&fields=gatekeepers&format=json&sdk_version=17.0.0&sdk=android&platform=android"
+                },
+                "response": {
+                    "bodySize": 606,
+                    "content": {
+                        "compression": 2053,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 606,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "ETag", "value": "\"3e5be5c21600d4ba8e65c4b1ed5e6682516773d3\"" },
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin, Accept-Encoding" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "A7xnogtFvou56-BUUrwuGCI" },
+                        { "name": "x-fb-trace-id", "value": "EcF0RgOLQTi" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "uzDFkQ9jRbiWjegvwgeeyhDtLPU4K8gDTnc30F/XWGwNk2UjkSBnalmjGl0W3zQ8IaEaMKmgFVW4nA6WcKdbAg=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=64, rtx=0, c=10, mss=1380, tbw=5005, tp=-1, tpl=-1, uplat=94, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "606" }
+                    ],
+                    "headersSize": 1189,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:40.865347+00:00",
+                "time": 155,
+                "timings": { "connect": -1, "receive": 0, "send": 0, "ssl": -1, "wait": 155 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Accept", "value": "application/json" },
+                        { "name": "X-Crashlytics-Installation-ID", "value": "e5MKLJp8QGi6-NUMLkUOMm" },
+                        { "name": "X-Crashlytics-Device-Model", "value": "Googlesdk_gphone_x86_64" },
+                        { "name": "X-Crashlytics-OS-Build-Version", "value": "10067904" },
+                        { "name": "X-Crashlytics-OS-Display-Version", "value": "11" },
+                        { "name": "X-Crashlytics-API-Client-Version", "value": "1.2.1" },
+                        {
+                            "name": "User-Agent",
+                            "value": "Dalvik/2.1.0 (Linux; U; Android 11; sdk_gphone_x86_64 Build/RSR1.210722.013.A2)"
+                        },
+                        { "name": "Host", "value": "firebase-settings.crashlytics.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 523,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "build_version", "value": "140140462" },
+                        { "name": "display_version", "value": "1.40.14" }
+                    ],
+                    "url": "https://firebase-settings.crashlytics.com/spi/v2/platforms/android/gmp/1%3A237281207878%3Aandroid%3A5472310590a00189/settings?build_version=140140462&display_version=1.40.14"
+                },
+                "response": {
+                    "bodySize": 375,
+                    "content": {
+                        "compression": 325,
+                        "mimeType": "application/json; charset=utf-8",
+                        "size": 375,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "application/json; charset=utf-8" },
+                        { "name": "Vary", "value": "Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site" },
+                        { "name": "X-Content-Type-Options", "value": "nosniff" },
+                        { "name": "Cache-Control", "value": "no-cache, no-store, max-age=0, must-revalidate" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Expires", "value": "Mon, 01 Jan 1990 00:00:00 GMT" },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:40 GMT" },
+                        { "name": "Cross-Origin-Resource-Policy", "value": "same-site" },
+                        { "name": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Server", "value": "ESF" },
+                        { "name": "X-XSS-Protection", "value": "0" },
+                        { "name": "X-Frame-Options", "value": "SAMEORIGIN" },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000" },
+                        { "name": "Transfer-Encoding", "value": "chunked" }
+                    ],
+                    "headersSize": 686,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "142.250.64.227",
+                "startedDateTime": "2024-06-24T09:29:40.772232+00:00",
+                "time": 522,
+                "timings": { "connect": 122, "receive": 0, "send": 0, "ssl": 135, "wait": 265 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 129,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "application/json" },
+                        { "name": "Accept", "value": "application/json" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Cache-Control", "value": "no-cache" },
+                        { "name": "X-Android-Package", "value": "se.maginteractive.quizduel2" },
+                        {
+                            "name": "x-firebase-client",
+                            "value": "H4sIAAAAAAAAAKtWykhNLCpJSk0sKVayio7VUSpLLSrOzM9TslIyUqoFAFyivEQfAAAA"
+                        },
+                        { "name": "X-Android-Cert", "value": "6E69349E0097717EA444D6047CBC1BF3226FB4D1" },
+                        { "name": "x-goog-api-key", "value": "AIzaSyDC_nZvCxJoW6cZx_lzU0a8MD2CnuAUjQc" },
+                        {
+                            "name": "User-Agent",
+                            "value": "Dalvik/2.1.0 (Linux; U; Android 11; sdk_gphone_x86_64 Build/RSR1.210722.013.A2)"
+                        },
+                        { "name": "Host", "value": "firebaseinstallations.googleapis.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" },
+                        { "name": "Content-Length", "value": "134" }
+                    ],
+                    "headersSize": 675,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "POST",
+                    "postData": {
+                        "mimeType": "application/json",
+                        "params": [],
+                        "text": "{\"fid\":\"e5MKLJp8QGi6-NUMLkUOMm\",\"appId\":\"1:237281207878:android:5472310590a00189\",\"authVersion\":\"FIS_v2\",\"sdkVersion\":\"a:17.2.0\"}"
+                    },
+                    "queryString": [],
+                    "url": "https://firebaseinstallations.googleapis.com/v1/projects/quizduel-7c3db/installations"
+                },
+                "response": {
+                    "bodySize": 495,
+                    "content": {
+                        "compression": 127,
+                        "mimeType": "application/json; charset=UTF-8",
+                        "size": 495,
+                        "text": "<stub>"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "application/json; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin, X-Origin, Referer" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:41 GMT" },
+                        { "name": "Server", "value": "ESF" },
+                        { "name": "Cache-Control", "value": "private" },
+                        { "name": "X-XSS-Protection", "value": "0" },
+                        { "name": "X-Frame-Options", "value": "SAMEORIGIN" },
+                        { "name": "X-Content-Type-Options", "value": "nosniff" },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000" },
+                        { "name": "Transfer-Encoding", "value": "chunked" }
+                    ],
+                    "headersSize": 469,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "172.217.165.202",
+                "startedDateTime": "2024-06-24T09:29:40.860387+00:00",
+                "time": 531,
+                "timings": { "connect": 121, "receive": 1, "send": 0, "ssl": 134, "wait": 275 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 0,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 266,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "GET",
+                    "queryString": [
+                        { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                        { "name": "fields", "value": "use_case,version_id,asset_uri,rules_uri,thresholds" },
+                        { "name": "format", "value": "json" },
+                        { "name": "sdk", "value": "android" }
+                    ],
+                    "url": "https://graph.facebook.com/v16.0/app/model_asset?access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&fields=use_case%2Cversion_id%2Casset_uri%2Crules_uri%2Cthresholds&format=json&sdk=android"
+                },
+                "response": {
+                    "bodySize": 11,
+                    "content": {
+                        "compression": 0,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 11,
+                        "text": "{\"data\":[]}"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "ETag", "value": "\"1050253aec7b29caff644806927dabfa81406eee\"" },
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "AbJ7B0Dg__vw3fNPpzeVukj" },
+                        { "name": "x-fb-trace-id", "value": "HG6wPlSap2j" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "j+qdr5T3V7W8f5zBghKEW0r5Veq8t7MBb8kRT34hq6c0QBOlkXik4aO1QIuZuthFkmoAlBm23fEbRuTvsVbmxQ=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:41 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=62, rtx=0, c=10, mss=1380, tbw=5094, tp=-1, tpl=-1, uplat=85, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "11" }
+                    ],
+                    "headersSize": 1125,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:41.261318+00:00",
+                "time": 148,
+                "timings": { "connect": -1, "receive": 0, "send": 0, "ssl": -1, "wait": 148 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 1401,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Transfer-Encoding", "value": "chunked" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 302,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "POST",
+                    "postData": {
+                        "mimeType": "application/x-www-form-urlencoded",
+                        "params": [
+                            { "name": "format", "value": "json" },
+                            { "name": "sdk", "value": "android" },
+                            {
+                                "name": "custom_events",
+                                "value": "[{\"_eventName\":\"fb_sdk_settings_changed\",\"_eventName_md5\":\"5031a3763f200bcd1bb05019de1a8a7b\",\"_logTime\":1719221380,\"_ui\":\"unknown\",\"current\":\"15\",\"previous\":\"0\",\"initial\":\"15\",\"usage\":\"6\",\"_inBackground\":\"1\",\"_implicitlyLogged\":\"1\"},{\"_eventName\":\"fb_sdk_initialize\",\"_eventName_md5\":\"d470d22f237aee69843355edba5a8178\",\"_logTime\":1719221380,\"_ui\":\"unknown\",\"share_lib_included\":\"1\",\"applinks_lib_included\":\"1\",\"gamingservices_lib_included\":\"1\",\"billing_client_lib_included\":\"1\",\"login_lib_included\":\"1\",\"core_lib_included\":\"1\",\"_inBackground\":\"1\",\"_implicitlyLogged\":\"1\"}]"
+                            },
+                            { "name": "event", "value": "CUSTOM_APP_EVENTS" },
+                            { "name": "anon_id", "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98" },
+                            { "name": "application_tracking_enabled", "value": "true" },
+                            { "name": "advertiser_id_collection_enabled", "value": "true" },
+                            { "name": "advertiser_id", "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3" },
+                            { "name": "advertiser_tracking_enabled", "value": "true" },
+                            {
+                                "name": "extinfo",
+                                "value": "[\"a2\",\"se.maginteractive.quizduel2\",140140462,\"1.40.14\",\"11\",\"sdk_gphone_x86_64\",\"en_US\",\"GMT+02:00\",\"Android\",1080,2148,\"2.75\",4,16,15,\"Europe\\/Berlin\"]"
+                            },
+                            { "name": "application_package_name", "value": "se.maginteractive.quizduel2" }
+                        ],
+                        "text": "format=json&sdk=android&custom_events=%5B%7B%22_eventName%22%3A%22fb_sdk_settings_changed%22%2C%22_eventName_md5%22%3A%225031a3763f200bcd1bb05019de1a8a7b%22%2C%22_logTime%22%3A1719221380%2C%22_ui%22%3A%22unknown%22%2C%22current%22%3A%2215%22%2C%22previous%22%3A%220%22%2C%22initial%22%3A%2215%22%2C%22usage%22%3A%226%22%2C%22_inBackground%22%3A%221%22%2C%22_implicitlyLogged%22%3A%221%22%7D%2C%7B%22_eventName%22%3A%22fb_sdk_initialize%22%2C%22_eventName_md5%22%3A%22d470d22f237aee69843355edba5a8178%22%2C%22_logTime%22%3A1719221380%2C%22_ui%22%3A%22unknown%22%2C%22share_lib_included%22%3A%221%22%2C%22applinks_lib_included%22%3A%221%22%2C%22gamingservices_lib_included%22%3A%221%22%2C%22billing_client_lib_included%22%3A%221%22%2C%22login_lib_included%22%3A%221%22%2C%22core_lib_included%22%3A%221%22%2C%22_inBackground%22%3A%221%22%2C%22_implicitlyLogged%22%3A%221%22%7D%5D&event=CUSTOM_APP_EVENTS&anon_id=XZf1ae8cfc-e5ab-4829-8135-be9eec226c98&application_tracking_enabled=true&advertiser_id_collection_enabled=true&advertiser_id=eefc9fd3-1cfb-4717-b774-eaae02f212a3&advertiser_tracking_enabled=true&extinfo=%5B%22a2%22%2C%22se.maginteractive.quizduel2%22%2C140140462%2C%221.40.14%22%2C%2211%22%2C%22sdk_gphone_x86_64%22%2C%22en_US%22%2C%22GMT%2B02%3A00%22%2C%22Android%22%2C1080%2C2148%2C%222.75%22%2C4%2C16%2C15%2C%22Europe%5C%2FBerlin%22%5D&application_package_name=se.maginteractive.quizduel2&"
+                    },
+                    "queryString": [],
+                    "url": "https://graph.facebook.com/v16.0/2464117140490217/activities"
+                },
+                "response": {
+                    "bodySize": 16,
+                    "content": {
+                        "compression": 0,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 16,
+                        "text": "{\"success\":true}"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "ACt76pjMPa35vSbi17J_zuD" },
+                        { "name": "x-fb-trace-id", "value": "FZ0DjqWdMOF" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "D43V14fsDFGmsNOndO8yUtTsGQb/HtW2Hut9YyaIo9T1ka7tEWY3pC6uwTkheBiZ1gmJtpRC82+1TSxle2eHEQ=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:41 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=64, rtx=0, c=10, mss=1380, tbw=6672, tp=-1, tpl=-1, uplat=460, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "16" }
+                    ],
+                    "headersSize": 944,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:41.209249+00:00",
+                "time": 532,
+                "timings": { "connect": -1, "receive": 0, "send": 11, "ssl": -1, "wait": 521 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 614,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Transfer-Encoding", "value": "chunked" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 302,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "POST",
+                    "postData": {
+                        "mimeType": "application/x-www-form-urlencoded",
+                        "params": [
+                            { "name": "access_token", "value": "2464117140490217|1af9ea1a9617d813513bf02a9819935b" },
+                            { "name": "format", "value": "json" },
+                            { "name": "sdk", "value": "android" },
+                            { "name": "event", "value": "MOBILE_APP_INSTALL" },
+                            { "name": "anon_id", "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98" },
+                            { "name": "application_tracking_enabled", "value": "true" },
+                            { "name": "advertiser_id_collection_enabled", "value": "true" },
+                            { "name": "advertiser_id", "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3" },
+                            { "name": "advertiser_tracking_enabled", "value": "true" },
+                            {
+                                "name": "extinfo",
+                                "value": "[\"a2\",\"se.maginteractive.quizduel2\",140140462,\"1.40.14\",\"11\",\"sdk_gphone_x86_64\",\"en_US\",\"GMT+02:00\",\"Android\",1080,2148,\"2.75\",4,16,15,\"Europe\\/Berlin\"]"
+                            },
+                            { "name": "application_package_name", "value": "se.maginteractive.quizduel2" }
+                        ],
+                        "text": "access_token=2464117140490217%7C1af9ea1a9617d813513bf02a9819935b&format=json&sdk=android&event=MOBILE_APP_INSTALL&anon_id=XZf1ae8cfc-e5ab-4829-8135-be9eec226c98&application_tracking_enabled=true&advertiser_id_collection_enabled=true&advertiser_id=eefc9fd3-1cfb-4717-b774-eaae02f212a3&advertiser_tracking_enabled=true&extinfo=%5B%22a2%22%2C%22se.maginteractive.quizduel2%22%2C140140462%2C%221.40.14%22%2C%2211%22%2C%22sdk_gphone_x86_64%22%2C%22en_US%22%2C%22GMT%2B02%3A00%22%2C%22Android%22%2C1080%2C2148%2C%222.75%22%2C4%2C16%2C15%2C%22Europe%5C%2FBerlin%22%5D&application_package_name=se.maginteractive.quizduel2&"
+                    },
+                    "queryString": [],
+                    "url": "https://graph.facebook.com/v16.0/2464117140490217/activities"
+                },
+                "response": {
+                    "bodySize": 16,
+                    "content": {
+                        "compression": 0,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 16,
+                        "text": "{\"success\":true}"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "cross-origin-resource-policy", "value": "cross-origin" },
+                        { "name": "x-app-usage", "value": "{\"call_count\":0,\"total_cputime\":0,\"total_time\":0}" },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "A8Wdn9o6p0E2SI5AfEulaIp" },
+                        { "name": "x-fb-trace-id", "value": "Bl6dryYOCEt" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "zmeAt12BZyv8kS+ZQUErQoqs+iTiPIko5GdrXdp1N6ucUEeHgnK+B4uplSKcIRmex2Q2TZ7OSWyFezXFrZPw2A=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:41 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=70, rtx=0, c=10, mss=1380, tbw=3428, tp=-1, tpl=-1, uplat=369, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "16" }
+                    ],
+                    "headersSize": 1068,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:41.404723+00:00",
+                "time": 565,
+                "timings": { "connect": 65, "receive": 0, "send": 0, "ssl": 67, "wait": 433 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 1025,
+                    "cookies": [],
+                    "headers": [
+                        { "name": "User-Agent", "value": "FBAndroidSDK.17.0.0" },
+                        { "name": "Accept-Language", "value": "en_US" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        { "name": "Content-Encoding", "value": "gzip" },
+                        { "name": "Transfer-Encoding", "value": "chunked" },
+                        { "name": "Host", "value": "graph.facebook.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" }
+                    ],
+                    "headersSize": 302,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "POST",
+                    "postData": {
+                        "mimeType": "application/x-www-form-urlencoded",
+                        "params": [
+                            { "name": "format", "value": "json" },
+                            { "name": "sdk", "value": "android" },
+                            {
+                                "name": "custom_events",
+                                "value": "[{\"_eventName\":\"fb_mobile_activate_app\",\"_eventName_md5\":\"cb7f3b6cd294afce05ece615d43ea7b9\",\"_logTime\":1719221381,\"_ui\":\"MessagingUnityPlayerActivity\",\"_session_id\":\"f2d0ff31-daff-42d8-b3f5-0d0a545cd7d6\",\"fb_mobile_launch_source\":\"Unclassified\",\"fb_mobile_pckg_fp\":\"841660ebdffe94a600bb873f9fae834f\",\"fb_mobile_app_cert_hash\":\"bmk0ngCXcX6kRNYEfLwb8yJvtNE=\\n\"}]"
+                            },
+                            { "name": "event", "value": "CUSTOM_APP_EVENTS" },
+                            { "name": "anon_id", "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98" },
+                            { "name": "application_tracking_enabled", "value": "true" },
+                            { "name": "advertiser_id_collection_enabled", "value": "true" },
+                            { "name": "advertiser_id", "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3" },
+                            { "name": "advertiser_tracking_enabled", "value": "true" },
+                            {
+                                "name": "extinfo",
+                                "value": "[\"a2\",\"se.maginteractive.quizduel2\",140140462,\"1.40.14\",\"11\",\"sdk_gphone_x86_64\",\"en_US\",\"GMT+02:00\",\"Android\",1080,2148,\"2.75\",4,16,15,\"Europe\\/Berlin\"]"
+                            },
+                            { "name": "application_package_name", "value": "se.maginteractive.quizduel2" }
+                        ],
+                        "text": "format=json&sdk=android&custom_events=%5B%7B%22_eventName%22%3A%22fb_mobile_activate_app%22%2C%22_eventName_md5%22%3A%22cb7f3b6cd294afce05ece615d43ea7b9%22%2C%22_logTime%22%3A1719221381%2C%22_ui%22%3A%22MessagingUnityPlayerActivity%22%2C%22_session_id%22%3A%22f2d0ff31-daff-42d8-b3f5-0d0a545cd7d6%22%2C%22fb_mobile_launch_source%22%3A%22Unclassified%22%2C%22fb_mobile_pckg_fp%22%3A%22841660ebdffe94a600bb873f9fae834f%22%2C%22fb_mobile_app_cert_hash%22%3A%22bmk0ngCXcX6kRNYEfLwb8yJvtNE%3D%5Cn%22%7D%5D&event=CUSTOM_APP_EVENTS&anon_id=XZf1ae8cfc-e5ab-4829-8135-be9eec226c98&application_tracking_enabled=true&advertiser_id_collection_enabled=true&advertiser_id=eefc9fd3-1cfb-4717-b774-eaae02f212a3&advertiser_tracking_enabled=true&extinfo=%5B%22a2%22%2C%22se.maginteractive.quizduel2%22%2C140140462%2C%221.40.14%22%2C%2211%22%2C%22sdk_gphone_x86_64%22%2C%22en_US%22%2C%22GMT%2B02%3A00%22%2C%22Android%22%2C1080%2C2148%2C%222.75%22%2C4%2C16%2C15%2C%22Europe%5C%2FBerlin%22%5D&application_package_name=se.maginteractive.quizduel2&"
+                    },
+                    "queryString": [],
+                    "url": "https://graph.facebook.com/v16.0/2464117140490217/activities"
+                },
+                "response": {
+                    "bodySize": 16,
+                    "content": {
+                        "compression": 0,
+                        "mimeType": "text/javascript; charset=UTF-8",
+                        "size": 16,
+                        "text": "{\"success\":true}"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Content-Type", "value": "text/javascript; charset=UTF-8" },
+                        { "name": "Vary", "value": "Origin" },
+                        {
+                            "name": "x-ad-api-version-warning",
+                            "value": "You are calling a deprecated version of the Ads API."
+                        },
+                        { "name": "Access-Control-Allow-Origin", "value": "*" },
+                        { "name": "facebook-api-version", "value": "v16.0" },
+                        { "name": "Strict-Transport-Security", "value": "max-age=15552000; preload" },
+                        { "name": "Pragma", "value": "no-cache" },
+                        { "name": "Cache-Control", "value": "private, no-cache, no-store, must-revalidate" },
+                        { "name": "Expires", "value": "Sat, 01 Jan 2000 00:00:00 GMT" },
+                        { "name": "x-fb-request-id", "value": "AbdhtsPtpOWlTsLwl-hg6Fy" },
+                        { "name": "x-fb-trace-id", "value": "AJXCoMWncCo" },
+                        { "name": "x-fb-rev", "value": "1014422075" },
+                        {
+                            "name": "X-FB-Debug",
+                            "value": "TUnN3t5MIs2yEx+bKTmLAdE9dsWtas9I6uGbYcSDf6FzdDyx8o7IVc1uVXONdaviw0vtDjDsc0tUZBvxP2hPLg=="
+                        },
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:29:41 GMT" },
+                        {
+                            "name": "X-FB-Connection-Quality",
+                            "value": "GOOD; q=0.7, rtt=63, rtx=0, c=10, mss=1380, tbw=7522, tp=-1, tpl=-1, uplat=144, ullat=0"
+                        },
+                        { "name": "Alt-Svc", "value": "h3=\":443\"; ma=86400" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Content-Length", "value": "16" }
+                    ],
+                    "headersSize": 944,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "157.240.212.16",
+                "startedDateTime": "2024-06-24T09:29:41.751824+00:00",
+                "time": 216,
+                "timings": { "connect": -1, "receive": 0, "send": 12, "ssl": -1, "wait": 204 }
+            },
+            {
+                "cache": {},
+                "request": {
+                    "bodySize": 363,
+                    "cookies": [],
+                    "headers": [
+                        {
+                            "name": "Authorization",
+                            "value": "Basic bWFnc3VwcG9ydF9wbGF0Zm9ybV8yMDIzMTAyNDA4MDAzNDAzMC02NGMwM2RlZTk1OTJkODI6"
+                        },
+                        { "name": "Accept", "value": "application/vnd+hsapi-v2+json" },
+                        { "name": "Content-Type", "value": "application/x-www-form-urlencoded" },
+                        {
+                            "name": "User-Agent",
+                            "value": "Dalvik/2.1.0 (Linux; U; Android 11; sdk_gphone_x86_64 Build/RSR1.210722.013.A2)"
+                        },
+                        { "name": "Host", "value": "api.helpshift.com" },
+                        { "name": "Connection", "value": "Keep-Alive" },
+                        { "name": "Accept-Encoding", "value": "gzip" },
+                        { "name": "Content-Length", "value": "363" }
+                    ],
+                    "headersSize": 440,
+                    "httpVersion": "HTTP/1.1",
+                    "method": "POST",
+                    "postData": {
+                        "mimeType": "application/x-www-form-urlencoded",
+                        "params": [
+                            { "name": "ln", "value": "en-US" },
+                            { "name": "os", "value": "11" },
+                            { "name": "rv", "value": "2022.3.23f1" },
+                            { "name": "e", "value": "[{\"ts\":1719221405511,\"t\":\"a\"}]" },
+                            { "name": "pv", "value": "10.3.0" },
+                            { "name": "dm", "value": "sdk_gphone_x86_64" },
+                            { "name": "platform-id", "value": "magsupport_platform_20231024080034030-64c03dee9592d82" },
+                            { "name": "uid", "value": "hsft_anon_1719221405509-d3a5f70e2f984ee" },
+                            { "name": "s", "value": "unityx" },
+                            { "name": "av", "value": "1.40.14" },
+                            { "name": "v", "value": "10.3.0" },
+                            { "name": "id", "value": "59c1aa0e-4598-43bd-8d89-9ed19bdd8346" },
+                            { "name": "did", "value": "59c1aa0e-4598-43bd-8d89-9ed19bdd8346" },
+                            { "name": "timestamp", "value": "1719221405515" }
+                        ],
+                        "text": "ln=en-US&os=11&rv=2022.3.23f1&e=%5B%7B%22ts%22%3A1719221405511%2C%22t%22%3A%22a%22%7D%5D&pv=10.3.0&dm=sdk_gphone_x86_64&platform-id=magsupport_platform_20231024080034030-64c03dee9592d82&uid=hsft_anon_1719221405509-d3a5f70e2f984ee&s=unityx&av=1.40.14&v=10.3.0&id=59c1aa0e-4598-43bd-8d89-9ed19bdd8346&did=59c1aa0e-4598-43bd-8d89-9ed19bdd8346&timestamp=1719221405515"
+                    },
+                    "queryString": [],
+                    "url": "https://api.helpshift.com/events/v1/magsupport/websdk/"
+                },
+                "response": {
+                    "bodySize": 10,
+                    "content": {
+                        "compression": 0,
+                        "mimeType": "application/json",
+                        "size": 10,
+                        "text": "{\"ok\":\"1\"}"
+                    },
+                    "cookies": [],
+                    "headers": [
+                        { "name": "Date", "value": "Mon, 24 Jun 2024 09:30:06 GMT" },
+                        { "name": "Content-Type", "value": "application/json" },
+                        { "name": "Content-Length", "value": "10" },
+                        { "name": "Connection", "value": "keep-alive" },
+                        { "name": "Server", "value": "nginx" },
+                        { "name": "Vary", "value": "Origin" },
+                        { "name": "Access-Control-Allow-Credentials", "value": "true" },
+                        { "name": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, OPTIONS" },
+                        {
+                            "name": "Access-Control-Allow-Headers",
+                            "value": "Accept,Authorization,Content-Type,Keep-Alive,Origin,User-Agent,X-Requested-With"
+                        }
+                    ],
+                    "headersSize": 427,
+                    "httpVersion": "HTTP/1.1",
+                    "redirectURL": "",
+                    "status": 200,
+                    "statusText": "OK"
+                },
+                "serverIPAddress": "54.204.87.194",
+                "startedDateTime": "2024-06-24T09:30:06.255731+00:00",
+                "time": 326,
+                "timings": { "connect": 107, "receive": 0, "send": 0, "ssl": 110, "wait": 109 }
+            }
+        ],
+        "pages": [],
+        "version": "1.2",
+        "_tweasel": {
+            "apps": [
+                {
+                    "architectures": [],
+                    "id": "se.maginteractive.quizduel2",
+                    "md5": "841660ebdffe94a600bb873f9fae834f",
+                    "name": "QuizDuel",
+                    "platform": "android",
+                    "version": "1.40.14",
+                    "versionCode": "140140462"
+                }
+            ],
+            "device": {
+                "architectures": "x86_64,x86,arm64-v8a,armeabi-v7a,armeabi",
+                "manufacturer": "Google",
+                "model": "sdk_gphone_x86_64",
+                "modelCodeName": "generic_x86_64_arm64",
+                "osBuild": "sdk_gphone_x86_64-userdebug 11 RSR1.210722.013.A2 10067904 dev-keys",
+                "osVersion": "11",
+                "platform": "android",
+                "runTarget": "emulator"
+            },
+            "endDate": "2024-06-24T09:30:10.485Z",
+            "metaVersion": "1.0",
+            "options": { "mode": "allowlist", "apps": ["se.maginteractive.quizduel2"] },
+            "startDate": "2024-06-24T09:29:36.066Z",
+            "versions": {
+                "appstraction": "1.2.0",
+                "cyanoacrylate": "1.1.0",
+                "node": "v18.20.3",
+                "python": "3.11.3",
+                "mitmproxy": "9.0.1"
+            }
+        }
+    }
+}

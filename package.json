@@ -24,10 +24,12 @@
     "type": "module",
     "scripts": {
         "build": "astro build",
+        "db-test-util": "tsx ./scripts/db-test-util.ts",
         "dev": "astro dev",
         "fix": "yarn eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --fix",
         "postinstall": "patch-package",
         "lint": "tsc && eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx && git diff --check",
+        "mock-analysis-runner": "tsx ./scripts/analysis-runner-mock.ts",
         "preview": "astro preview"
     },
     "husky": {
@@ -76,6 +78,7 @@
         "@edgedb/generate": "^0.5.3",
         "@types/preact-i18n": "^2.3.6",
         "@typescript-eslint/eslint-plugin": "5.60.0",
+        "cypress": "^13.12.0",
         "eslint": "8.43.0",
         "eslint-plugin-eslint-comments": "3.2.0",
         "eslint-plugin-import": "2.27.5",
@@ -84,6 +87,7 @@
         "prettier": "3.2.5",
         "prettier-plugin-astro": "^0.13.0",
         "sass": "^1.77.2",
+        "tsx": "^4.15.7",
         "typescript": "5.1.3"
     }
 }

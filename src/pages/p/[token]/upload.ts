@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request, params, redirect }) => {
     const file = new Uint8Array(fileArrayBuffer);
 
     const mime = (await detectBufferMime(Buffer.from(fileArrayBuffer))).replace(/;.+$/, '');
-    if (!['message/rfc822', 'application/pdf'].includes(mime))
+    if (!['message/rfc822', 'application/pdf', 'text/plain'].includes(mime))
         return new Response('Disallowed file type.', { status: 400 });
 
     await e

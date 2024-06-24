@@ -23,6 +23,7 @@ export default defineConfig({
                 ANDROID_RUNNER_TOKEN: envField.string({ context: 'server', access: 'secret' }),
                 IOS_RUNNER_API_URL: envField.string({ context: 'server', access: 'public' }),
                 IOS_RUNNER_TOKEN: envField.string({ context: 'server', access: 'secret' }),
+                RATELIMIT_POINTS: envField.string({ context: 'server', access: 'public' }),
             },
         },
     },

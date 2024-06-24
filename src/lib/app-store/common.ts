@@ -12,6 +12,12 @@ export const cacheOptions = {
     ttl: 24 * 60 * 60 * 1000,
 };
 
+// In Android search results, we only get the number of downloads as a string like this: `10,000,000+`
+const parseApproximateNumber = (downloads: string | number) =>
+    typeof downloads === 'number' ? downloads : +downloads.replace(/[^0-9]/g, '');
+export const isAllowedApp = (options: { ratings: number } | { downloads: string | number }) =>
+    'downloads' in options ? parseApproximateNumber(options.downloads) > 10000 : options.ratings > 500;
+
 const maxQueueSize = 100;
 
 const ratelimiterAndroid = new RateLimiterMemory({ points: 1, duration: 2 });

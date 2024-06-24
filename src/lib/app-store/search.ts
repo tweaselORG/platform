@@ -2,7 +2,7 @@ import { LRUCache } from 'lru-cache';
 import pMemoize from 'p-memoize';
 import { searchApps as _searchAppsAndroid, type SearchAppsResults as SearchAppsResultsAndroid } from 'parse-play';
 import { searchApps as _searchAppsIos, type AppSearchResponse as SearchAppsResultsIos } from 'parse-tunes';
-import { cacheOptions, languageMappingIos, throttle } from './common';
+import { cacheOptions, isAllowedApp, languageMappingIos, throttle } from './common';
 
 export type SearchAppsOptions = {
     term: string;
@@ -45,12 +45,15 @@ export const searchApps = async (options: SearchAppsOptions): Promise<AppSearchR
             country: 'DE',
         });
 
-        return (results || []).map((r) => ({
-            id: encodeURIComponent(r.app_id),
-            name: r.name,
-            developer: r.developer,
-            platform: 'android',
-        }));
+        return (results || [])
+            .filter((r) => isAllowedApp({ downloads: r.downloads }))
+            .map((r) => ({
+                id: encodeURIComponent(r.app_id),
+                name: r.name,
+                developer: r.developer,
+                downloads: r.downloads,
+                platform: 'android' as const,
+            }));
     } else if (options.platform === 'ios') {
         const results = await searchAppsIos({
             searchTerm: options.term,
@@ -58,23 +61,26 @@ export const searchApps = async (options: SearchAppsOptions): Promise<AppSearchR
             ...languageMappingIos[options.language as 'en'],
         });
 
-        return results.map((r) => {
-            // Annoyingly, iOS has two different app IDs: a numerical one (adamId) and a string one (bundleId). For the
-            // getAppMeta() endpoint, we need the adamId, for everything else, we need the bundleId.
-            const adamId = r.url.match(/\/id(\d+)(\?|$)/)?.[1];
-            if (!adamId) throw new Error('This should never happen');
+        return results
+            .filter((r) => isAllowedApp({ ratings: r.userRating.ratingCount }))
+            .map((r) => {
+                // Annoyingly, iOS has two different app IDs: a numerical one (adamId) and a string one (bundleId). For the
+                // getAppMeta() endpoint, we need the adamId, for everything else, we need the bundleId.
+                const adamId = r.url.match(/\/id(\d+)(\?|$)/)?.[1];
+                if (!adamId) throw new Error('This should never happen');
 
-            const bundleId = r.platformAttributes.ios?.bundleId;
-            if (!bundleId) throw new Error('This should never happen');
+                const bundleId = r.platformAttributes.ios?.bundleId;
+                if (!bundleId) throw new Error('This should never happen');
 
-            return {
-                id: encodeURIComponent(bundleId),
-                adamId: +adamId,
-                name: r.name,
-                developer: r.artistName,
-                platform: 'ios',
-            };
-        });
+                return {
+                    id: encodeURIComponent(bundleId),
+                    adamId: +adamId,
+                    name: r.name,
+                    developer: r.artistName,
+                    ratings: r.userRating.ratingCount,
+                    platform: 'ios' as const,
+                };
+            });
     }
 
     throw new Error('Unsupported platform: ' + options.platform);

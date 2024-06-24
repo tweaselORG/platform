@@ -9,7 +9,7 @@ import {
     type AppDetailsAvailableAttribute,
     type AppDetailsResponse as AppDetailsResultIos,
 } from 'parse-tunes';
-import { cacheOptions, languageMappingIos, throttle } from './common';
+import { cacheOptions, isAllowedApp, languageMappingIos, throttle } from './common';
 
 export type GetAppMetaOptions = {
     /** On iOS, this has to be the adamId. */
@@ -53,6 +53,8 @@ export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | 
         );
         if (!res) return undefined;
 
+        if (!isAllowedApp({ downloads: res.downloads })) throw new Error('You cannot analyse this app.');
+
         return {
             appId: res.app_id,
             appName: res.name,
@@ -72,6 +74,8 @@ export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | 
             attributes: ['bundleId', 'name', 'url', 'artistName', 'privacyPolicyUrl', 'userRating'],
             ...languageMappingIos[options.language as 'en'],
         });
+
+        if (!isAllowedApp({ ratings: res.userRating.ratingCount })) throw new Error('You cannot analyse this app.');
 
         const adamId = res.url.match(/\/id(\d+)(\?|$)/)?.[1];
         if (!adamId) throw new Error('This should never happen');

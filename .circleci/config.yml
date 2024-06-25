@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@3.3.1
+
+jobs:
+  run-cypress:
+    executor:
+      name: cypress/default
+      node-version: "20.15"
+    environment:
+      ANDROID_RUNNER_API_URL: 'http://localhost:3000'
+      ANDROID_RUNNER_TOKEN: 'dummy'
+      IOS_RUNNER_API_URL: 'http://localhost:3000'
+      IOS_RUNNER_TOKEN: 'dummy'
+      RATELIMIT_POINTS: '9999999999'
+
+      EDGEDB_INSTANCE: 'tweasel-platform'
+    steps:
+      - cypress/install:
+          package-manager: "yarn"
+          post-install: |
+            sudo mkdir -p /usr/local/share/keyrings
+            sudo curl --proto '=https' --tlsv1.2 -sSf -o /usr/local/share/keyrings/edgedb-keyring.gpg https://packages.edgedb.com/keys/edgedb-keyring.gpg
+            echo deb [signed-by=/usr/local/share/keyrings/edgedb-keyring.gpg] https://packages.edgedb.com/apt $(grep "VERSION_CODENAME=" /etc/os-release | cut -d= -f2) main | sudo tee /etc/apt/sources.list.d/edgedb.list
+            sudo apt-get update && sudo apt-get install edgedb-5
+
+            mkdir ~/edgedb
+            edgedb-server-5 --background --data-dir ~/edgedb/data --runstate-dir ~/edgedb/runstate --log-to ~/edgedb/logs --security insecure_dev_mode
+
+            edgedb instance link --host localhost --port 5656 --user edgedb --branch main --non-interactive --trust-tls-cert tweasel-platform
+            edgedb migration apply
+      - cypress/run-tests:
+          start-command: 'yarn build && yarn npm-run-all -p mock-analysis-runner start'
+          cypress-command: "npx wait-on 'http://localhost:4321' && if [ -z ${CYPRESS_RECORD_KEY+x} ]; then yarn cypress run; else yarn cypress run --record; fi"
+
+workflows:
+  test:
+    jobs:
+      - run-cypress

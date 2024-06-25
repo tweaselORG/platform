@@ -6222,8 +6222,10 @@ remark-stringify@^11.0.0:
     mdast-util-to-markdown "^2.0.0"
     unified "^11.0.0"
 
-"reporthar@file:.yalc/reporthar":
-  version "0.0.0"
+reporthar@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/reporthar/-/reporthar-0.1.0.tgz#ac4eb89e02e17058191d31c4055cc9849b8db349"
+  integrity sha512-BAxwEvy9tMia6juh5sziYi9VNWz1ggPb58goFmPqaEB6Dasj8m1quEH0jnfo8GFp9OcHQ3X5fIVeW5orsDhelg==
   dependencies:
     "@myriaddreamin/typst-ts-web-compiler" "^0.4.1"
     "@myriaddreamin/typst.ts" "^0.4.1"
@@ -6231,7 +6233,7 @@ remark-stringify@^11.0.0:
     hexy "^0.3.5"
     papaparse "^5.4.1"
     safe-buffer "^5.2.1"
-    trackhar "^0.4.1"
+    trackhar "^0.5.1"
 
 request-progress@^3.0.0:
   version "3.0.0"
@@ -7040,21 +7042,6 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
-
-trackhar@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/trackhar/-/trackhar-0.4.1.tgz#538c30605f273a0b5b7a794f703ba05972f00de1"
-  integrity sha512-WOO9ZGCHYtyAwt1E+5xjvCCOrylSh9HZL32opX4shFG5CXZl/UQaaoFUplAdAoQfF3IMseB9JDo2Z7PbQy/NMg==
-  dependencies:
-    "@types/har-format" "^1.2.10"
-    base64-search "^1.1.0"
-    buffer "^6.0.3"
-    cross-dirname "^0.1.0"
-    escape-string-regexp "^5.0.0"
-    fflate "^0.8.0"
-    jsonpath-plus "^7.2.0"
-    protobufjs "^7.2.3"
-    qs "^6.11.1"
 
 trackhar@^0.5.1:
   version "0.5.1"

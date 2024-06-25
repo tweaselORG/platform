@@ -1,25 +1,10 @@
 {
   "version": "v1",
   "packages": {
-    "trackhar": {
-      "signature": "f7b6721ddf5a813609292d44e50392ac",
-      "file": true,
-      "replaced": "^0.3.1"
-    },
-    "parse-play": {
-      "signature": "b8c91a5ee9a341e9f54df868cc6a4853",
-      "file": true,
-      "replaced": "^2.2.0"
-    },
     "reporthar": {
       "signature": "d66694930d48ab1cea66a49bbabc8d5a",
       "file": true,
       "replaced": "/home/benni/coding/JS/tweasel/ReportHAR/reporthar-v0.0.0-7.tgz"
-    },
-    "parse-tunes": {
-      "signature": "e5703f015901dd0ff53c3fb89a46585a",
-      "file": true,
-      "replaced": "^1.0.1"
     }
   }
 }

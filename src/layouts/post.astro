@@ -1,0 +1,80 @@
+---
+import Base from './base.astro';
+import type { MarkdownLayoutProps } from 'astro';
+import { t } from '../i18n/server';
+import { authors } from '../lib/authors';
+
+type Props = MarkdownLayoutProps<{
+    title: string;
+    authors?: (keyof typeof authors)[];
+    date?: string;
+    lastEdited?: string;
+    license: 'cc-by-40' | 'cc-by-nd-40' | 'cc-by-sa-40' | 'cc0-10';
+    notices?: string;
+}>;
+
+const { frontmatter } = Astro.props;
+---
+
+<Base title={frontmatter.title}>
+    <article>
+        <div id="page-content">
+            <slot />
+        </div>
+
+        <header id="page-meta">
+            <address class="author">
+                {
+                    frontmatter.authors && (
+                        <>
+                            {t('post', 'written-by')}&nbsp;{frontmatter.authors.map((a) => authors[a].name).join(', ')}
+                        </>
+                    )
+                }
+                {
+                    frontmatter.date && (
+                        <>
+                            <br />
+                            {t('post', 'on')}
+                            {/* @ts-expect-error The types don't know https://www.w3.org/TR/2011/WD-html5-author-20110809/the-time-element.html#attr-time-pubdate */}
+                            <time pubdate datetime={frontmatter.date}>
+                                {new Date(frontmatter.date).toLocaleString(undefined, {
+                                    dateStyle: 'long',
+                                    timeStyle: 'short',
+                                })}
+                            </time>
+                            {frontmatter.lastEdited && (
+                                <>
+                                    {t('post', 'last-edited')}
+                                    <time datetime={frontmatter.lastEdited}>
+                                        {new Date(frontmatter.lastEdited).toLocaleString(undefined, {
+                                            dateStyle: 'long',
+                                            timeStyle: 'short',
+                                        })}
+                                    </time>
+                                </>
+                            )}
+                        </>
+                    )
+                }
+                <br />
+                {t('post', 'licensed-under')}
+
+                <a href={t('post', `license-url-${frontmatter.license}`)}>
+                    {t('post', `license-${frontmatter.license}`)}
+                </a>
+                {/* @ts-expect-error The types don't know about DCMI Metadata Terms */}
+                <span
+                    class="hidden"
+                    xmlns:dct="http://purl.org/dc/terms/"
+                    href="http://purl.org/dc/dcmitype/Dataset"
+                    property="dct:title"
+                    rel="dct:type">
+                    {frontmatter.title}
+                </span>
+            </address>
+
+            {frontmatter.notices && <p>{frontmatter.notices}</p>}
+        </header>
+    </article>
+</Base>

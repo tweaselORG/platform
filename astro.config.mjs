@@ -1,5 +1,5 @@
 import node from '@astrojs/node';
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField, squooshImageService } from 'astro/config';
 
 import preact from '@astrojs/preact';
 import global from 'astro-global';
@@ -14,6 +14,9 @@ export default defineConfig({
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],
+    },
+    image: {
+        service: squooshImageService(),
     },
 
     experimental: {

@@ -13,10 +13,26 @@
         "back-to-home": "Back to homepage",
         "logo-alt": "Tweasel logo"
     },
+    "post": {
+        "written-by": "written by",
+        "on": "on",
+        "last-edited": " • last edited:",
+        "licensed-under": "licensed under:",
+
+        "license-cc-by-40": "Creative Commons Attribution 4.0 International License",
+        "license-url-cc-by-40": "https://creativecommons.org/licenses/by/4.0/deed.en",
+        "license-cc-by-nd-40": "Creative Commons Attribution-NoDerivatives 4.0 International License",
+        "license-url-cc-by-nd-40": "https://creativecommons.org/licenses/by-nd/4.0/deed.en",
+        "license-cc-by-sa-40": "Creative Commons Attribution-ShareAlike 4.0 International License",
+        "license-url-cc-by-sa-40": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+        "license-cc0-10": "CC0 1.0 Universal Public Domain Dedication",
+        "license-url-cc0-10": "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    },
     "home": {
         "heading": "Home",
         "hero-heading": "Complain against illegal tracking in apps",
-        "hero-desc": "Apps often collect and share tracking data without consent. Tweasel empowers you to analyse apps for data protection violations and take action. Our platform helps you identify unlawful tracking and file complaints against it—no registration required.",
+        "hero-desc-1": "Apps often collect and share tracking data without consent.",
+        "hero-desc-2": "Tweasel empowers you to analyse apps for data protection violations and take action. Our platform helps you identify unlawful tracking and file complaints against it—no registration required.",
         "android-button": "Analyse an Android app",
         "ios-button": "Analyse an iOS app"
     },

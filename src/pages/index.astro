@@ -10,7 +10,10 @@ import { absUrl } from '../lib/util';
             <div id="home-hero-content">
                 <div class="hero-left-col">
                     <h1 id="home-hero-line-1">{t('home', 'hero-heading')}</h1>
-                    <div id="home-hero-desc">{t('home', 'hero-desc')}</div>
+                    <div id="home-hero-desc">
+                        <a href={absUrl('/background')}>{t('home', 'hero-desc-1')}</a>
+                        {t('home', 'hero-desc-2')}
+                    </div>
                 </div>
                 <div class="hero-right-col">
                     <a class="button" href={absUrl('/a') + '?platform=android'}>{t('home', 'android-button')}</a>
@@ -20,3 +23,12 @@ import { absUrl } from '../lib/util';
         </div>
     </div>
 </Base>
+
+<style>
+    #home-hero-desc a {
+        color: #214192;
+    }
+    #home-hero-desc a:hover {
+        color: #232e62;
+    }
+</style>

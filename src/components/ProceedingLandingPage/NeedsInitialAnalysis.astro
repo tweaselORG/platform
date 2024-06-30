@@ -1,0 +1,23 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import LoadingIndicator from '../LoadingIndicator.astro';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const tokenUrl = `/p/${token}`;
+---
+
+<Base title={t('proceeding-landing-needsInitialAnalysis', `heading`)}>
+    <LoadingIndicator shown={true} style="margin: 50px 0;" />
+
+    <TextRaw scope="proceeding-landing-needsInitialAnalysis" id="explanation" />
+
+    <a href={absUrl(tokenUrl)}>{tokenUrl}</a>
+</Base>

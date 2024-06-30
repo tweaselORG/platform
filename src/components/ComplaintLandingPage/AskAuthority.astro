@@ -1,0 +1,34 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import TextRaw from '../TextRaw.astro';
+import { dpas } from '../../lib/dpas';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+---
+
+<Base title={t('complaint-landing-askAuthority', 'heading')}>
+    <p>
+        <TextRaw scope="complaint-landing-askAuthority" id="question" />
+    </p>
+
+    <div class="col66 col100-mobile">
+        <div class="radio-group radio-group-vertical radio-group-padded">
+            {
+                Object.values(dpas).map((d) => (
+                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askAuthority`)}>
+                        <input type="hidden" name="answer" value={d.slug} />
+                        <button type="submit" class="radio-label">
+                            {d.name}
+                        </button>
+                    </form>
+                ))
+            }
+        </div>
+    </div>
+</Base>

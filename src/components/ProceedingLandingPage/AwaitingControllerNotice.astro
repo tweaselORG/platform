@@ -1,0 +1,43 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+import { absUrl } from '../../lib/util';
+import TransmittedData from '../TransmittedData.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        appName: true,
+        initialAnalysis: {
+            trackHarResult: true,
+        },
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.initialAnalysis) throw new Error('This should never happen.');
+
+const {
+    appName,
+    initialAnalysis: { trackHarResult },
+} = proceeding;
+---
+
+<Base title={t('proceeding-landing-awaitingControllerNotice', `heading`, { appName })}>
+    <TextRaw scope="proceeding-landing-awaitingControllerNotice" id="explanation" fields={{ appName }} />
+
+    <a class="button button-primary" href={absUrl(`/p/${token}/send-notice`)}>
+        {t('proceeding-landing-awaitingControllerNotice', `send-notice-button`)}
+    </a>
+
+    <TransmittedData trackHarResult={trackHarResult as any} />
+</Base>

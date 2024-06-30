@@ -1,0 +1,33 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+---
+
+<Base title={t('complaint-landing-askIsUserOfApp', 'heading')}>
+    <p>
+        <TextRaw scope="complaint-landing-askIsUserOfApp" id="question" />
+    </p>
+
+    <div class="col66 col100-mobile">
+        <div class="radio-group radio-group-vertical radio-group-padded">
+            {
+                (['yes', 'no'] as const).map((p) => (
+                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askIsUserOfApp`)}>
+                        <input type="hidden" name="answer" value={p} />
+                        <button type="submit" class="radio-label">
+                            {t('common', p)}
+                        </button>
+                    </form>
+                ))
+            }
+        </div>
+    </div>
+</Base>

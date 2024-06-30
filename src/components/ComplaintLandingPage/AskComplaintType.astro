@@ -1,0 +1,38 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import TextRaw from '../TextRaw.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+---
+
+<Base title={t('complaint-landing-askComplaintType', 'heading')}>
+    <p>
+        <TextRaw scope="complaint-landing-askComplaintType" id="explanation" />
+    </p>
+
+    <ol>
+        <li><TextRaw scope="complaint-landing-askComplaintType" id="formal-complaint-explanation" /></li>
+        <li>{t('complaint-landing-askComplaintType', 'informal-complaint-explanation')}</li>
+    </ol>
+
+    <div class="col66 col100-mobile">
+        <div class="radio-group radio-group-vertical radio-group-padded">
+            {
+                (['informal', 'formal'] as const).map((type) => (
+                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askComplaintType`)}>
+                        <input type="hidden" name="answer" value={type} />
+                        <button type="submit" class="radio-label">
+                            {t('complaint-landing-askComplaintType', `${type}-complaint-button`)}
+                        </button>
+                    </form>
+                ))
+            }
+        </div>
+    </div>
+</Base>

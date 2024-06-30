@@ -1,0 +1,9 @@
+{
+    "root": true,
+    "extends": ["@baltpeter/eslint-config"],
+    "rules": {
+        "no-console": "error",
+
+        "import/no-unresolved": "off"
+    }
+}

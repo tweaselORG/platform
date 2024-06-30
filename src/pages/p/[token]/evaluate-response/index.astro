@@ -1,0 +1,58 @@
+---
+import { t } from '../../../../i18n/server';
+import Base from '../../../../layouts/base.astro';
+import { absUrl, formatDate } from '../../../../lib/util';
+import { e, client } from '../../../../lib/db';
+import { calculateDeadline } from '../../../../lib/proceeding';
+
+const { token } = Astro.params;
+
+if (!token) throw new Error('This should never happen.');
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        state: true,
+        noticeSent: true,
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (proceeding?.state !== 'awaitingControllerResponse' || !proceeding.noticeSent)
+    return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 });
+
+const deadline = calculateDeadline(proceeding.noticeSent);
+const deadlineExpired = new Date() > deadline;
+---
+
+<Base title={t('evaluate-response', 'heading')}>
+    <p>{t('evaluate-response', 'explanation')}</p>
+
+    {
+        !deadlineExpired && (
+            <p>
+                {t('evaluate-response', 'explanation-deadline', {
+                    deadline: formatDate(deadline, { language: Astro.currentLocale, includeTime: true }),
+                })}
+            </p>
+        )
+    }
+
+    <div class="col66 col100-mobile">
+        <div class="radio-group radio-group-vertical radio-group-padded">
+            {
+                (['promise', 'denial', 'none'] as const).map((r) => (
+                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/evaluate-response/${r}`)}>
+                        <button
+                            type="submit"
+                            class:list={['radio-label', { disabled: r === 'none' && !deadlineExpired }]}
+                            disabled={r === 'none' && !deadlineExpired}>
+                            {t('evaluate-response', `reponse-${r}`)}
+                        </button>
+                    </form>
+                ))
+            }
+        </div>
+    </div>
+</Base>

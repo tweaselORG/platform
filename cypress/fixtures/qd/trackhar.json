@@ -1,0 +1,403 @@
+[
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+        {
+            "path": "fid",
+            "value": "e5MKLJp8QGi6-NUMLkUOMm",
+            "adapter": "google/firebaseinstallations",
+            "property": "otherIdentifiers",
+            "reasoning": "https://firebase.google.com/docs/projects/manage-installations"
+        },
+        {
+            "path": "sdkVersion",
+            "value": "a:17.2.0",
+            "adapter": "google/firebaseinstallations",
+            "property": "trackerSdkVersion",
+            "reasoning": "obvious property name"
+        },
+        {
+            "path": "x-firebase-client",
+            "value": "H4sIAAAAAAAAAKtWykhNLCpJSk0sKVayio7VUSpLLSrOzM9TslIyUqoFAFyivEQfAAAA",
+            "adapter": "google/firebaseinstallations",
+            "property": "trackerSdkVersion",
+            "reasoning": "obvious property name"
+        },
+        {
+            "path": "X-Android-Package",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "google/firebaseinstallations",
+            "property": "appId",
+            "reasoning": "obvious property name"
+        }
+    ],
+    null,
+    [
+        {
+            "path": "advertiser_id",
+            "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "idfa",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "anon_id",
+            "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "otherIdentifiers",
+            "reasoning": "facebook/anon_id.md"
+        },
+        {
+            "path": "sdk",
+            "value": "android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osName",
+            "reasoning": "obvious observed values"
+        },
+        {
+            "path": "extinfo.1",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "application_package_name",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "obvious property name"
+        },
+        {
+            "path": "extinfo.2",
+            "value": 140140462,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.3",
+            "value": "1.40.14",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.4",
+            "value": "11",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.5",
+            "value": "sdk_gphone_x86_64",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "model",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.6",
+            "value": "en_US",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "language",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.7",
+            "value": "GMT+02:00",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.15",
+            "value": "Europe/Berlin",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.8",
+            "value": "Android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "carrier",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.9",
+            "value": 1080,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenWidth",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.10",
+            "value": 2148,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenHeight",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.13",
+            "value": 16,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskTotal",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.14",
+            "value": 15,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskFree",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        }
+    ],
+    [
+        {
+            "path": "advertiser_id",
+            "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "idfa",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "anon_id",
+            "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "otherIdentifiers",
+            "reasoning": "facebook/anon_id.md"
+        },
+        {
+            "path": "sdk",
+            "value": "android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osName",
+            "reasoning": "obvious observed values"
+        },
+        {
+            "path": "extinfo.1",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "application_package_name",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "obvious property name"
+        },
+        {
+            "path": "extinfo.2",
+            "value": 140140462,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.3",
+            "value": "1.40.14",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.4",
+            "value": "11",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.5",
+            "value": "sdk_gphone_x86_64",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "model",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.6",
+            "value": "en_US",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "language",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.7",
+            "value": "GMT+02:00",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.15",
+            "value": "Europe/Berlin",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.8",
+            "value": "Android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "carrier",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.9",
+            "value": 1080,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenWidth",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.10",
+            "value": 2148,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenHeight",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.13",
+            "value": 16,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskTotal",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.14",
+            "value": 15,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskFree",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        }
+    ],
+    [
+        {
+            "path": "advertiser_id",
+            "value": "eefc9fd3-1cfb-4717-b774-eaae02f212a3",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "idfa",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "anon_id",
+            "value": "XZf1ae8cfc-e5ab-4829-8135-be9eec226c98",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "otherIdentifiers",
+            "reasoning": "facebook/anon_id.md"
+        },
+        {
+            "path": "sdk",
+            "value": "android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osName",
+            "reasoning": "obvious observed values"
+        },
+        {
+            "path": "extinfo.1",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "application_package_name",
+            "value": "se.maginteractive.quizduel2",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appId",
+            "reasoning": "obvious property name"
+        },
+        {
+            "path": "extinfo.2",
+            "value": 140140462,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.3",
+            "value": "1.40.14",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "appVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.4",
+            "value": "11",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "osVersion",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.5",
+            "value": "sdk_gphone_x86_64",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "model",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.6",
+            "value": "en_US",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "language",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.7",
+            "value": "GMT+02:00",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.15",
+            "value": "Europe/Berlin",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "timezone",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.8",
+            "value": "Android",
+            "adapter": "facebook/graph-activities-qs",
+            "property": "carrier",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.9",
+            "value": 1080,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenWidth",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.10",
+            "value": 2148,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "screenHeight",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.13",
+            "value": 16,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskTotal",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        },
+        {
+            "path": "extinfo.14",
+            "value": 15,
+            "adapter": "facebook/graph-activities-qs",
+            "property": "diskFree",
+            "reasoning": "https://developers.facebook.com/docs/graph-api/reference/v17.0/application/activities"
+        }
+    ],
+    null
+]

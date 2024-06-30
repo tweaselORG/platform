@@ -1,0 +1,25 @@
+Message-ID: <6fb8a88f-e7e5-4666-a874-5ebe6fbcf014@example.org>
+Date: Mon, 24 Jun 2024 16:08:08 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+From: me <me@example.org>
+Content-Language: en-US
+Subject: =?UTF-8?Q?Data_protection_violations_in_your_Android_app_=E2=80=9CS?=
+ =?UTF-8?B?YW1wbGUgYXBw4oCd?=
+To: test@example.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+To Whom It May Concern:
+
+I unfortunately had to notice that your Android app “Sample App”
+(org.example.app) performs tracking data transmissions without consent.
+I believe that this is in violation of applicable data protection law.
+
+Please refer to the attached notice and technical report for further
+details. Please especially note the voluntary 60 day grace period that I
+am giving you before filing a complaint with the data protection
+authorities.
+
+Yours sincerely,
+me

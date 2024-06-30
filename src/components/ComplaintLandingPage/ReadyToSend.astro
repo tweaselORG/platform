@@ -1,0 +1,186 @@
+---
+import { t } from '../../i18n/server';
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import TextRaw from '../TextRaw.astro';
+import { dpas } from '../../lib/dpas';
+import { makeAttachmentJwt } from '../../lib/jwt';
+
+interface Props {
+    token: string;
+    platform: 'ios' | 'android';
+    complaintAuthority: string | null;
+}
+
+const { token, platform, complaintAuthority } = Astro.props;
+
+if (!complaintAuthority) throw new Error('This should never happen.');
+
+const dpa = dpas[complaintAuthority];
+if (!dpa) throw new Error('This should never happen.');
+
+const devCommunicationJwt = await makeAttachmentJwt({
+    proceedingToken: token,
+    attachmentType: 'developer-communication',
+});
+const userNetworkActivityJwt = await makeAttachmentJwt({
+    proceedingToken: token,
+    attachmentType: 'user-network-activity',
+});
+---
+
+<Base title={t('complaint-landing-readyToSend', 'heading')}>
+    <p>
+        {t('complaint-landing-readyToSend', 'explanation')}
+    </p>
+
+    <form
+        class="radio-wrapper col66 col100-mobile"
+        method="POST"
+        action={absUrl(`/p/${token}/attachment/complaint`)}
+        target="_blank">
+        <div class="form-group">
+            <label for="complainantAddress">{t('complaint-landing-readyToSend', 'complainant-explanation')}</label><br
+            />
+            <textarea id="complainantAddress" name="complainantAddress" class="form-element" rows="4" required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="complainantContactDetails"
+                >{t('complaint-landing-readyToSend', 'contact-details-explanation')}</label
+            ><br />
+            <input
+                type="text"
+                id="complainantContactDetails"
+                name="complainantContactDetails"
+                class="form-element"
+                required
+            />
+        </div>
+
+        <fieldset class="label-only-fieldset" style="margin-bottom: 1em;">
+            <legend>{t('complaint-landing-readyToSend', 'agree-to-unencrypted-communication')}</legend>
+
+            <div class="radio-group">
+                {
+                    (['yes', 'no'] as const).map((a) => (
+                        <div class="radio-wrapper">
+                            <input
+                                id={`agree-to-unencrypted-communication-${a}`}
+                                type="radio"
+                                name="complainantAgreesToUnencryptedCommunication"
+                                class="form-element"
+                                value={a}
+                                required
+                            />
+                            <label class="radio-label" for={`agree-to-unencrypted-communication-${a}`}>
+                                {t('common', a)}
+                            </label>
+                        </div>
+                    ))
+                }
+            </div>
+        </fieldset>
+
+        <input
+            type="submit"
+            class="button button-secondary"
+            value={t('complaint-landing-readyToSend', 'generate-complaint')}
+        />
+    </form>
+    <div class="clearfix"></div>
+
+    <hr />
+
+    <p><TextRaw scope="complaint-landing-readyToSend" id="send-explanation" /></p>
+
+    <h2>{t('complaint-landing-readyToSend', 'attachments')}</h2>
+
+    <ul>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/second-report`)}>
+                {t('complaint-landing-readyToSend', 'technical-report')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/second-har`)}>
+                {t('complaint-landing-readyToSend', 'traffic-recording')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/developer-communication`, { jwt: devCommunicationJwt })}>
+                {t('complaint-landing-readyToSend', 'developer-communication')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/user-network-activity`, { jwt: userNetworkActivityJwt })}>
+                {t('complaint-landing-readyToSend', `user-network-activity-${platform}`)}
+            </a>
+        </li>
+    </ul>
+
+    <h2>{t('complaint-landing-readyToSend', 'dpa-contact-details')}</h2>
+
+    <p>{t('complaint-landing-readyToSend', 'dpa-contact-details-explanation')}</p>
+
+    <div class="col40 col100-mobile">
+        <strong>{t('complaint-landing-readyToSend', 'address')}</strong><br />
+        {dpa.name}<br />
+        {dpa.address.split('\n').map((l) => [l, <br />])}
+    </div>
+
+    <div class="col60 col100-mobile">
+        {
+            'email' in dpa && (
+                <>
+                    <strong>{t('complaint-landing-readyToSend', 'email')}</strong>
+                    <br />
+                    <a href={`mailto:${dpa.email}`}>{dpa.email}</a>{' '}
+                    {'pgp-url' in dpa && (
+                        <>
+                            (<a href={dpa['pgp-url']}>{t('complaint-landing-readyToSend', 'pgp-key')}</a>)
+                        </>
+                    )}
+                    <br />
+                </>
+            )
+        }
+
+        {
+            'webform' in dpa && (
+                <>
+                    <strong>{t('complaint-landing-readyToSend', 'webform')}</strong>
+                    <br />
+                    <a href={dpa.webform} target="_blank">
+                        {dpa.webform}
+                    </a>
+                </>
+            )
+        }
+    </div>
+    <div class="clearfix"></div>
+
+    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/sent`)} style="margin-top: 1em;">
+        <button type="submit" class="button button-primary">
+            {t('complaint-landing-readyToSend', 'complaint-sent')}
+        </button>
+    </form>
+</Base>
+
+<style>
+    input[type='radio'] {
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+        height: 1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+    input[type='radio']:checked + .radio-label {
+        background-color: #214192;
+        color: #f7fafc;
+    }
+</style>

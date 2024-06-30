@@ -1,0 +1,44 @@
+---
+import { t } from '../../i18n/server';
+import { e, client } from '../../lib/db';
+import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
+import { absUrl } from '../../lib/util';
+import TransmittedData from '../TransmittedData.astro';
+
+interface Props {
+    token: string;
+}
+
+const { token } = Astro.props;
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        appName: true,
+
+        secondAnalysis: {
+            trackHarResult: true,
+        },
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding || !proceeding.secondAnalysis) throw new Error('This should never happen.');
+
+const {
+    appName,
+    secondAnalysis: { trackHarResult },
+} = proceeding;
+---
+
+<Base title={t('proceeding-landing-awaitingComplaint', `heading`, { appName })}>
+    <TextRaw scope="proceeding-landing-awaitingComplaint" id="explanation" fields={{ appName }} />
+
+    <a class="button button-primary" href={absUrl(`/p/${token}/complain`)}>
+        {t('proceeding-landing-awaitingComplaint', `contact-button`)}
+    </a>
+
+    <TransmittedData trackHarResult={trackHarResult as any} />
+</Base>

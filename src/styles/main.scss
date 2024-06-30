@@ -1,0 +1,20 @@
+.radio-wrapper .radio-label {
+    font-family:
+        FiraGO,
+        Fira Sans,
+        Helvetica,
+        sans-serif;
+    font-size: 16px;
+    text-align: left;
+}
+
+hr {
+    margin: 2em 0;
+}
+
+#home-hero .container #home-hero-content {
+    .hero-left-col,
+    .hero-right-col {
+        flex: unset;
+    }
+}

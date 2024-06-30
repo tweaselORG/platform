@@ -1,0 +1,25 @@
+---
+import { t } from '../../../../../i18n/server';
+import Base from '../../../../../layouts/base.astro';
+import { absUrl } from '../../../../../lib/util';
+
+const { platform, actualPlatform } = Astro.params;
+
+if (platform !== 'android' && platform !== 'ios') return new Response('Invalid platform.', { status: 404 });
+if (actualPlatform !== 'android' && actualPlatform !== 'ios') return new Response('Invalid platform.', { status: 404 });
+---
+
+<Base title={t('wrong-platform', 'heading', { actualPlatform: t('common', actualPlatform) })}>
+    <p>
+        {
+            t('wrong-platform', 'explanation', {
+                actualPlatform: t('common', actualPlatform),
+                platform: t('common', platform),
+            })
+        }
+    </p>
+
+    <a class="button button-primary" href={absUrl('/a') + `?platform=${actualPlatform}`}>
+        {t('wrong-platform', 'back-to-search')}
+    </a>
+</Base>

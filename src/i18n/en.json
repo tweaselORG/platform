@@ -1,0 +1,208 @@
+{
+    "common": {
+        "android": "Android",
+        "ios": "iOS",
+        "store-android": "Google Play Store",
+        "store-ios": "Apple App Store",
+        "yes": "Yes",
+        "no": "No",
+        "submit": "Submit"
+    },
+    "base": {
+        "skip-to-content": "Skip to content",
+        "back-to-home": "Back to homepage",
+        "logo-alt": "Tweasel logo"
+    },
+    "post": {
+        "written-by": "written by",
+        "on": "on",
+        "last-edited": " • last edited:",
+        "licensed-under": "licensed under:",
+
+        "license-cc-by-40": "Creative Commons Attribution 4.0 International License",
+        "license-url-cc-by-40": "https://creativecommons.org/licenses/by/4.0/deed.en",
+        "license-cc-by-nd-40": "Creative Commons Attribution-NoDerivatives 4.0 International License",
+        "license-url-cc-by-nd-40": "https://creativecommons.org/licenses/by-nd/4.0/deed.en",
+        "license-cc-by-sa-40": "Creative Commons Attribution-ShareAlike 4.0 International License",
+        "license-url-cc-by-sa-40": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+        "license-cc0-10": "CC0 1.0 Universal Public Domain Dedication",
+        "license-url-cc0-10": "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    },
+    "home": {
+        "heading": "Home",
+        "hero-heading": "Complain against illegal tracking in apps",
+        "hero-desc-1": "Apps often collect and share tracking data without consent.",
+        "hero-desc-2": "Tweasel empowers you to analyse apps for data protection violations and take action. Our platform helps you identify unlawful tracking and file complaints against it—no registration required.",
+        "android-button": "Analyse an Android app",
+        "ios-button": "Analyse an iOS app"
+    },
+    "search-app": {
+        "heading": "Select an app to analyse",
+        "input-placeholder": "Search for an app…",
+        "app": "App:",
+        "search": "Search",
+        "analysed-times": "analysed {{n}} times"
+    },
+    "app-details": {
+        "heading": "{{name}} ({{platform}})",
+        "analyses": "Analyses for this app",
+        "analyse-again": "Analyse again"
+    },
+    "confirm-platform": {
+        "heading": "Did you select the correct platform?",
+        "explanation": "<p>We will analyse the app’s tracking behaviour for you. But first, we need to check one more thing: Apps may behave differently depending on which platform they are running on.</p><p>Which operating system does your device run?</p>"
+    },
+    "wrong-platform": {
+        "heading": "Sorry, we cannot analyse this app on {{actualPlatform}}.",
+        "explanation": "You have been looking at the {{platform}} version of the app. Please search for the {{actualPlatform}} version instead.",
+        "back-to-search": "Go back to search"
+    },
+    "trackhar-result": {
+        "tracker-intro": "The app has sent {{n}} request(s) to the tracker “{{trackerName}}”, transmitting at least the following information.",
+        "more-information": "More information",
+        "data-type": "Data type",
+        "transmitted-values": "Transmitted value(s)"
+    },
+    "proceeding-landing-needsInitialAnalysis": {
+        "heading": "Analysing app…",
+        "explanation": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
+    },
+    "proceeding-landing-analysisFailed": {
+        "heading": "Analysis failed",
+        "explanation": "Unfortunately, the analysis of the app failed for unknown reasons. Please try again later."
+    },
+    "proceeding-landing-initialAnalysisFoundNothing": {
+        "heading": "Analysis of “{{appName}}” found nothing",
+        "explanation": "The analysis of the app has finished. We did <strong>not</strong> detect any tracking data transmissions without consent.",
+        "what-heading": "What does that mean?",
+        "what-explanation": "This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something."
+    },
+    "proceeding-landing-awaitingControllerNotice": {
+        "heading": "Analysis of “{{appName}}”",
+        "explanation": "<p>The analysis of “{{appName}}” has finished. We <strong>have detected</strong> tracking data transmissions without consent, which you can see below.</p><p>This could be in violation of applicable data protection law. You can now send a notice to the developer giving them the opportunity to remedy the problem.</p>",
+        "send-notice-button": "Send notice to developer"
+    },
+    "proceeding-landing-awaitingControllerResponse": {
+        "heading": "Waiting for the developer of “{{appName}}” to respond…",
+        "explanation": "The developer of “{{appName}}” has until {{deadline}} to respond to your notice. Please upload all correspondence you have with them in the meantime so that we can attach it to a potential complaint in the future.",
+        "uploaded-messages": "Uploaded messages",
+        "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages before you continue.",
+        "continue": "Continue with the process"
+    },
+    "proceeding-landing-needsSecondAnalysis": {
+        "heading": "Analysing app again…",
+        "explanation": "<p>We are currently re-analysing the app to detect whether it still performs tracking without consent. This process will take a while.</p><p>Try checking back in ~10 minutes at this page.</p>"
+    },
+    "proceeding-landing-secondAnalysisFoundNothing": {
+        "heading": "Second analysis of “{{appName}}” found nothing!",
+        "explanation": "The re-analysis of the app has finished. We did <strong>not</strong> detect any tracking data transmissions without consent anymore. Congrats, looks like your notice helped improve the situation for everyone!"
+    },
+    "proceeding-landing-awaitingComplaint": {
+        "heading": "Analysis of “{{appName}}”",
+        "explanation": "<p>The analysis of “{{appName}}” has finished. We have <strong>still detected</strong> tracking data transmissions without consent, which you can see below.</p><p>You can now raise this issue with the data protection authorities to have them check whether the app violates data protection law and order the developer to stop if so.</p>",
+        "contact-button": "Contact data protection authorities"
+    },
+    "proceeding-landing-complaintSent": {
+        "heading": "What’s next?",
+        "explanation-formal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. According to Art. 78(2) GDPR, the DPA has to inform you on the progress or outcome of the complaint within three months. However, in our experience, it is unfortunately common that it takes them much longer to do so. If after six months or a year you still haven’t received a meaningful response, it makes sense to send them a reminder.",
+        "explanation-informal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. Since you have only sent an informal complaint, the DPA is unfortunately not legally required to inform you about what they do regarding your complaint. You probably shouldn’t expect a meaningful response from them."
+    },
+
+    "send-notice": {
+        "heading": "Send notice to developer",
+        "intro": "<p>We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.<br><strong>Make sure to attach the files listed below to the email!</strong></p>",
+        "subject": "Subject",
+        "recipient": "Recipient",
+        "verify-recipient": "Please verify this email address in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "find-recipient": "You should be able to find the email address in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "find-recipient-no-pp": "You should be able to find the email address in the app’s privacy policy.",
+        "text": "Text",
+        "template-subject": "Data protection violations in your {{platform}} app “{{appName}}”",
+        "template-text": "To Whom It May Concern:\n\nI unfortunately had to notice that your {{platform}} app “{{appName}}” ({{appId}}) performs tracking data transmissions without consent. I believe that this is in violation of applicable data protection law.\n\nPlease refer to the attached notice and technical report for further details. Please especially note the voluntary 60 day grace period that I am giving you before filing a complaint with the data protection authorities.\n\nYours sincerely,",
+        "attachments": "Attachments",
+        "notice": "Notice (PDF)",
+        "technical-report": "Technical report (PDF)",
+        "traffic-recording": "Traffic recording (HAR)",
+        "upload-heading": "Upload sent message",
+        "upload-explanation": "After you've sent the email, upload it here as an EML or PDF file. Why do we need this? If the developer doesn’t actually remove the tracking within the 60 day deadline you have given them, you can send a complaint to the data protection authorities and ask them to intervene. In this case, you will need to attach the previous communication with the developer.",
+        "choose-file": "Choose file",
+        "upload": "Upload"
+    },
+    "evaluate-response": {
+        "heading": "How did the developer react?",
+        "explanation": "We are only interested in statements that actually respond to the tracking data transmissions that you mentioned in your notice. For this question, you can disregard confirmations of receipt, deflections, etc.",
+        "explanation-deadline": "If the developer has not responded yet, please wait until the deadline has expired ({{deadline}}) before continuing.",
+        "reponse-promise": "The developer told me that they removed the tracking.",
+        "reponse-denial": "The developer has denied that there are violations.",
+        "reponse-none": "The developer has not responded (concerning the tracking)."
+    },
+
+    "complaint-landing-askIsUserOfApp": {
+        "heading": "Are you a user of the app?",
+        "question": "Do you have the app installed on your personal device, which is used exclusively by you?"
+    },
+    "complaint-landing-askAuthority": {
+        "heading": "Which authority do you want to contact?",
+        "question": "<p>Please select the data protection authority that you want to contact about this matter. You can choose the authority at the your place of habitual residence (i.e. where you live), your place of work, or the place of the alleged infringement (i.e. where the developer is based).</p><p>You’ll note that the list below is not complete. Unfortunately, we can only support authorities that support complaints in languages we have templates for.</p>"
+    },
+    "complaint-landing-askComplaintType": {
+        "heading": "How to contact the DPA about the app?",
+        "explanation": "There are two ways you can ask the data protection authorities to look into the tracking data transmissions you have found in the app:",
+        "formal-complaint-explanation": "<p>You can send a formal complaint. The DPA will have to investigate this complaint and inform you of the outcome.</p><p>However, to do so, you will need to show that you are personally affected by the tracking. We can guide you through this process, but it will required a bit of effort and technical knowledge.</p>",
+        "informal-complaint-explanation": "Alternatively, you can informally ask the DPA to investigate the app. This does not require any additional effort by you but the DPA will also not be legally required to investigate or tell you what they did.",
+        "informal-complaint-button": "Informally ask the DPA to look in the app",
+        "formal-complaint-button": "Check whether I am personally affected to send a complaint"
+    },
+    "complaint-landing-askUserNetworkActivity": {
+        "heading": "Prove that you are affected by the tracking",
+        "explanation-android": "<p>To prove that you are personally affected by the tracking, we are going to use the open-source <a href=\"https://trackercontrol.org/\">TrackerControl app</a> to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Install the Slim version of app on your device. It can be downloaded from the <a href=\"https://play.google.com/store/apps/details?id=net.kollnig.missioncontrol.play\">Google Play Store</a> or using the Aurora Store.<br>The full version that is available on F-Droid blocks tracking requests by default.</li>\n    <li>Open the TrackerControl app and activate the toggle at the top left, next to the text “TC Slim”.</li>\n    <li>You will be informed that TrackerControl uses a local VPN. Click “OK” in that prompt and also confirm the following connection request with “OK”.</li>\n    <li>Next, you will be ask to disable battery optimisations for consistent results. Click “OK” in that prompt. In the “Battery optimisations” window that opens, choose “All apps” in the dropdown at the top, look for and click on the “TrackerControl” app, choose “Don’t optimise”, and click “Done”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back to TrackerControl. In the list of apps, choose your app, and click the three dots in the top right corner. Click “Export as CSV” and save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.</li>\n</ol>",
+        "explanation-ios": "<p>To prove that you are personally affected by the tracking, we are going to use the App Privacy Report integrated into iOS to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Go into the Settings, then click on “Privacy & Security”.</li>\n    <li>Click on “App Privacy Report” and then click “Turn on App Privacy Report”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back into the App Privacy Report and click the share icon in the top right corner. Save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.<br>Note: The export file may unfortunately also contain information about sensor access and network activity of your other apps, especially if you already had the App Privacy Report enabled for a while. To mitigate this, it makes sense to disable and immediately re-enable the App Privacy Report right before your open the app to analyse. This will delete the old data.</li>\n</ol>",
+        "choose-file": "Choose file",
+        "upload": "Upload"
+    },
+    "complaint-landing-askLoggedIntoAppStore": {
+        "heading": "How did you install the app?",
+        "explanation": "If you installed the app through your personal {{store}} account, this can help us establish that you are personally affected by the tracking.",
+        "yes": "I installed the app through the {{store}} and I am logged in with my personal account",
+        "no": "I installed the app another way and/or I am not logged in with my personal account"
+    },
+    "complaint-landing-askDeviceHasRegisteredSimCard": {
+        "heading": "Do you have a SIM card in your phone?",
+        "explanation": "If you have a SIM card that is registered to your name in your phone, this can also help us establish that you are personally affected.",
+        "yes": "I have a SIM card that is registered to my name in my phone",
+        "no": "I don’t have a SIM card in my phone or it is not registered to my name"
+    },
+    "complaint-landing-askDeveloperAddress": {
+        "heading": "Who is responsible for the app?",
+        "explanation": "Unfortunately, we were not able to automatically find the address of the company responsible for the app. According to the app store, the developer is: “{{developerName}}“. Please find their address.",
+        "hint-pp": "You should be able to find this information listed as the “controller” in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
+        "hint-no-pp": "You should be able to find this information listed as the “controller” in the app’s privacy policy.",
+        "address": "Developer address",
+        "address-placeholder": "123 Some Street\n12345 Some City\nSome Country",
+        "find-source": "Please also tell us the URL to the source where you found the address.",
+        "source": "Source for the developer address",
+        "source-placeholder": "https://example.com/privacy-policy"
+    },
+    "complaint-landing-readyToSend": {
+        "heading": "Almost done",
+        "explanation": "You’re almost done. The DPA will need to know who the complainant is—that’s you. Since this is quite sensitive information, we will only use what you enter on this page to generate your complaint but not store it on our servers.",
+        "complainant-explanation": "You will at least need to provide your name. Some authorities also require you to provide your full address.",
+        "contact-details-explanation": "Additionally, you also need to provide the authority with a way to contact you. This can be an email address or a postal address.",
+        "agree-to-unencrypted-communication": "Finally, do you agree to being contacted via unencrypted email?",
+        "generate-complaint": "Generate complaint",
+        "send-explanation": "After you’ve downloaded the generated complaint, you can send it to the DPA yourself.<br><strong>Make sure to attach the files listed below to the email!</strong>",
+        "attachments": "Attachments",
+        "technical-report": "Technical report (PDF)",
+        "traffic-recording": "Traffic recording (HAR)",
+        "developer-communication": "Communication with the developer (ZIP)",
+        "user-network-activity-android": "TrackerControl export (CSV)",
+        "user-network-activity-ios": "App Privacy Report export (NDJSON)",
+        "dpa-contact-details": "Contact details of the DPA",
+        "dpa-contact-details-explanation": "Here’s how you can contact the DPA to send them your complaint.",
+        "address": "Address:",
+        "email": "Email address:",
+        "webform": "Webform:",
+        "pgp-key": "PGP key",
+        "complaint-sent": "I have sent the complaint"
+    }
+}

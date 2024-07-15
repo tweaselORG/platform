@@ -136,7 +136,9 @@
         "explanation-deadline": "If the developer has not responded yet, please wait until the deadline has expired ({{deadline}}) before continuing.",
         "reponse-promise": "The developer told me that they removed the tracking.",
         "reponse-denial": "The developer has denied that there are violations.",
-        "reponse-none": "The developer has not responded (concerning the tracking)."
+        "reponse-none": "The developer has not responded (concerning the tracking).",
+        "why-not-yet": "Why can I not select this?",
+        "why-not-yet-explanation": "You have given the developer until {{deadline}} to respond. Please wait until the deadline has expired or the developer has responded before continuing."
     },
 
     "complaint-landing-askIsUserOfApp": {

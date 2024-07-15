@@ -46,18 +46,11 @@ const fields = {
 ---
 
 <Base title={t('send-notice', 'heading')}>
-    <TextRaw scope="send-notice" id="intro" />
+    <p>{t('send-notice', 'intro')}</p>
+
+    <div class="box box-warning">{t('send-notice', 'attachment-note')}</div>
 
     <div class="form-group">
-        <strong><label for="subject-input">{t('send-notice', 'subject')}</label></strong>
-        <input
-            type="text"
-            id="subject-input"
-            class="form-element"
-            readonly
-            value={t('send-notice', 'template-subject', fields)}
-        />
-
         <strong><label for="recipient-input">{t('send-notice', 'recipient')}</label></strong><br />
         {
             !privacyPolicyUrl ? (
@@ -72,6 +65,24 @@ const fields = {
             )
         }<br />
 
+        <strong><label for="subject-input">{t('send-notice', 'subject')}</label></strong>
+        <input
+            type="text"
+            id="subject-input"
+            class="form-element"
+            readonly
+            value={t('send-notice', 'template-subject', fields)}
+        /><br />
+
+        <strong>{t('send-notice', 'attachments')}</strong>
+        <ul>
+            <li><a href={absUrl(`/p/${token}/attachment/notice`)}>{t('send-notice', 'notice')}</a></li>
+            <li>
+                <a href={absUrl(`/p/${token}/attachment/initial-report`)}>{t('send-notice', 'technical-report')}</a>
+            </li>
+            <li><a href={absUrl(`/p/${token}/attachment/initial-har`)}>{t('send-notice', 'traffic-recording')}</a></li>
+        </ul>
+
         <strong><label for="body-input">{t('send-notice', 'text')}</label></strong>
         <textarea
             id="body-input"
@@ -80,15 +91,11 @@ const fields = {
             readonly
             set:text={t('send-notice', 'template-text', fields)}
         />
+
+        <a href={`mailto:${recipientEmail || ''}`} class="button button-primary">
+            {t('send-notice', 'open-email-program')}
+        </a>
     </div>
-
-    <h2>{t('send-notice', 'attachments')}</h2>
-
-    <ul>
-        <li><a href={absUrl(`/p/${token}/attachment/notice`)}>{t('send-notice', 'notice')}</a></li>
-        <li><a href={absUrl(`/p/${token}/attachment/initial-report`)}>{t('send-notice', 'technical-report')}</a></li>
-        <li><a href={absUrl(`/p/${token}/attachment/initial-har`)}>{t('send-notice', 'traffic-recording')}</a></li>
-    </ul>
 
     <hr />
 
@@ -98,3 +105,31 @@ const fields = {
 
     <MessageUploader {token} />
 </Base>
+
+<script>
+    let previousActiveElement: HTMLElement | null;
+
+    const onInputClick = function (e: MouseEvent) {
+        const target = e.target as HTMLInputElement | HTMLTextAreaElement | null;
+
+        if (!target || previousActiveElement === target) return;
+
+        target.select();
+        target.focus();
+
+        previousActiveElement = target;
+    };
+
+    for (const el of ['recipient-input', 'subject-input', 'body-input'])
+        document.getElementById(el)?.addEventListener('click', onInputClick);
+</script>
+
+<style>
+    ul {
+        margin: 0;
+    }
+
+    .button-primary {
+        margin-top: 1em;
+    }
+</style>

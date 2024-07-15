@@ -110,7 +110,8 @@
 
     "send-notice": {
         "heading": "Send notice to developer",
-        "intro": "<p>We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.<br><strong>Make sure to attach the files listed below to the email!</strong></p>",
+        "intro": "We have generated the message that you can send to the developer to inform them of the tracking data transmissions that we have detected and give them the opportunity to remedy them. You’ll send the message using your own email.",
+        "attachment-note": "Make sure to attach the files listed below to the email!",
         "subject": "Subject",
         "recipient": "Recipient",
         "verify-recipient": "Please verify this email address in the <a href='{{privacyPolicyUrl}}' target='_blank'>app’s privacy policy</a>.",
@@ -120,6 +121,7 @@
         "template-subject": "Data protection violations in your {{platform}} app “{{appName}}”",
         "template-text": "To Whom It May Concern:\n\nI unfortunately had to notice that your {{platform}} app “{{appName}}” ({{appId}}) performs tracking data transmissions without consent. I believe that this is in violation of applicable data protection law.\n\nPlease refer to the attached notice and technical report for further details. Please especially note the voluntary 60 day grace period that I am giving you before filing a complaint with the data protection authorities.\n\nYours sincerely,",
         "attachments": "Attachments",
+        "open-email-program": "Open email program",
         "notice": "Notice (PDF)",
         "technical-report": "Technical report (PDF)",
         "traffic-recording": "Traffic recording (HAR)",

@@ -24,35 +24,41 @@ if (proceeding?.state !== 'awaitingControllerResponse' || !proceeding.noticeSent
 
 const deadline = calculateDeadline(proceeding.noticeSent);
 const deadlineExpired = new Date() > deadline;
+const deadlineFormatted = formatDate(deadline, { language: Astro.currentLocale, includeTime: true });
 ---
 
 <Base title={t('evaluate-response', 'heading')}>
     <p>{t('evaluate-response', 'explanation')}</p>
 
-    {
-        !deadlineExpired && (
-            <p>
-                {t('evaluate-response', 'explanation-deadline', {
-                    deadline: formatDate(deadline, { language: Astro.currentLocale, includeTime: true }),
-                })}
-            </p>
-        )
-    }
+    {!deadlineExpired && <p>{t('evaluate-response', 'explanation-deadline', { deadline: deadlineFormatted })}</p>}
 
-    <div class="col66 col100-mobile">
-        <div class="radio-group radio-group-vertical radio-group-padded">
-            {
-                (['promise', 'denial', 'none'] as const).map((r) => (
-                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/evaluate-response/${r}`)}>
-                        <button
-                            type="submit"
-                            class:list={['radio-label', { disabled: r === 'none' && !deadlineExpired }]}
-                            disabled={r === 'none' && !deadlineExpired}>
+    <div class="col75 col100-mobile">
+        {
+            (['promise', 'denial', 'none'] as const).map((r) => (
+                <form class="button-list-vertical" method="POST" action={absUrl(`/p/${token}/evaluate-response/${r}`)}>
+                    {r === 'none' && !deadlineExpired ? (
+                        <div class="button-with-addon-group">
+                            <button type="submit" class="button button-secondary disabled" disabled>
+                                {t('evaluate-response', `reponse-${r}`)}
+                            </button>
+
+                            <details class="footnote">
+                                <summary
+                                    class="button button-secondary button-addon icon-question-mark"
+                                    title={t('evaluate-response', 'why-not-yet')}
+                                />
+                                <div class="footnote-content">
+                                    {t('evaluate-response', 'why-not-yet-explanation', { deadline: deadlineFormatted })}
+                                </div>
+                            </details>
+                        </div>
+                    ) : (
+                        <button type="submit" class="button button-secondary">
                             {t('evaluate-response', `reponse-${r}`)}
                         </button>
-                    </form>
-                ))
-            }
-        </div>
+                    )}
+                </form>
+            ))
+        }
     </div>
 </Base>

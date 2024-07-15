@@ -27,6 +27,7 @@ const i18nDefinition = Object.fromEntries(
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <title>{title ? `${title} · Tweasel` : 'Tweasel'}</title>
+        <slot name="head" />
     </head>
     <body>
         <a id="skip-to-content" href={Astro.url.pathname === '/' ? '#home-hero' : '#heading'}>

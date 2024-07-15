@@ -18,3 +18,28 @@ hr {
         flex: unset;
     }
 }
+
+.button-list-vertical {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    button {
+        text-align: left;
+        margin-bottom: 12px;
+    }
+
+    .button-with-addon-group {
+        display: flex;
+        flex-direction: row;
+        column-gap: 8px;
+
+        button {
+            flex-grow: 1;
+        }
+
+        .button-addon {
+            flex-grow: 0;
+        }
+    }
+}

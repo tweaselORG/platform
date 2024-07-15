@@ -24,7 +24,7 @@ const { token } = Astro.props;
     <div class="col66 col100-mobile">
         <div class="radio-group radio-group-vertical radio-group-padded">
             {
-                (['informal', 'formal'] as const).map((type) => (
+                (['formal', 'informal'] as const).map((type) => (
                     <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askComplaintType`)}>
                         <input type="hidden" name="answer" value={type} />
                         <button type="submit" class="radio-label">

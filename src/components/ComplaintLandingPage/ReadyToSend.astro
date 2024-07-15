@@ -60,7 +60,7 @@ const userNetworkActivityJwt = await makeAttachmentJwt({
         </div>
 
         <fieldset class="label-only-fieldset" style="margin-bottom: 1em;">
-            <legend>{t('complaint-landing-readyToSend', 'agree-to-unencrypted-communication')}</legend>
+            <legend><TextRaw scope="complaint-landing-readyToSend" id="agree-to-unencrypted-communication" /></legend>
 
             <div class="radio-group">
                 {
@@ -93,35 +93,9 @@ const userNetworkActivityJwt = await makeAttachmentJwt({
 
     <hr />
 
-    <p><TextRaw scope="complaint-landing-readyToSend" id="send-explanation" /></p>
-
-    <h2>{t('complaint-landing-readyToSend', 'attachments')}</h2>
-
-    <ul>
-        <li>
-            <a href={absUrl(`/p/${token}/attachment/second-report`)}>
-                {t('complaint-landing-readyToSend', 'technical-report')}
-            </a>
-        </li>
-        <li>
-            <a href={absUrl(`/p/${token}/attachment/second-har`)}>
-                {t('complaint-landing-readyToSend', 'traffic-recording')}
-            </a>
-        </li>
-        <li>
-            <a href={absUrl(`/p/${token}/attachment/developer-communication`, { jwt: devCommunicationJwt })}>
-                {t('complaint-landing-readyToSend', 'developer-communication')}
-            </a>
-        </li>
-        <li>
-            <a href={absUrl(`/p/${token}/attachment/user-network-activity`, { jwt: userNetworkActivityJwt })}>
-                {t('complaint-landing-readyToSend', `user-network-activity-${platform}`)}
-            </a>
-        </li>
-    </ul>
+    <p>{t('complaint-landing-readyToSend', 'send-explanation')}</p>
 
     <h2>{t('complaint-landing-readyToSend', 'dpa-contact-details')}</h2>
-
     <p>{t('complaint-landing-readyToSend', 'dpa-contact-details-explanation')}</p>
 
     <div class="col40 col100-mobile">
@@ -160,6 +134,33 @@ const userNetworkActivityJwt = await makeAttachmentJwt({
         }
     </div>
     <div class="clearfix"></div>
+
+    <h2>{t('complaint-landing-readyToSend', 'attachments')}</h2>
+
+    <div class="box box-warning">{t('complaint-landing-readyToSend', 'attachment-note')}</div>
+
+    <ul>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/second-report`)}>
+                {t('complaint-landing-readyToSend', 'technical-report')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/second-har`)}>
+                {t('complaint-landing-readyToSend', 'traffic-recording')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/developer-communication`, { jwt: devCommunicationJwt })}>
+                {t('complaint-landing-readyToSend', 'developer-communication')}
+            </a>
+        </li>
+        <li>
+            <a href={absUrl(`/p/${token}/attachment/user-network-activity`, { jwt: userNetworkActivityJwt })}>
+                {t('complaint-landing-readyToSend', `user-network-activity-${platform}`)}
+            </a>
+        </li>
+    </ul>
 
     <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/sent`)} style="margin-top: 1em;">
         <button type="submit" class="button button-primary">

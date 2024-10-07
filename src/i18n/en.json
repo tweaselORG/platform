@@ -75,7 +75,7 @@
         "heading": "Analysis of “{{appName}}” found nothing",
         "explanation": "The analysis of the app has finished. We did <strong>not</strong> detect any tracking data transmissions without consent.",
         "what-heading": "What does that mean?",
-        "what-explanation": "This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something."
+        "what-explanation": "<p>This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something.</p><p>Mind you, our analysis process doesn’t enter anything into the apps or accept any prompts. If tracking companies are only contacted after certain inputs, we are unable to detect that.</p><p>On top of that, we have made the decision to rather miss something than produce false positives, which is why we are only detecting tracking endpoints that we have researched and classified as such. This means that we <em>will</em> miss some tracking data transmissions but it enables us to say for sure that tracking actually occurred if we do detect something, which is important for the complaints.</p>"
     },
     "proceeding-landing-awaitingControllerNotice": {
         "heading": "Analysis of “{{appName}}” detected tracking",
@@ -104,8 +104,8 @@
     },
     "proceeding-landing-complaintSent": {
         "heading": "What’s next?",
-        "explanation-formal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. According to Art. 78(2) GDPR, the DPA has to inform you on the progress or outcome of the complaint within three months. However, in our experience, it is unfortunately common that it takes them much longer to do so. If after six months or a year you still haven’t received a meaningful response, it makes sense to send them a reminder.",
-        "explanation-informal": "You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. Since you have only sent an informal complaint, the DPA is unfortunately not legally required to inform you about what they do regarding your complaint. You probably shouldn’t expect a meaningful response from them."
+        "explanation-formal": "<p>You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. According to Art. 78(2) GDPR, the DPA has to inform you on the progress or outcome of the complaint within three months. However, in our experience, it is unfortunately common that it takes them much longer to do so. If after six months or a year you still haven’t received a meaningful response, it makes sense to send them a reminder.</p>",
+        "explanation-informal": "<p>You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. Since you have only sent an informal complaint, the DPA is unfortunately not legally required to inform you about what they do regarding your complaint. You probably shouldn’t expect a meaningful response from them.</p><p>However, our goal is to raise awareness and draw the attention of the DPAs to these violations. It is important that the authorities are attentive to our grievances to facilitate change in the long run. We hope that this whole process can be part of a necessary political shift that prioritises data protection and prohibits the unwanted tracking activities of companies.</p><p>Thank you for taking the time to help us on our mission.</p>"
     },
 
     "send-notice": {

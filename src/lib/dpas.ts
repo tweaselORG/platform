@@ -627,7 +627,7 @@ const dpaData = {
     fitst: {
         slug: 'fitst',
         'relevant-countries': ['fi'],
-        name: 'Tietosuojavaltuutetun toimisto (Office of the Data Protection Ombudsman of Denmark)',
+        name: 'Tietosuojavaltuutetun toimisto (Office of the Data Protection Ombudsman of Finland)',
         address: 'PL 800\n00531 Helsinki\nFinland',
         phone: '+358 29 566 6700',
         fax: '+358 29 566 6735',

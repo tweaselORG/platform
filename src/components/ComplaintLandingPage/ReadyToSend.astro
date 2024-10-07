@@ -64,7 +64,7 @@ const userNetworkActivityJwt = await makeAttachmentJwt({
 
             <div class="radio-group">
                 {
-                    (['yes', 'no'] as const).map((a) => (
+                    (['yes', 'no-letter'] as const).map((a) => (
                         <div class="radio-wrapper">
                             <input
                                 id={`agree-to-unencrypted-communication-${a}`}
@@ -75,7 +75,7 @@ const userNetworkActivityJwt = await makeAttachmentJwt({
                                 required
                             />
                             <label class="radio-label" for={`agree-to-unencrypted-communication-${a}`}>
-                                {t('common', a)}
+                                {t('complaint-landing-readyToSend', a)}
                             </label>
                         </div>
                     ))

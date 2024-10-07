@@ -65,11 +65,11 @@
     },
     "proceeding-landing-needsInitialAnalysis": {
         "heading": "Analysing app…",
-        "explanation": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding.</p>"
+        "explanation": "<p>We are currently analysing the app to detect whether it performs tracking. This process will take a while.</p><p>Try checking back in ~10 minutes at this page. Make sure to bookmark or save this link so you don’t lose access to your proceeding:</p>"
     },
     "proceeding-landing-analysisFailed": {
         "heading": "Analysis failed",
-        "explanation": "Unfortunately, the analysis of the app failed for unknown reasons. Please try again later."
+        "explanation": "Unfortunately, the analysis of the app failed unrecoverably for unknown reasons. You can try with another app."
     },
     "proceeding-landing-initialAnalysisFoundNothing": {
         "heading": "Analysis of “{{appName}}” found nothing",
@@ -78,15 +78,15 @@
         "what-explanation": "This could mean that the app genuinely doesn’t perform any tracking. However, it is also possible that we missed something."
     },
     "proceeding-landing-awaitingControllerNotice": {
-        "heading": "Analysis of “{{appName}}”",
+        "heading": "Analysis of “{{appName}}” detected tracking",
         "explanation": "<p>The analysis of “{{appName}}” has finished. We <strong>have detected</strong> tracking data transmissions without consent, which you can see below.</p><p>This could be in violation of applicable data protection law. You can now send a notice to the developer giving them the opportunity to remedy the problem.</p>",
         "send-notice-button": "Send notice to developer"
     },
     "proceeding-landing-awaitingControllerResponse": {
         "heading": "Waiting for the developer of “{{appName}}” to respond…",
-        "explanation": "The developer of “{{appName}}” has until {{deadline}} to respond to your notice. Please upload all correspondence you have with them in the meantime so that we can attach it to a potential complaint in the future.",
+        "explanation": "The developer of “{{appName}}” has until <strong>{{deadline}}</strong> to respond to your notice. Please upload all correspondence you have with them in the meantime so that we can attach it to a potential complaint in the future.",
         "uploaded-messages": "Uploaded messages",
-        "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages before you continue.",
+        "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages beforehand.",
         "continue": "Continue with the process"
     },
     "proceeding-landing-needsSecondAnalysis": {
@@ -99,7 +99,7 @@
     },
     "proceeding-landing-awaitingComplaint": {
         "heading": "Analysis of “{{appName}}”",
-        "explanation": "<p>The analysis of “{{appName}}” has finished. We have <strong>still detected</strong> tracking data transmissions without consent, which you can see below.</p><p>You can now raise this issue with the data protection authorities to have them check whether the app violates data protection law and order the developer to stop if so.</p>",
+        "explanation": "<p>The analysis of “{{appName}}” has finished. We have <strong>still detected</strong> tracking data transmissions without consent, which you can see below.</p><p>You can now raise this issue with the competent data protection authority to have them check whether the app violates data protection law. If so, they can order the developer to stop the tracking.</p>",
         "contact-button": "Contact data protection authorities"
     },
     "proceeding-landing-complaintSent": {
@@ -125,10 +125,10 @@
         "notice": "Notice (PDF)",
         "technical-report": "Technical report (PDF)",
         "traffic-recording": "Traffic recording (HAR)",
-        "upload-heading": "Upload sent message",
+        "upload-heading": "To continue: Upload sent message",
         "upload-explanation": "After you've sent the email, upload it here as an EML or PDF file. Why do we need this? If the developer doesn’t actually remove the tracking within the 60 day deadline you have given them, you can send a complaint to the data protection authorities and ask them to intervene. In this case, you will need to attach the previous communication with the developer.",
         "choose-file": "Choose file",
-        "upload": "Upload"
+        "upload": "Upload and continue"
     },
     "evaluate-response": {
         "heading": "How did the developer react?",
@@ -147,19 +147,19 @@
     },
     "complaint-landing-askAuthority": {
         "heading": "Which authority do you want to contact?",
-        "question": "<p>Please select the data protection authority that you want to contact about this matter. You can choose the authority at the your place of habitual residence (i.e. where you live), your place of work, or the place of the alleged infringement (i.e. where the developer is based).</p><p>You’ll note that the list below is not complete. Unfortunately, we can only support authorities that support complaints in languages we have templates for.</p>"
+        "question": "<p>Please select the data protection authority (DPA) that you want to contact about this matter. You can choose the authority at the your place of habitual residence (i.e. where you live), your place of work, or the place of the alleged infringement (i.e. where the developer is based).</p><p>You’ll note that the list below is not complete. Unfortunately, we can only support authorities that support complaints in languages we have templates for.</p>"
     },
     "complaint-landing-askComplaintType": {
         "heading": "How to contact the DPA about the app?",
         "explanation": "There are two ways you can ask the data protection authorities to look into the tracking data transmissions you have found in the app:",
-        "formal-complaint-explanation": "<p>You can send a formal complaint. The DPA will have to investigate this complaint and inform you of the outcome.</p><p>However, to do so, you will need to show that you are personally affected by the tracking. We can guide you through this process, but it will required a bit of effort and technical knowledge.</p>",
+        "formal-complaint-explanation": "<p>You can send a formal complaint. The DPA will have to investigate this complaint and inform you of the outcome.</p><p>However, to do so, you will need to show that you are personally affected by the tracking. We can guide you through this process, but it will require a bit of effort and technical knowledge.</p>",
         "informal-complaint-explanation": "Alternatively, you can informally ask the DPA to investigate the app. This does not require any additional effort by you but the DPA will also not be legally required to investigate or tell you what they did.",
-        "informal-complaint-button": "Informally ask the DPA to look in the app",
+        "informal-complaint-button": "Informally ask the DPA to look into the app",
         "formal-complaint-button": "Check whether I am personally affected to send a complaint"
     },
     "complaint-landing-askUserNetworkActivity": {
         "heading": "Prove that you are affected by the tracking",
-        "explanation-android": "<p>To prove that you are personally affected by the tracking, we are going to use the open-source <a href=\"https://trackercontrol.org/\">TrackerControl app</a> to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Install the Slim version of app on your device. It can be downloaded from the <a href=\"https://play.google.com/store/apps/details?id=net.kollnig.missioncontrol.play\">Google Play Store</a> or using the Aurora Store.<br>The full version that is available on F-Droid blocks tracking requests by default.</li>\n    <li>Open the TrackerControl app and activate the toggle at the top left, next to the text “TC Slim”.</li>\n    <li>You will be informed that TrackerControl uses a local VPN. Click “OK” in that prompt and also confirm the following connection request with “OK”.</li>\n    <li>Next, you will be ask to disable battery optimisations for consistent results. Click “OK” in that prompt. In the “Battery optimisations” window that opens, choose “All apps” in the dropdown at the top, look for and click on the “TrackerControl” app, choose “Don’t optimise”, and click “Done”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back to TrackerControl. In the list of apps, choose your app, and click the three dots in the top right corner. Click “Export as CSV” and save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.</li>\n</ol>",
+        "explanation-android": "<p>To prove that you are personally affected by the tracking, we are going to use the open-source <a href=\"https://trackercontrol.org/\">TrackerControl app</a> to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Install the Slim version of the app on your device. It can be downloaded from the <a href=\"https://play.google.com/store/apps/details?id=net.kollnig.missioncontrol.play\">Google Play Store</a> or using the Aurora Store.<br>The full version that is available on F-Droid blocks tracking requests by default.</li>\n    <li>Open the TrackerControl app and activate the toggle at the top left, next to the text “TC Slim”.</li>\n    <li>You will be informed that TrackerControl uses a local VPN. Click “OK” in that prompt and also confirm the following connection request with “OK”.</li>\n    <li>Next, you will be ask to disable battery optimisations for consistent results. Click “OK” in that prompt. In the “Battery optimisations” window that opens, choose “All apps” in the dropdown at the top, look for and click on the “TrackerControl” app, choose “Don’t optimise”, and click “Done”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back to TrackerControl. In the list of apps, choose your app, and click the three dots in the top right corner. Click “Export as CSV” and save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.</li>\n</ol>",
         "explanation-ios": "<p>To prove that you are personally affected by the tracking, we are going to use the App Privacy Report integrated into iOS to check whether the app contacts the same tracking servers on your device as we found in our analysis. To do that:</p>\n\n<ol>\n    <li>Go into the Settings, then click on “Privacy & Security”.</li>\n    <li>Click on “App Privacy Report” and then click “Turn on App Privacy Report”.</li>\n    <li>Start the app you want to analyse and use it for a while as you normally would.</li>\n    <li>After you’re done, go back into the App Privacy Report and click the share icon in the top right corner. Save the export file to your device.</li>\n    <li>Upload the export file here.<br>If you’re accessing Tweasel from a computer, you can open this page on your phone for the upload, and then come back to your computer and reload the page to continue.<br>Note: The export file may unfortunately also contain information about sensor access and network activity of your other apps, especially if you already had the App Privacy Report enabled for a while. To mitigate this, it makes sense to disable and immediately re-enable the App Privacy Report right before your open the app to analyse. This will delete the old data.</li>\n</ol>",
         "choose-file": "Choose file",
         "upload": "Upload"
@@ -171,10 +171,10 @@
         "no": "I installed the app another way and/or I am not logged in with my personal account"
     },
     "complaint-landing-askDeviceHasRegisteredSimCard": {
-        "heading": "Do you have a SIM card in your phone?",
-        "explanation": "If you have a SIM card that is registered to your name in your phone, this can also help us establish that you are personally affected.",
-        "yes": "I have a SIM card that is registered to my name in my phone",
-        "no": "I don’t have a SIM card in my phone or it is not registered to my name"
+        "heading": "Do you have a SIM card in your device?",
+        "explanation": "If you have a SIM card that is registered to your name in your device, this can also help us establish that you are personally affected.",
+        "yes": "I have a SIM card that is registered to my name in my device",
+        "no": "I don’t have a SIM card in my device or it is not registered to my name"
     },
     "complaint-landing-askDeveloperAddress": {
         "heading": "Who is responsible for the app?",
@@ -193,6 +193,8 @@
         "complainant-explanation": "You will at least need to provide your name. Some authorities also require you to provide your full address.",
         "contact-details-explanation": "Additionally, you also need to provide the authority with a way to contact you. This can be an email address or a postal address.",
         "agree-to-unencrypted-communication": "Finally, do you agree to being contacted via <em>unencrypted</em> email?",
+        "yes": "yes",
+        "no-letter": "no (you will likely receive a letter)",
         "generate-complaint": "Generate complaint",
         "send-explanation": "After you’ve downloaded the generated complaint, you will need to send it to the DPA yourself.",
         "attachments": "Attachments",

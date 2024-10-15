@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import { t } from '../../i18n/server';
+---
+
+<Base title={'TODO'}>
+    <div class="col66 col100-mobile">
+        <form method="POST" action={absUrl(`/api/dsr/access`)}>
+            <div class="form-group">
+                <label for="proceedingTokens">{'TODO'}</label><br />
+                <textarea id="proceedingTokens" name="proceedingTokens" class="form-element" rows="4" required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="checkbox"
+                    id="dataPortabilityRequest"
+                    name="dataPortabilityRequest"
+                    class="form-element"
+                    checked
+                />
+                <label for="dataPortabilityRequest">TODO</label>
+            </div>
+
+            <input type="submit" class="button button-secondary" value={'TODO'} />
+        </form>
+    </div>
+</Base>

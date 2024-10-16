@@ -19,7 +19,13 @@ export const POST: APIRoute = async ({ params, redirect, currentLocale, clientAd
 
     const token = nanoid();
 
-    const appMeta = await getAppMeta({ platform, appId, language: currentLocale || 'en' });
+    let appMeta;
+    try {
+        appMeta = await getAppMeta({ platform, appId, language: currentLocale || 'en' });
+    } catch (e) {
+        // TODO: Proper error handling
+        return new Response('Getting the apps’s metadata failed.', { status: 500 });
+    }
     if (!appMeta) return new Response('App not found.', { status: 404 });
 
     const { token: analysisToken } = await startAnalysis(platform, appMeta.appId);

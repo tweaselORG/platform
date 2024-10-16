@@ -10,7 +10,8 @@ export default defineConfig({
     adapter: node({
         mode: 'standalone',
     }),
-    integrations: [preact(), global()],
+    // eslint-disable-next-line no-undef
+    integrations: [preact({ devtools: process.env.NODE_ENV === 'development' }), global()],
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],

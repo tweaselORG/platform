@@ -1,0 +1,88 @@
+---
+import { e, client } from '../../../../../lib/db';
+import { z } from 'zod';
+import { isValidComplaintState } from '../../../../../lib/typeguard';
+import AskIsUserOfApp from '../../../../../components/ComplaintLandingPage/AskIsUserOfApp.astro';
+import AskAuthority from '../../../../../components/ComplaintLandingPage/AskAuthority.astro';
+import AskComplaintType from '../../../../../components/ComplaintLandingPage/AskComplaintType.astro';
+import AskUserNetworkActivity from '../../../../../components/ComplaintLandingPage/AskUserNetworkActivity.astro';
+import AskLoggedIntoAppStore from '../../../../../components/ComplaintLandingPage/AskLoggedIntoAppStore.astro';
+import AskDeviceHasRegisteredSimCard from '../../../../../components/ComplaintLandingPage/AskDeviceHasRegisteredSimCard.astro';
+import AskDeveloperAddress from '../../../../../components/ComplaintLandingPage/AskDeveloperAddress.astro';
+import ReadyToSend from '../../../../../components/ComplaintLandingPage/ReadyToSend.astro';
+
+const complaintQuestionSchema = z.object({
+    token: z.string(),
+    question: z.enum([
+        'askIsUserOfApp',
+        'askAuthority',
+        'askComplaintType',
+        'askUserNetworkActivity',
+        'askLoggedIntoAppStore',
+        'askDeviceHasRegisteredSimCard',
+        'askDeveloperAddress',
+        'readyToSend',
+    ]),
+});
+
+const { token, question } = complaintQuestionSchema.parse(Astro.params);
+
+const proceeding = await e
+    .select(e.Proceeding, () => ({
+        app: {
+            platform: true,
+        },
+        developerName: true,
+        privacyPolicyUrl: true,
+        complaintAuthority: true,
+
+        state: true,
+        complaintState: true,
+        complainantIsUserOfApp: true,
+        complaintType: true,
+        loggedIntoAppStore: true,
+        deviceHasRegisteredSimCard: true,
+
+        filter_single: { token },
+    }))
+    .assert_single()
+    .run(client);
+
+if (!proceeding) return new Response('Invalid token.', { status: 403 });
+if (proceeding.state !== 'awaitingComplaint') return new Response('You cannot send a complaint now.', { status: 400 });
+
+const state = proceeding.complaintState;
+if (!state || !isValidComplaintState(state)) throw new Error('This should never happen.');
+
+const {
+    developerName,
+    privacyPolicyUrl,
+    complaintAuthority,
+    complainantIsUserOfApp,
+    complaintType,
+    loggedIntoAppStore,
+    deviceHasRegisteredSimCard,
+} = proceeding;
+---
+
+{
+    question === 'askIsUserOfApp' ? (
+        <AskIsUserOfApp {token} {complainantIsUserOfApp} />
+    ) : question === 'askAuthority' ? (
+        <AskAuthority {token} {complaintAuthority} />
+    ) : question === 'askComplaintType' ? (
+        <AskComplaintType {token} {complaintType} />
+    ) : question === 'askUserNetworkActivity' ? (
+        <AskUserNetworkActivity {token} platform={proceeding.app.platform} />
+    ) : question === 'askLoggedIntoAppStore' ? (
+        <AskLoggedIntoAppStore {token} platform={proceeding.app.platform} {loggedIntoAppStore} />
+    ) : question === 'askDeviceHasRegisteredSimCard' ? (
+        <AskDeviceHasRegisteredSimCard {token} {deviceHasRegisteredSimCard} />
+    ) : question === 'askDeveloperAddress' ? (
+        <AskDeveloperAddress {token} developerName={proceeding.developerName} {privacyPolicyUrl} />
+    ) : question === 'readyToSend' && state === 'readyToSend' ? (
+        <ReadyToSend {token} platform={proceeding.app.platform} {complaintAuthority} />
+    ) : (
+        ''
+    )
+}

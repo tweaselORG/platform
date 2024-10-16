@@ -1,0 +1,53 @@
+---
+import { t } from '../i18n/server';
+
+interface Props {
+    actionUrl: string;
+    idPrefix: string;
+    options: Record<string, string>;
+    value: string | null | undefined;
+}
+
+const { idPrefix, actionUrl, options, value } = Astro.props;
+---
+
+<div class="col66 col100-mobile">
+    <div class="radio-group radio-group-vertical radio-group-padded">
+        <form method="POST" id={`${idPrefix}-form`} action={actionUrl} class="astro-radio-form">
+            {
+                Object.keys(options).map((option) => (
+                    <div class="radio-wrapper">
+                        <input
+                            id={`${idPrefix}-radio-${option}`}
+                            type="radio"
+                            name="answer"
+                            class="form-element"
+                            value={option}
+                            checked={option === value}
+                            required="true"
+                        />
+                        <label class={`radio-label `} for={`${idPrefix}-radio-${option}`}>
+                            {options[option]}
+                        </label>
+                    </div>
+                ))
+            }
+            <button type="submit" class="button sr-only">{t('common', 'continue')}</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const forms = document.getElementsByClassName('astro-radio-form') as HTMLCollectionOf<HTMLFormElement>;
+
+    for (const form of forms) {
+        const inputs = form.querySelectorAll('div.radio-wrapper');
+
+        // The "click" event is also triggered by chnage events for radio buttons (https://www.w3.org/TR/2012/WD-html5-20121025/content-models.html#interactive-content)
+        // Because of that, we use `mouseup` here, to specifically only check for actual clicks
+        for (const input of inputs)
+            input.addEventListener('mouseup', (e) => {
+                if ((e as MouseEvent).button === 0) form.submit();
+            });
+    }
+</script>

@@ -29,7 +29,7 @@ const { token, developerName, privacyPolicyUrl } = Astro.props;
     </p>
 
     <div class="col66 col100-mobile">
-        <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askDeveloperAddress`)}>
+        <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askDeveloperAddress/answer`)}>
             <div class="form-group">
                 <label for="developerAddress">{t('complaint-landing-askDeveloperAddress', 'address')}</label><br />
                 <textarea

@@ -43,3 +43,35 @@ hr {
         }
     }
 }
+
+%sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.radio-wrapper {
+    &:hover,
+    &:focus,
+    &:focus-within {
+        & > .radio-label {
+            background-color: #192a4a !important;
+            color: #f7fafc;
+        }
+    }
+
+    input[type='radio'].form-element {
+        appearance: none;
+        @extend %sr-only;
+    }
+
+    input[type='radio']:checked + .radio-label {
+        background-color: #214192;
+        color: #f7fafc;
+    }
+}

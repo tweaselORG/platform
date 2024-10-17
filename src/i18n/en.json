@@ -211,5 +211,12 @@
         "webform": "Webform:",
         "pgp-key": "PGP key",
         "complaint-sent": "I have sent the complaint"
+    },
+    "privacy-access-request": {
+        "heading": "Request access regarding your proceedings on the Tweasel platform",
+        "explanation": "<p>Using this form, you can export all data from the proceedings you have started through the Tweasel platform. For that, you only need to provide the corresponding proceeding tokens/URLs (that is the same URL you use to get back to your proceeding). We will then automatically compile all the data and provide you with an export in less than a minute.</p><p>Of course, you also always have the option to contact us manually and make use of your GDPR rights that way.</p>",
+        "tokens": "Proceeding token(s)/URL(s)",
+        "portability-request": "Also include a machine-readable dump of the data",
+        "submit": "Submit"
     }
 }

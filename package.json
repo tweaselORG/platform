@@ -50,6 +50,8 @@
         "@astrojs/node": "8.3.1",
         "@astrojs/preact": "3.5.0",
         "@datenanfragen/components": "^1.0.0-cssupdate0",
+        "@myriaddreamin/typst-ts-web-compiler": "^0.4.1",
+        "@myriaddreamin/typst.ts": "^0.4.1",
         "astro": "4.11.0",
         "astro-global": "^1.2.1",
         "edgedb": "^1.5.7",

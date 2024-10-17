@@ -1,6 +1,7 @@
 ---
 import { t } from '../../i18n/server';
 import Base from '../../layouts/base.astro';
+import TextRaw from '../TextRaw.astro';
 
 interface Props {
     complaintType: 'formal' | 'informal';
@@ -10,5 +11,5 @@ const { complaintType } = Astro.props;
 ---
 
 <Base title={t('proceeding-landing-complaintSent', 'heading')}>
-    {t('proceeding-landing-complaintSent', `explanation-${complaintType}`)}
+    <TextRaw scope="proceeding-landing-complaintSent" id={`explanation-${complaintType}`} />
 </Base>

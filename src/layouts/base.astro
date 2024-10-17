@@ -27,6 +27,7 @@ const i18nDefinition = Object.fromEntries(
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <title>{title ? `${title} · Tweasel` : 'Tweasel'}</title>
+        <slot name="head" />
     </head>
     <body>
         <a id="skip-to-content" href={Astro.url.pathname === '/' ? '#home-hero' : '#heading'}>
@@ -50,22 +51,20 @@ const i18nDefinition = Object.fromEntries(
             </div>
 
             <slot name="after-header-main">
-                <div id="heading-bg">
-                    <div id="heading" class="container">
-                        <h1>{title}</h1>
-                    </div>
-                </div>
+                <div id="heading-bg">&nbsp;</div>
             </slot>
         </header>
-
-        <div class="container">
-            <main class="narrow-page">
-                <slot />
-            </main>
-        </div>
-
-        <script define:vars={{ i18nDefinition }} is:inline>
-            window.I18N_DEFINITION = i18nDefinition;
-        </script>
     </body>
+
+    <div class="container">
+        <main class="narrow-page">
+            <h1 style="margin-top: 1.5em;">{title}</h1>
+
+            <slot />
+        </main>
+    </div>
+
+    <script define:vars={{ i18nDefinition }} is:inline>
+        window.I18N_DEFINITION = i18nDefinition;
+    </script>
 </html>

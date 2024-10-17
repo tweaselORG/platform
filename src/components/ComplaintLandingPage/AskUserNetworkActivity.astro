@@ -20,6 +20,8 @@ const { token, platform } = Astro.props;
     <form action={absUrl(`/p/${token}/complain/askUserNetworkActivity`)} enctype="multipart/form-data" method="post">
         <label for="upload" class="sr-only">{t('complaint-landing-askUserNetworkActivity', 'choose-file')}</label>
         <input type="file" id="upload" name="upload" accept={platform === 'android' ? '.csv' : '.ndjson'} required />
-        <button type="submit">{t('complaint-landing-askUserNetworkActivity', 'upload')}</button>
+        <button class="button button-primary button-small" type="submit">
+            {t('complaint-landing-askUserNetworkActivity', 'upload')}
+        </button>
     </form>
 </Base>

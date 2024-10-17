@@ -15,6 +15,8 @@ const tokenUrl = `/p/${token}`;
 ---
 
 <Base title={t('proceeding-landing-needsSecondAnalysis', `heading`)}>
+    <meta slot="head" http-equiv="refresh" content="60" />
+
     <LoadingIndicator shown={true} style="margin: 50px 0;" />
 
     <TextRaw scope="proceeding-landing-needsSecondAnalysis" id="explanation" />

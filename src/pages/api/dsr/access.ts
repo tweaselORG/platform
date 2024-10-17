@@ -3,10 +3,30 @@ import JSZip from 'jszip';
 import type { PartialDeep } from 'type-fest';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
+import bookInfoIcon from '../../../../assets/dsr-templates/book-info.svg?raw';
+import typstAccessData from '../../../../assets/dsr-templates/en/access-data.typ?raw';
+import typstAccessNoData from '../../../../assets/dsr-templates/en/access-no-data.typ?raw';
+import typstProceeding from '../../../../assets/dsr-templates/en/proceeding.typ?raw';
+import typstStyleEn from '../../../../assets/dsr-templates/en/style.typ?raw';
 import { client, e } from '../../../lib/db';
-import { generateReference } from '../../../lib/util';
+import { dpas } from '../../../lib/dpas';
+import { compileTypst } from '../../../lib/typst';
+import { formatDate, generateReference } from '../../../lib/util';
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+const typstTranslations = {
+    en: {
+        style: typstStyleEn,
+        accessNoData: typstAccessNoData,
+        accessData: typstAccessData,
+        proceeding: typstProceeding,
+    },
+};
+
+export const POST: APIRoute = async ({ request, currentLocale }) => {
+    const typstFiles = typstTranslations[(currentLocale as 'en') || 'en'] || typstTranslations.en;
+    const requestDate = new Date();
+    const reference = generateReference(new Date());
+
     const { proceedingTokens, dataPortabilityRequest } = zfd
         .formData({
             proceedingTokens: zfd.text(
@@ -36,13 +56,33 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         }))
         .run(client);
 
-    if (proceedings.length === 0) return new Response('Invalid token(s).', { status: 400 });
+    if (proceedings.length === 0) {
+        const pdf = await compileTypst({
+            mainContent: typstFiles.accessNoData,
+            additionalFiles: {
+                '/book-info.svg': bookInfoIcon,
+                '/style.typ': typstFiles.style,
+                '/access.json': JSON.stringify({
+                    requestDate: formatDate(requestDate, { language: currentLocale }),
+                    reference,
+                    responseDate: formatDate(new Date(), { language: currentLocale }),
+                    proceedingTokens,
+                    dataPortabilityRequest,
+                }),
+            },
+        });
+        return new Response(pdf, {
+            headers: {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `inline; filename="-tweasel-access-request.pdf"`,
+            },
+        });
+    }
 
-    const reference = generateReference(new Date());
     const zip = new JSZip();
 
     for (const proceeding of proceedings) {
-        const baseDir = proceedings.length === 1 ? zip : zip.folder(proceeding.token);
+        const baseDir = zip.folder(proceeding.token);
         if (!baseDir) throw new Error('This should never happen.');
 
         if (proceeding.userNetworkActivityRaw || proceeding.uploads.length > 0) {
@@ -56,6 +96,16 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 
         if (proceeding.initialAnalysis?.har) baseDir.file('initial-analysis.har', proceeding.initialAnalysis.har);
         if (proceeding.secondAnalysis?.har) baseDir.file('second-analysis.har', proceeding.secondAnalysis.har);
+
+        const proceedingPdf = await compileTypst({
+            mainContent: typstFiles.proceeding,
+            additionalFiles: {
+                '/style.typ': typstFiles.style,
+                '/proceeding.json': JSON.stringify(proceeding),
+                '/dpas.json': JSON.stringify(dpas),
+            },
+        });
+        baseDir.file('proceeding.pdf', proceedingPdf);
 
         if (dataPortabilityRequest) {
             const p = proceeding as PartialDeep<typeof proceeding>;
@@ -78,6 +128,22 @@ export const POST: APIRoute = async ({ request, redirect }) => {
             );
         }
     }
+
+    const letterPdf = await compileTypst({
+        mainContent: typstFiles.accessData,
+        additionalFiles: {
+            '/book-info.svg': bookInfoIcon,
+            '/style.typ': typstFiles.style,
+            '/access.json': JSON.stringify({
+                requestDate: formatDate(requestDate, { language: currentLocale }),
+                reference,
+                responseDate: formatDate(new Date(), { language: currentLocale }),
+                proceedingTokens,
+                dataPortabilityRequest,
+            }),
+        },
+    });
+    zip.file('README.pdf', letterPdf);
 
     return new Response(await zip.generateAsync({ type: 'nodebuffer' }), {
         headers: {

@@ -43,3 +43,7 @@ hr {
         }
     }
 }
+
+textarea::placeholder {
+    opacity: 0.5;
+}

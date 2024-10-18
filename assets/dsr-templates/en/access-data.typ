@@ -35,6 +35,8 @@ thank you very much for requesting access to your data through the Tweasel websi
 
       Based on the information that you provided, *we can confirm that we are storing data about proceedings* you have initiated through Tweasel. This data _may_ include personal data as per the GDPR. We are providing you with a full copy of this data, which is explained on the following pages. #if request.dataPortabilityRequest [And since you have requested it, we are also attaching a copy of the data in a machine-readable format (JSON).]
 
+      #if not request.allTokensFound [Note that we have not found stored data for all of the proceeding tokens/URLs you have provided. This may because you have previously requested the deletion of these proceedings, or because some tokens you have specified are wrong.]
+
       We never employ any profiling or other forms of automated decision-making according to Art. 22(1 and 4) GDPR under any circumstances.
     ],
   )

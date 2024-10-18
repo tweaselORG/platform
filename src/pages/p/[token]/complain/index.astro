@@ -1,27 +1,12 @@
 ---
 import { e, client } from '../../../../lib/db';
 import { isValidComplaintState } from '../../../../lib/typeguard';
-import AskIsUserOfApp from '../../../../components/ComplaintLandingPage/AskIsUserOfApp.astro';
-import AskAuthority from '../../../../components/ComplaintLandingPage/AskAuthority.astro';
-import AskComplaintType from '../../../../components/ComplaintLandingPage/AskComplaintType.astro';
-import AskUserNetworkActivity from '../../../../components/ComplaintLandingPage/AskUserNetworkActivity.astro';
-import AskLoggedIntoAppStore from '../../../../components/ComplaintLandingPage/AskLoggedIntoAppStore.astro';
-import AskDeviceHasRegisteredSimCard from '../../../../components/ComplaintLandingPage/AskDeviceHasRegisteredSimCard.astro';
-import AskDeveloperAddress from '../../../../components/ComplaintLandingPage/AskDeveloperAddress.astro';
-import ReadyToSend from '../../../../components/ComplaintLandingPage/ReadyToSend.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
 
 const proceeding = await e
     .select(e.Proceeding, () => ({
-        app: {
-            platform: true,
-        },
-        developerName: true,
-        privacyPolicyUrl: true,
-        complaintAuthority: true,
-
         state: true,
         complaintState: true,
 
@@ -36,27 +21,5 @@ if (proceeding.state !== 'awaitingComplaint') return new Response('You cannot se
 const state = proceeding.complaintState;
 if (!state || !isValidComplaintState(state)) throw new Error('This should never happen.');
 
-const { developerName, privacyPolicyUrl, complaintAuthority } = proceeding;
+return Astro.redirect(`/p/${token}/complain/${state}`);
 ---
-
-{
-    state === 'askIsUserOfApp' ? (
-        <AskIsUserOfApp {token} />
-    ) : state === 'askAuthority' ? (
-        <AskAuthority {token} />
-    ) : state === 'askComplaintType' ? (
-        <AskComplaintType {token} />
-    ) : state === 'askUserNetworkActivity' ? (
-        <AskUserNetworkActivity {token} platform={proceeding.app.platform} />
-    ) : state === 'askLoggedIntoAppStore' ? (
-        <AskLoggedIntoAppStore {token} platform={proceeding.app.platform} />
-    ) : state === 'askDeviceHasRegisteredSimCard' ? (
-        <AskDeviceHasRegisteredSimCard {token} />
-    ) : state === 'askDeveloperAddress' ? (
-        <AskDeveloperAddress {token} {developerName} {privacyPolicyUrl} />
-    ) : state === 'readyToSend' ? (
-        <ReadyToSend {token} platform={proceeding.app.platform} {complaintAuthority} />
-    ) : (
-        ''
-    )
-}

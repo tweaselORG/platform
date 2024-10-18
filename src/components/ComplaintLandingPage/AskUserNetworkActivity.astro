@@ -17,7 +17,10 @@ const { token, platform } = Astro.props;
         <TextRaw scope="complaint-landing-askUserNetworkActivity" id={`explanation-${platform}`} />
     </p>
 
-    <form action={absUrl(`/p/${token}/complain/askUserNetworkActivity`)} enctype="multipart/form-data" method="post">
+    <form
+        action={absUrl(`/p/${token}/complain/askUserNetworkActivity/answer`)}
+        enctype="multipart/form-data"
+        method="post">
         <label for="upload" class="sr-only">{t('complaint-landing-askUserNetworkActivity', 'choose-file')}</label>
         <input type="file" id="upload" name="upload" accept={platform === 'android' ? '.csv' : '.ndjson'} required />
         <button class="button button-primary button-small" type="submit">

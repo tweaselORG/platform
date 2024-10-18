@@ -3,12 +3,14 @@ import { t } from '../../i18n/server';
 import Base from '../../layouts/base.astro';
 import { absUrl } from '../../lib/util';
 import TextRaw from '../TextRaw.astro';
+import RadioForm from '../RadioForm.astro';
 
 interface Props {
     token: string;
+    complaintType: string | null | undefined;
 }
 
-const { token } = Astro.props;
+const { token, complaintType } = Astro.props;
 ---
 
 <Base title={t('complaint-landing-askComplaintType', 'heading')}>
@@ -21,18 +23,16 @@ const { token } = Astro.props;
         <li>{t('complaint-landing-askComplaintType', 'informal-complaint-explanation')}</li>
     </ol>
 
-    <div class="col66 col100-mobile">
-        <div class="radio-group radio-group-vertical radio-group-padded">
-            {
-                (['formal', 'informal'] as const).map((type) => (
-                    <form class="radio-wrapper" method="POST" action={absUrl(`/p/${token}/complain/askComplaintType`)}>
-                        <input type="hidden" name="answer" value={type} />
-                        <button type="submit" class="radio-label">
-                            {t('complaint-landing-askComplaintType', `${type}-complaint-button`)}
-                        </button>
-                    </form>
-                ))
-            }
-        </div>
-    </div>
+    <RadioForm
+        actionUrl={absUrl(`/p/${token}/complain/askComplaintType/answer`)}
+        options={(['formal', 'informal'] as const).reduce(
+            (agg, type) =>
+                Object.assign(agg, {
+                    [type]: t('complaint-landing-askComplaintType', `${type}-complaint-button`),
+                }),
+            {},
+        )}
+        value={complaintType}
+        idPrefix="askComplaintType"
+    />
 </Base>

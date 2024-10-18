@@ -6,7 +6,8 @@
         "store-ios": "Apple App Store",
         "yes": "Yes",
         "no": "No",
-        "submit": "Submit"
+        "submit": "Submit",
+        "continue": "Continue"
     },
     "base": {
         "skip-to-content": "Skip to content",

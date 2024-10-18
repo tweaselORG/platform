@@ -29,29 +29,47 @@ export const POST: APIRoute = async ({ params, redirect }) => {
         .run(client);
     if (!proceeding) return new Response('Invalid token.', { status: 403 });
 
-    if (!['awaitingControllerResponse'].includes(proceeding.state) || !proceeding.noticeSent)
-        return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 });
+    if (!proceeding.noticeSent)
+        return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 }); // Arguably, we might fail more gracefully if we redirect to /p/ here
 
-    if (response === 'none' && new Date() < calculateDeadline(proceeding.noticeSent))
-        return new Response('Give the developer until the end of the deadline to respond.', { status: 400 });
+    if (proceeding.state === 'awaitingControllerResponse') {
+        if (response === 'none' && new Date() < calculateDeadline(proceeding.noticeSent))
+            return new Response('Give the developer until the end of the deadline to respond.', { status: 400 });
 
-    const { token: analysisToken } = await startAnalysis(proceeding.app.platform, proceeding.app.appId);
+        const { token: analysisToken } = await startAnalysis(proceeding.app.platform, proceeding.app.appId);
 
-    await e
-        .update(e.Proceeding, () => ({
-            // eslint-disable-next-line camelcase
-            filter_single: { token },
+        // TODO: Fail if starting analysis fails
 
-            set: {
-                controllerResponse: response,
+        await e
+            .update(e.Proceeding, () => ({
+                // eslint-disable-next-line camelcase
+                filter_single: { token },
 
-                requestedAnalysis: e.insert(e.RequestedAnalysis, {
-                    type: 'second',
-                    token: analysisToken,
-                }),
-            },
-        }))
-        .run(client);
+                set: {
+                    controllerResponse: response,
+
+                    requestedAnalysis: e.insert(e.RequestedAnalysis, {
+                        type: 'second',
+                        token: analysisToken,
+                    }),
+                },
+            }))
+            .run(client);
+    } else if (proceeding.state === 'needsSecondAnalysis') {
+        if (response === 'none' && new Date() < calculateDeadline(proceeding.noticeSent))
+            return new Response('Give the developer until the end of the deadline to respond.', { status: 400 });
+
+        await e
+            .update(e.Proceeding, () => ({
+                // eslint-disable-next-line camelcase
+                filter_single: { token },
+
+                set: {
+                    controllerResponse: response,
+                },
+            }))
+            .run(client);
+    } else return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 }); // Arguably, we might fails more gracefully if we redirect to /p/ here
 
     return redirect(`/p/${token}`);
 };

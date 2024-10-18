@@ -140,6 +140,7 @@ export const POST: APIRoute = async ({ request, currentLocale }) => {
                 responseDate: formatDate(new Date(), { language: currentLocale }),
                 proceedingTokens,
                 dataPortabilityRequest,
+                allTokensFound: proceedings.length === proceedingTokens.length,
             }),
         },
     });

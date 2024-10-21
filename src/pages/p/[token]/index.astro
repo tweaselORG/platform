@@ -10,6 +10,7 @@ import NeedsSecondAnalysis from '../../../components/ProceedingLandingPage/Needs
 import SecondAnalysisFoundNothing from '../../../components/ProceedingLandingPage/SecondAnalysisFoundNothing.astro';
 import AwaitingComplaint from '../../../components/ProceedingLandingPage/AwaitingComplaint.astro';
 import ComplaintSent from '../../../components/ProceedingLandingPage/ComplaintSent.astro';
+import Erased from '../../../components/ProceedingLandingPage/Erased.astro';
 
 const { token } = Astro.params;
 if (!token) throw new Error('This should never happen.');
@@ -51,6 +52,8 @@ if (!isValidProceedingState(state)) throw new Error('This should never happen.')
         <AwaitingComplaint {token} />
     ) : state === 'complaintSent' ? (
         <ComplaintSent complaintType={proceeding.complaintType!} />
+    ) : state === 'erased' ? (
+        <Erased />
     ) : (
         ''
     )

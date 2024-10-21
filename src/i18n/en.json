@@ -107,6 +107,10 @@
         "explanation-formal": "<p>You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. According to Art. 78(2) GDPR, the DPA has to inform you on the progress or outcome of the complaint within three months. However, in our experience, it is unfortunately common that it takes them much longer to do so. If after six months or a year you still haven’t received a meaningful response, it makes sense to send them a reminder.</p>",
         "explanation-informal": "<p>You have told us that you have sent the complaint. Now it’s time to wait for the DPA to process it. Since you have only sent an informal complaint, the DPA is unfortunately not legally required to inform you about what they do regarding your complaint. You probably shouldn’t expect a meaningful response from them.</p><p>However, our goal is to raise awareness and draw the attention of the DPAs to these violations. It is important that the authorities are attentive to our grievances to facilitate change in the long run. We hope that this whole process can be part of a necessary political shift that prioritises data protection and prohibits the unwanted tracking activities of companies.</p><p>Thank you for taking the time to help us on our mission.</p>"
     },
+    "proceeding-landing-erased": {
+        "heading": "You cannot continue with this proceeding",
+        "explanation": "We have removed your personal information from this proceeding because you have sent us an erasure request for it. You can thus no longer continue with this proceeding."
+    },
 
     "send-notice": {
         "heading": "Send notice to developer",
@@ -217,6 +221,12 @@
         "explanation": "<p>Using this form, you can export all data from the proceedings you have started through the Tweasel platform. For that, you only need to provide the corresponding proceeding tokens/URLs (that is the same URL you use to get back to your proceeding). We will then automatically compile all the data and provide you with an export in less than a minute.</p><p>Of course, you also always have the option to contact us manually and make use of your GDPR rights that way.</p>",
         "tokens": "Proceeding token(s)/URL(s) (one per line)",
         "portability-request": "Also include a machine-readable dump of the data",
+        "submit": "Submit"
+    },
+    "privacy-erasure-request": {
+        "heading": "Request erasure regarding proceedings on the Tweasel platform",
+        "explanation": "<p>Using this form, you can remove your personal information from proceedings you have started through the Tweasel platform. In particular, this means that any attachments and files you have uploaded will be deleted and the token will be revoked, so it can no longer be accessed. We will keep the analysis metadata and technical data (like the collected traffic and detected tracking data transmissions) even after the erasure. This information is not connected to you in any way, it is only about the analyzed app.</p><p>To request erasure for certain proceedings, you only need to provide the corresponding tokens/URLs (that is the same URL you use to get back to your proceeding). We will then automatically and immediately perform the erasure. Note that this process is final and <strong>cannot be reversed</strong>. After the erasure, you will receive a confirmation from us.</p><p>Of course, you also always have the option to contact us manually and make use of your GDPR rights that way.</p>",
+        "tokens": "Proceeding token(s)/URL(s) (one per line)",
         "submit": "Submit"
     }
 }

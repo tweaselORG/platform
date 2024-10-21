@@ -56,6 +56,7 @@ module default {
         privacyPolicyUrl: str { constraint max_len_value(250); };
 
         required state := (
+            'erased' if exists(.erased) else
             'needsInitialAnalysis' if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
             'initialAnalysisFailed' if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
             'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
@@ -93,6 +94,8 @@ module default {
         loggedIntoAppStore: bool;
         deviceHasRegisteredSimCard: bool;
         complaintSent: datetime;
+
+        erased: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
         single requestedAnalysis: RequestedAnalysis {

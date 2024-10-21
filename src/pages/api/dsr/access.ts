@@ -1,7 +1,6 @@
 import type { APIRoute } from 'astro';
 import JSZip from 'jszip';
 import type { PartialDeep } from 'type-fest';
-import { z } from 'zod';
 import { zfd } from 'zod-form-data';
 import bookInfoIcon from '../../../../assets/dsr-templates/book-info.svg?raw';
 import typstAccessData from '../../../../assets/dsr-templates/en/access-data.typ?raw';
@@ -12,6 +11,7 @@ import { client, e } from '../../../lib/db';
 import { dpas } from '../../../lib/dpas';
 import { compileTypst } from '../../../lib/typst';
 import { formatDate, generateReference } from '../../../lib/util';
+import { zodProceedingTokensStringToArray } from '../../../lib/zod';
 
 const typstTranslations = {
     en: {
@@ -29,15 +29,7 @@ export const POST: APIRoute = async ({ request, currentLocale }) => {
 
     const { proceedingTokens, dataPortabilityRequest } = zfd
         .formData({
-            proceedingTokens: zfd.text(
-                z.string().transform((t) =>
-                    t
-                        .split(/[\n\r]/)
-                        .map((t) => (t.includes('/') ? /\/p\/([A-Za-z0-9_-]+)/.exec(t)?.[1] || '' : t))
-                        .map((t) => t.trim())
-                        .filter(Boolean),
-                ),
-            ),
+            proceedingTokens: zfd.text(zodProceedingTokensStringToArray),
             dataPortabilityRequest: zfd.checkbox(),
         })
         .parse(await request.formData());
@@ -74,7 +66,7 @@ export const POST: APIRoute = async ({ request, currentLocale }) => {
         return new Response(pdf, {
             headers: {
                 'Content-Type': 'application/pdf',
-                'Content-Disposition': `inline; filename="-tweasel-access-request.pdf"`,
+                'Content-Disposition': `inline; filename="${reference}-tweasel-access-request.pdf"`,
             },
         });
     }

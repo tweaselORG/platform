@@ -86,7 +86,11 @@
         "heading": "Waiting for the developer of “{{appName}}” to respond…",
         "explanation": "The developer of “{{appName}}” has until <strong>{{deadline}}</strong> to respond to your notice. Please upload all correspondence you have with them in the meantime so that we can attach it to a potential complaint in the future.",
         "uploaded-messages": "Uploaded messages",
+        "no-messages": "There are no uploaded messages yet.",
         "next-steps": "If your correspondence with the developer is done or the deadline has expired, you can continue. Make sure that you have uploaded all messages beforehand.",
+        "next-steps-no-uploads": "Upload your correspondence with the developer before continuing.",
+        "delete-upload": "Delete upload “{{filename}}”",
+        "delete-upload-confirm!": "Are you sure you want to delete upload “{{filename}}”?",
         "continue": "Continue with the process"
     },
     "proceeding-landing-needsSecondAnalysis": {
@@ -132,7 +136,8 @@
         "upload-heading": "To continue: Upload sent message",
         "upload-explanation": "After you've sent the email, upload it here as an EML or PDF file. Why do we need this? If the developer doesn’t actually remove the tracking within the 60 day deadline you have given them, you can send a complaint to the data protection authorities and ask them to intervene. In this case, you will need to attach the previous communication with the developer.",
         "choose-file": "Choose file",
-        "upload": "Upload and continue"
+        "upload-and-continue": "Upload and continue",
+        "upload": "Upload"
     },
     "evaluate-response": {
         "heading": "How did the developer react?",

@@ -39,6 +39,8 @@ const searchAppsIos = pMemoize(throttle('ios', _searchAppsIos), {
 });
 
 export const searchApps = async (options: SearchAppsOptions): Promise<AppSearchResult> => {
+    if (options.platform === 'ios') throw new Error('I cannot let you do that.');
+
     if (options.platform === 'android') {
         const results = await searchAppsAndroid([{ searchTerm: options.term }], {
             language: options.language.toLocaleUpperCase() as 'EN',

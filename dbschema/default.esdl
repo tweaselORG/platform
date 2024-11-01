@@ -57,6 +57,7 @@ module default {
 
         required state := (
             'erased' if exists(.erased) else
+            'expired' if exists(.expired) else
             'needsInitialAnalysis' if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
             'initialAnalysisFailed' if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
             'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
@@ -68,6 +69,14 @@ module default {
             'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
             'complaintSent'
         );
+        required stateUpdatedOn: datetime {
+            rewrite update using (
+                datetime_of_statement()
+                if __specified__.state and __old__.state != __subject__.state
+                else __old__.stateUpdatedOn
+            );
+            default := datetime_current();
+        };
         required complaintState := (
             'notYet' if .state != 'awaitingComplaint' else
             'askIsUserOfApp' if not exists(.complainantIsUserOfApp) else
@@ -96,6 +105,7 @@ module default {
         complaintSent: datetime;
 
         erased: datetime;
+        expired: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
         single requestedAnalysis: RequestedAnalysis {

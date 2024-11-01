@@ -105,10 +105,11 @@
 
 == State
 
-- Proceeding state: #descriptions.proceedingState.at(proceeding.state)
+- Proceeding state: #descriptions.proceedingState.at(proceeding.state) (updated on: #proceeding.stateUpdatedOn)
 - Complaint state: #descriptions.complaintState.at(proceeding.complaintState)
 - Notice sent at: #if proceeding.noticeSent != none [#proceeding.noticeSent] else [_not yet_]
 - Complaint sent at: #if proceeding.complaintSent != none [#proceeding.complaintSent] else [_not yet_]
+- Expired: #if proceeding.expired != none [#proceeding.expired] else [_no_]
 
 == Provided answers
 

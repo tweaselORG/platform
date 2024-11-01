@@ -110,7 +110,7 @@ We do however publish the technical details about the app analyses, including th
 
 === 5. Period for which the personal data will be stored
 
-Any files you may have uploaded to a proceeding are automatically deleted one week after the proceeding is completed (i.e. the developer has remedied the violations, or you have sent a complaint to the data protection authorities). \
+Any files you may have uploaded to a proceeding are automatically deleted one week after the proceeding is completed (e.g. the developer has remedied the violations, or you have sent a complaint to the data protection authorities) or one year after the creation of the proceeding. \
 You always have the option to request an immediate deletion of any files you have uploaded. You can do so at this page or by contacting us: https://www.tweasel.org/privacy/erasure-request/
 
 The non-personal data is stored indefinitely.

@@ -115,6 +115,10 @@
         "heading": "You cannot continue with this proceeding",
         "explanation": "We have removed your personal information from this proceeding because you have sent us an erasure request for it. You can thus no longer continue with this proceeding."
     },
+    "proceeding-landing-expired": {
+        "heading": "This proceeding has expired",
+        "explanation": "This proceeding has expired because it is older than one year. We have removed any personal information that may have been uploaded to this proceeding. You can start a new analysis for the same app if you want."
+    },
 
     "send-notice": {
         "heading": "Send notice to developer",

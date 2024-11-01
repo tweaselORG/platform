@@ -7,7 +7,8 @@ import { e, client } from '../../lib/db';
 import { ratelimit } from '../../lib/ratelimit';
 
 const term = Astro.url.searchParams.get('q');
-const platform = (Astro.url.searchParams.get('platform') as 'android' | 'ios') || 'android';
+const platform = 'android';
+// const platform = (Astro.url.searchParams.get('platform') as 'android' | 'ios') || 'android';
 
 if (term) await ratelimit({ ip: Astro.clientAddress, action: 'search' });
 
@@ -69,7 +70,7 @@ const results =
                 </path>
             </svg>
         </button>
-
+        <!--
         <label>
             <input type="radio" name="platform" value="android" checked={platform === 'android'} />
             {t('common', 'android')}
@@ -79,6 +80,7 @@ const results =
             <input type="radio" name="platform" value="ios" checked={platform === 'ios'} />
             {t('common', 'ios')}
         </label>
+        -->
     </form>
 
     {
@@ -89,12 +91,13 @@ const results =
                         <a
                             class="no-link-decoration"
                             href={
-                                r.analysisCount > 0
-                                    ? absUrl(`/a/${r.platform}/${r.id}`)
-                                    : absUrl(
-                                          // Annoyingly, on iOS and only for the getAppMeta() endpoint, we need the adamId instead of the bundleId.
-                                          `/p/${r.platform}/${r.platform === 'android' ? r.id : r.adamId}/confirm-platform`,
-                                      )
+                                absUrl(`/a/${r.platform}/${r.id}`)
+                                // r.analysisCount > 0
+                                //     ? absUrl(`/a/${r.platform}/${r.id}`)
+                                //     : absUrl(
+                                //           // Annoyingly, on iOS and only for the getAppMeta() endpoint, we need the adamId instead of the bundleId.
+                                //           `/p/${r.platform}/${r.platform === 'android' ? r.id : r.adamId}/confirm-platform`
+                                //       )
                             }>
                             <div class="anchor-overlay" aria-hidden="true" />
                             <h4>{r.name}</h4>

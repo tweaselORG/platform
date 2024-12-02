@@ -46,6 +46,8 @@ const fetchAppDetailsIos = pMemoize(throttle('ios', _fetchAppDetailsIos), {
 });
 
 export const getAppMeta = async (options: GetAppMetaOptions): Promise<AppMeta | undefined> => {
+    if (options.platform === 'ios') throw new Error('I cannot let you do that.');
+
     if (options.platform === 'android') {
         const res = await fetchAppDetailsAndroid(
             { appId: options.appId },

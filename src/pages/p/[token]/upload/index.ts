@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { detectBufferMime } from 'mime-detect';
 import cleanFileName from 'sanitize-filename';
 import { z } from 'zod';
-import { client, e } from '../../../lib/db';
+import { client, e } from '../../../../lib/db';
 
 const uploadSchema = z.object({
     token: z.string(),

@@ -3,6 +3,30 @@ module default {
     scalar type AnalysisType extending enum<initial, second>;
     scalar type ControllerResponse extending enum<promise, denial, none>;
     scalar type ComplaintType extending enum<formal, informal>;
+    scalar type ProceedingState extending
+        enum<erased,
+            expired,
+            needsInitialAnalysis,
+            initialAnalysisFailed,
+            initialAnalysisFoundNothing,
+            awaitingControllerNotice,
+            awaitingControllerResponse,
+            needsSecondAnalysis,
+            secondAnalysisFailed,
+            secondAnalysisFoundNothing,
+            awaitingComplaint,
+            complaintSent>;
+    scalar type ComplaintState extending
+        enum<notYet,
+            askIsUserOfApp,
+            askAuthority,
+            askComplaintType,
+            askUserNetworkActivity,
+            askLoggedIntoAppStore,
+            askDeviceHasRegisteredSimCard,
+            askDeveloperAddress,
+            readyToSend>;
+
 
     abstract type CreatedOn {
         required property createdOn: datetime {
@@ -26,7 +50,9 @@ module default {
     }
 
     type Analysis {
-        required proceeding: Proceeding { on target delete delete source; };
+        single proceeding :=
+            .<initialAnalysis[is Proceeding] if .type = AnalysisType.initial else
+            .<secondAnalysis[is Proceeding];
         required type: AnalysisType;
 
         required startDate: datetime;
@@ -37,10 +63,14 @@ module default {
 
         required har: str { constraint max_size_bytes(52428800); };
         required trackHarResult: json;
+        required foundTrackers: bool {
+            rewrite insert, update using (
+                any(std::json_typeof(json_array_unpack(.trackHarResult)) != 'null') if __specified__.trackHarResult else .foundTrackers
+            );
+            default := false;
+        }
 
         single app := .proceeding.app;
-
-        constraint exclusive on ((.proceeding, .type));
     }
 
     type Proceeding extending CreatedOn {
@@ -55,42 +85,62 @@ module default {
         developerAddressSourceUrl: str { constraint max_len_value(200); };
         privacyPolicyUrl: str { constraint max_len_value(250); };
 
-        required state := (
-            'erased' if exists(.erased) else
-            'expired' if exists(.expired) else
-            'needsInitialAnalysis' if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
-            'initialAnalysisFailed' if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
-            'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
-            'awaitingControllerNotice' if not exists(.noticeSent) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
-            'awaitingControllerResponse' if not exists(.controllerResponse) else
-            'needsSecondAnalysis' if not exists(.secondAnalysis) and exists(.requestedAnalysis) else
-            'secondAnalysisFailed' if not exists(.secondAnalysis) and not exists(.requestedAnalysis) else
-            'secondAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) = 'null') else
-            'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
-            'complaintSent'
-        );
-        required stateUpdatedOn: datetime {
-            rewrite update using (
-                datetime_of_statement()
-                if __specified__.state and __old__.state != __subject__.state
-                else __old__.stateUpdatedOn
+        required state: ProceedingState {
+            rewrite insert, update using (
+                ProceedingState.erased if exists(.erased) else
+                ProceedingState.expired if exists(.expired) else
+                ProceedingState.needsInitialAnalysis if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
+                ProceedingState.initialAnalysisFailed if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
+                ProceedingState.initialAnalysisFoundNothing if not .initialAnalysis.foundTrackers else
+                ProceedingState.awaitingControllerNotice if not exists(.noticeSent) and .initialAnalysis.foundTrackers else
+                ProceedingState.awaitingControllerResponse if not exists(.controllerResponse) else
+                ProceedingState.needsSecondAnalysis if not exists(.secondAnalysis) and exists(.requestedAnalysis) else
+                ProceedingState.secondAnalysisFailed if not exists(.secondAnalysis) and not exists(.requestedAnalysis) else
+                ProceedingState.secondAnalysisFoundNothing if not .secondAnalysis.foundTrackers else
+                ProceedingState.awaitingComplaint if not exists(.complaintSent) and .secondAnalysis.foundTrackers else
+                ProceedingState.complaintSent
             );
-            default := datetime_current();
+            default := ProceedingState.needsInitialAnalysis;
         };
-        required complaintState := (
-            'notYet' if .state != 'awaitingComplaint' else
-            'askIsUserOfApp' if not exists(.complainantIsUserOfApp) else
-            'askAuthority' if not exists(.complaintAuthority) else
-            'askComplaintType' if not exists(.complaintType) else
-            'askUserNetworkActivity' if .complaintType ?= <ComplaintType>'formal' and not exists(.userNetworkActivity) else
-            'askLoggedIntoAppStore' if .complaintType ?= <ComplaintType>'formal' and not exists(.loggedIntoAppStore) else
-            'askDeviceHasRegisteredSimCard' if .complaintType ?= <ComplaintType>'formal' and not exists(.deviceHasRegisteredSimCard) else
-            'askDeveloperAddress' if not exists(.developerAddress) else
-            'readyToSend'
+
+        trigger logStateUpdate after update for each
+        when (__old__.state != __new__.state)
+        do (
+            update ProceedingUpdateLog filter .proceeding = __new__ set {
+                stateUpdatedOn := datetime_of_statement()
+            }
         );
 
-        single initialAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'initial' limit 1);
-        single secondAnalysis := (select Analysis filter .proceeding = Proceeding and .type = <AnalysisType>'second' limit 1);
+        trigger createUpdateLog after insert for each
+        do (
+            insert ProceedingUpdateLog {
+                proceeding := __new__,
+                stateUpdatedOn := __new__.createdOn
+            }
+        );
+
+        required complaintState := (
+            ComplaintState.notYet if .state != ProceedingState.awaitingComplaint else
+            ComplaintState.askIsUserOfApp if not exists(.complainantIsUserOfApp) else
+            ComplaintState.askAuthority if not exists(.complaintAuthority) else
+            ComplaintState.askComplaintType if not exists(.complaintType) else
+            ComplaintState.askUserNetworkActivity if .complaintType ?= ComplaintType.formal and not exists(.userNetworkActivity) else
+            ComplaintState.askLoggedIntoAppStore if .complaintType ?= ComplaintType.formal and not exists(.loggedIntoAppStore) else
+            ComplaintState.askDeviceHasRegisteredSimCard if .complaintType ?= ComplaintType.formal and not exists(.deviceHasRegisteredSimCard) else
+            ComplaintState.askDeveloperAddress if not exists(.developerAddress) else
+            ComplaintState.readyToSend
+        );
+
+        stateUpdatedOn := (.<proceeding[is ProceedingUpdateLog]).stateUpdatedOn;
+
+        single initialAnalysis: Analysis {
+            constraint exclusive;
+            on source delete delete target;
+        };
+        single secondAnalysis: Analysis {
+            constraint exclusive;
+            on source delete delete target;
+        };
 
         noticeSent: datetime;
         controllerResponse: ControllerResponse;
@@ -112,6 +162,16 @@ module default {
             constraint exclusive;
             on target delete allow;
             on source delete delete target;
+        };
+    }
+
+    type ProceedingUpdateLog {
+        required single proceeding: Proceeding {
+            on target delete delete source;
+            constraint exclusive;
+        }
+        required stateUpdatedOn: datetime {
+            default := datetime_current();
         };
     }
 

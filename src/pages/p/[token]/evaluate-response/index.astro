@@ -19,7 +19,7 @@ const proceeding = await e
     .assert_single()
     .run(client);
 
-if (proceeding?.state !== 'awaitingControllerResponse' || !proceeding.noticeSent)
+if (!proceeding?.noticeSent || !['awaitingControllerResponse', 'needsSecondAnalysis'].includes(proceeding.state))
     return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 });
 
 const deadline = calculateDeadline(proceeding.noticeSent);

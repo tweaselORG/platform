@@ -4,6 +4,8 @@ import { defineConfig, envField, squooshImageService } from 'astro/config';
 import preact from '@astrojs/preact';
 import global from 'astro-global';
 
+import './src/cron';
+
 // https://astro.build/config
 export default defineConfig({
     output: 'server',

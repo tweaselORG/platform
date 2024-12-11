@@ -24,8 +24,8 @@ export const POST: APIRoute = async ({ params, redirect, currentLocale, clientAd
 
     const { token: analysisToken } = await startAnalysis(platform, appMeta.appId);
 
-    await e
-        .insert(e.Proceeding, {
+    try {
+        e.insert(e.Proceeding, {
             app: e
                 .insert(e.App, {
                     platform,
@@ -51,8 +51,10 @@ export const POST: APIRoute = async ({ params, redirect, currentLocale, clientAd
                 type: 'initial',
                 token: analysisToken,
             }),
-        })
-        .run(client);
+        }).run(client);
+    } catch (err) {
+        return new Response('Database Error', { status: 500 });
+    }
 
     return redirect(`/p/${token}`);
 };

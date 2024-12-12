@@ -19,7 +19,7 @@ const proceeding = await e
         appName: true,
         initialAnalysis: {},
         noticeSent: true,
-        uploads: { filename: true },
+        uploads: { id: true, filename: true },
 
         filter_single: { token },
     }))
@@ -44,15 +44,64 @@ const deadline = calculateDeadline(proceeding.noticeSent);
     <MessageUploader {token} />
 
     <h2>{t('proceeding-landing-awaitingControllerResponse', 'uploaded-messages')}</h2>
-    <ul>
-        {proceeding.uploads.map((upload) => <li>{upload.filename}</li>)}
-    </ul>
+    {
+        proceeding.uploads.length > 0 ? (
+            <ul>
+                {proceeding.uploads.map((upload) => (
+                    <li>
+                        <form
+                            method="POST"
+                            action={absUrl(`/p/${token}/upload/${upload.id}/delete`)}
+                            class="delete-upload"
+                            style="display: inline;"
+                            data-filename={upload.filename}>
+                            <button
+                                type="submit"
+                                class="button button-secondary button-small icon-trash"
+                                title={t('proceeding-landing-awaitingControllerResponse', 'delete-upload', {
+                                    filename: upload.filename,
+                                })}
+                            />
+                        </form>
+                        {upload.filename}
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <em>{t('proceeding-landing-awaitingControllerResponse', 'no-messages')}</em>
+        )
+    }
 
     <hr />
 
-    <p>{t('proceeding-landing-awaitingControllerResponse', 'next-steps')}</p>
-
-    <a href={absUrl(`/p/${token}/evaluate-response`)} class="button button-primary">
-        {t('proceeding-landing-awaitingControllerResponse', 'continue')}
-    </a>
+    {
+        proceeding.uploads.length > 0 ? (
+            <>
+                <>
+                    <a href={absUrl(`/p/${token}/evaluate-response`)} class="button button-primary">
+                        {t('proceeding-landing-awaitingControllerResponse', 'continue')}
+                    </a>
+                    <p>{t('proceeding-landing-awaitingControllerResponse', 'next-steps')}</p>
+                </>
+            </>
+        ) : (
+            <p>{t('proceeding-landing-awaitingControllerResponse', 'next-steps-no-uploads')}</p>
+        )
+    }
 </Base>
+
+<script>
+    import { t } from '../../i18n/client';
+
+    for (const form of document.querySelectorAll<HTMLFormElement>('form.delete-upload'))
+        form.addEventListener('submit', (e) => {
+            if (
+                !confirm(
+                    t('proceeding-landing-awaitingControllerResponse', 'delete-upload-confirm!', {
+                        filename: form.dataset.filename || '',
+                    }),
+                )
+            )
+                e.preventDefault();
+        });
+</script>

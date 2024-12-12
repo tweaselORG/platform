@@ -22,11 +22,14 @@ const analyses = await e
     .run(client);
 
 if (analyses.length === 0) return new Response('We have not analyzed this app yet.', { status: 404 });
+const mostRecentAnalysis = analyses[0]!;
+if (!mostRecentAnalysis.proceeding)
+    throw new Error('The analysis has no backlink to a proceeding. This should never happen.');
 
 // An app can theoretically change its name with each new version, we thus use the one we saw in the most recent proceeding.
-const name = analyses[0]!.proceeding.appName;
+const name = mostRecentAnalysis.proceeding.appName;
 // On iOS, we need the adamId for getAppMeta().
-const adamId = analyses[0]!.app.adamId;
+const adamId = mostRecentAnalysis.app!.adamId;
 ---
 
 <Base title={t('app-details', 'heading', { name, platform: t('common', platform) })}>

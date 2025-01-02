@@ -49,9 +49,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     const deleteRequestedAnalysis = () =>
         e
-            .delete(e.RequestedAnalysis, () => ({
+            .update(e.Proceeding, () => ({
                 // eslint-disable-next-line camelcase
-                filter_single: { id: requestedAnalysis.id },
+                filter_single: { id: proceeding.id },
+                set: {
+                    requestedAnalysis: null,
+                },
             }))
             .run(client);
 

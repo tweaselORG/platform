@@ -25,33 +25,35 @@ export const POST: APIRoute = async ({ params, redirect, currentLocale, clientAd
     const { token: analysisToken } = await startAnalysis(platform, appMeta.appId);
 
     try {
-        e.insert(e.Proceeding, {
-            app: e
-                .insert(e.App, {
-                    platform,
-                    appId: appMeta.appId,
-                    adamId: appMeta.adamId,
-                })
-                .unlessConflict((app) => ({
-                    on: e.tuple([app.platform, app.appId]),
-                    else: app,
-                })),
+        await e
+            .insert(e.Proceeding, {
+                app: e
+                    .insert(e.App, {
+                        platform,
+                        appId: appMeta.appId,
+                        adamId: appMeta.adamId,
+                    })
+                    .unlessConflict((app) => ({
+                        on: e.tuple([app.platform, app.appId]),
+                        else: app,
+                    })),
 
-            token,
-            reference: generateReference(new Date()),
+                token,
+                reference: generateReference(new Date()),
 
-            appName: appMeta.appName,
-            developerName: appMeta.developerName,
-            developerEmail: appMeta.developerEmail,
-            developerAddress: appMeta.developerAddress,
-            ...(appMeta.developerAddress && { developerAddressSourceUrl: appMeta.storeUrl }),
-            privacyPolicyUrl: appMeta.privacyPolicyUrl,
+                appName: appMeta.appName,
+                developerName: appMeta.developerName,
+                developerEmail: appMeta.developerEmail,
+                developerAddress: appMeta.developerAddress,
+                ...(appMeta.developerAddress && { developerAddressSourceUrl: appMeta.storeUrl }),
+                privacyPolicyUrl: appMeta.privacyPolicyUrl,
 
-            requestedAnalysis: e.insert(e.RequestedAnalysis, {
-                type: 'initial',
-                token: analysisToken,
-            }),
-        }).run(client);
+                requestedAnalysis: e.insert(e.RequestedAnalysis, {
+                    type: 'initial',
+                    token: analysisToken,
+                }),
+            })
+            .run(client);
     } catch (err) {
         return new Response('Database Error', { status: 500 });
     }

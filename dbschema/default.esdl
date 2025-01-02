@@ -103,6 +103,8 @@ module default {
             default := ProceedingState.needsInitialAnalysis;
         };
 
+        # We need to use these triggers to create separate log entries because we need to compare the state after
+        # modification, but can not edit the triggering entry in a trigger.
         trigger logStateUpdate after update for each
         when (__old__.state != __new__.state)
         do (
@@ -117,6 +119,13 @@ module default {
                 proceeding := __new__,
                 stateUpdatedOn := __new__.createdOn
             }
+        );
+
+        # This is to ensure there are no orphaned RequestedAnalysis
+        trigger removeRequestedAnalysis after update for each
+        when (__old__.requestedAnalysis not in  __new__.requestedAnalysis)
+        do (
+            delete __old__.requestedAnalysis
         );
 
         required complaintState := (
@@ -160,7 +169,7 @@ module default {
         multi uploads := .<proceeding[is MessageUpload];
         single requestedAnalysis: RequestedAnalysis {
             constraint exclusive;
-            on target delete allow;
+            on target delete deferred restrict;
             on source delete delete target;
         };
     }

@@ -3,9 +3,10 @@ import { detectBufferMime } from 'mime-detect';
 import cleanFileName from 'sanitize-filename';
 import { z } from 'zod';
 import { client, e } from '../../../../lib/db';
+import { zodProceedingToken } from '../../../../lib/zod';
 
 const uploadSchema = z.object({
-    token: z.string(),
+    token: zodProceedingToken,
 });
 
 export const POST: APIRoute = async ({ request, params, redirect }) => {

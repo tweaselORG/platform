@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export const zodProceedingToken = z.string().regex(/[A-Za-z0-9_-]{21}/);
+
 export const zodProceedingTokensStringToArray = z.string().transform((t) =>
     t
         .split(/[\n\r]/)

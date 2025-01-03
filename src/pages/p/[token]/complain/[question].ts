@@ -5,9 +5,10 @@ import { zfd } from 'zod-form-data';
 import type { UpdateShape } from '../../../../../dbschema/edgeql-js/update';
 import { client, e } from '../../../../lib/db';
 import { dpas } from '../../../../lib/dpas';
+import { zodProceedingToken } from '../../../../lib/zod';
 
 const complaintQuestionSchema = z.object({
-    token: z.string(),
+    token: zodProceedingToken,
     question: z.enum([
         'askIsUserOfApp',
         'askAuthority',

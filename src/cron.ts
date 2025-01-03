@@ -16,7 +16,7 @@ const proceedingCompletedStates = [
 new CronJob('08 12 03 * * *', async () => {
     console.log('Running garbage collection...');
 
-    // Proceedings expired after one year.
+    // Proceedings expire after one year.
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
@@ -32,7 +32,18 @@ new CronJob('08 12 03 * * *', async () => {
             set: { expired: e.datetime_current() },
         }))
         .run(client);
-    console.log('Expired', expiredProceedings.length, 'proceedings.');
+    const deletedExpiredUploads = await e
+        .delete(e.MessageUpload, (u) => ({
+            filter: e.op(u.proceeding.id, 'in', e.set(...expiredProceedings.map((p) => p.id))),
+        }))
+        .run(client);
+    console.log(
+        'Expired',
+        expiredProceedings.length,
+        'proceedings deleted and',
+        deletedExpiredUploads.length,
+        ' associated uploads.',
+    );
 
     // Uploads of completed proceedings are deleted after one week.
     const oneWeekAgo = new Date();

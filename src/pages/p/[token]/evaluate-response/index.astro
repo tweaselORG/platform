@@ -20,8 +20,9 @@ const proceeding = await e
     .assert_single()
     .run(client);
 
-if (proceeding?.state !== 'awaitingControllerResponse' || !proceeding.noticeSent || proceeding.uploads.length === 0)
+if (proceeding?.state !== 'awaitingControllerResponse' || !proceeding.noticeSent)
     return new Response('You cannot evaluate the response to this proceeding now.', { status: 400 });
+if (proceeding.uploads.length === 0) return new Response('This proceeding has no uploads.', { status: 400 });
 
 const deadline = calculateDeadline(proceeding.noticeSent);
 const deadlineExpired = new Date() > deadline;

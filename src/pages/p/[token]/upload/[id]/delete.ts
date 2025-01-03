@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { client, e } from '../../../../../lib/db';
+import { zodProceedingToken } from '../../../../../lib/zod';
 
 const deleteSchema = z.object({
-    token: z.string(),
+    token: zodProceedingToken,
     id: z.string(),
 });
 

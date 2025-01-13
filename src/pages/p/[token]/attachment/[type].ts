@@ -6,11 +6,12 @@ import { zfd } from 'zod-form-data';
 import { t } from '../../../../i18n/server';
 import { client, e } from '../../../../lib/db';
 import { canDownloadAttachment } from '../../../../lib/jwt';
+import { zodProceedingToken } from '../../../../lib/zod';
 
 export const GET: APIRoute = async ({ params, currentLocale, url }) => {
     const { token, type } = z
         .object({
-            token: z.string(),
+            token: zodProceedingToken,
             type: z.enum([
                 'initial-har',
                 'initial-report',
@@ -145,7 +146,7 @@ export const GET: APIRoute = async ({ params, currentLocale, url }) => {
 export const POST: APIRoute = async ({ params, currentLocale, request }) => {
     const { token } = z
         .object({
-            token: z.string(),
+            token: zodProceedingToken,
             type: z.enum(['complaint']),
         })
         .parse(params);

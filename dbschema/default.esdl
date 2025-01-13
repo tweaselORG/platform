@@ -56,10 +56,12 @@ module default {
         privacyPolicyUrl: str { constraint max_len_value(250); };
 
         required state := (
+            'erased' if exists(.erased) else
+            'expired' if exists(.expired) else
             'needsInitialAnalysis' if not exists(.initialAnalysis) and exists(.requestedAnalysis) else
             'initialAnalysisFailed' if not exists(.initialAnalysis) and not exists(.requestedAnalysis) else
             'initialAnalysisFoundNothing' if all(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) = 'null') else
-            'awaitingControllerNotice' if not exists(.uploads) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
+            'awaitingControllerNotice' if not exists(.noticeSent) and any(std::json_typeof(json_array_unpack(.initialAnalysis.trackHarResult)) != 'null') else
             'awaitingControllerResponse' if not exists(.controllerResponse) else
             'needsSecondAnalysis' if not exists(.secondAnalysis) and exists(.requestedAnalysis) else
             'secondAnalysisFailed' if not exists(.secondAnalysis) and not exists(.requestedAnalysis) else
@@ -67,6 +69,14 @@ module default {
             'awaitingComplaint' if not exists(.complaintSent) and any(std::json_typeof(json_array_unpack(.secondAnalysis.trackHarResult)) != 'null') else
             'complaintSent'
         );
+        required stateUpdatedOn: datetime {
+            rewrite update using (
+                datetime_of_statement()
+                if __specified__.state and __old__.state != __subject__.state
+                else __old__.stateUpdatedOn
+            );
+            default := datetime_current();
+        };
         required complaintState := (
             'notYet' if .state != 'awaitingComplaint' else
             'askIsUserOfApp' if not exists(.complainantIsUserOfApp) else
@@ -93,6 +103,9 @@ module default {
         loggedIntoAppStore: bool;
         deviceHasRegisteredSimCard: bool;
         complaintSent: datetime;
+
+        erased: datetime;
+        expired: datetime;
 
         multi uploads := .<proceeding[is MessageUpload];
         single requestedAnalysis: RequestedAnalysis {

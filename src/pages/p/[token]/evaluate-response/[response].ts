@@ -3,9 +3,10 @@ import { z } from 'zod';
 import { startAnalysis } from '../../../../lib/api/analysis-runner-local';
 import { client, e } from '../../../../lib/db';
 import { calculateDeadline } from '../../../../lib/proceeding';
+import { zodProceedingToken } from '../../../../lib/zod';
 
 const evaluateResponseSchema = z.object({
-    token: z.string(),
+    token: zodProceedingToken,
     response: z.enum(['promise', 'denial', 'none']),
 });
 

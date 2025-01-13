@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/base.astro';
+import { absUrl } from '../../lib/util';
+import { t } from '../../i18n/server';
+import TextRaw from '../../components/TextRaw.astro';
+---
+
+<Base title={t('privacy-erasure-request', 'heading')}>
+    <TextRaw scope="privacy-erasure-request" id="explanation" />
+
+    <div class="col66 col100-mobile">
+        <form method="POST" action={absUrl(`/api/dsr/erasure`)}>
+            <div class="form-group">
+                <label for="proceedingTokens">{t('privacy-erasure-request', 'tokens')}</label><br />
+                <textarea
+                    id="proceedingTokens"
+                    name="proceedingTokens"
+                    class="form-element"
+                    rows="4"
+                    required
+                    placeholder="Cu_P8r61-aB5Y1PAI41zw
+https://www.tweasel.org/p/Yd2LkbFzOwPSM9-z2DISZ
+https://www.tweasel.org/p/D_z46IF3OktpWkyTqmi7_"
+                ></textarea>
+            </div>
+
+            <input type="submit" class="button button-secondary" value={t('privacy-erasure-request', 'submit')} />
+        </form>
+    </div>
+</Base>

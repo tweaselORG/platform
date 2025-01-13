@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { client, e } from '../../../../lib/db';
+import { zodProceedingToken } from '../../../../lib/zod';
 
 export const POST: APIRoute = async ({ params, redirect }) => {
     const { token } = z
         .object({
-            token: z.string(),
+            token: zodProceedingToken,
         })
         .parse(params);
 

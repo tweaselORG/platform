@@ -29,7 +29,7 @@ jobs:
             edgedb-server-5 --background --data-dir ~/edgedb/data --runstate-dir ~/edgedb/runstate --log-to ~/edgedb/logs --security insecure_dev_mode
 
             edgedb instance link --host localhost --port 5656 --user edgedb --branch main --non-interactive --trust-tls-cert tweasel-platform
-            edgedb migration apply
+            edgedb migrate
       - cypress/run-tests:
           start-command: 'yarn build && yarn npm-run-all -p mock-analysis-runner start'
           cypress-command: "npx wait-on 'http://localhost:4321' && if [ -z ${CYPRESS_RECORD_KEY+x} ]; then yarn cypress run; else yarn cypress run --record; fi"

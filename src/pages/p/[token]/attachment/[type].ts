@@ -155,7 +155,7 @@ export const POST: APIRoute = async ({ params, currentLocale, request }) => {
         .formData({
             complainantAddress: zfd.text(),
             complainantContactDetails: zfd.text(),
-            complainantAgreesToUnencryptedCommunication: zfd.text(z.enum(['yes', 'no'])),
+            complainantAgreesToUnencryptedCommunication: zfd.text(z.enum(['yes', 'no-letter'])),
         })
         .parse(await request.formData());
 

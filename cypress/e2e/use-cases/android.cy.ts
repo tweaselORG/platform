@@ -65,7 +65,7 @@ describe('Use case: Analysing Android apps', () => {
             cy.contains('To Whom It May Concern:');
 
             cy.get('#upload').selectFile('cypress/fixtures/qd/notice.eml');
-            cy.get('button').contains('Upload').click();
+            cy.get('button').contains('Upload').scrollIntoView().click({ force: true });
 
             cy.contains('Waiting for the developer');
             cy.get('#upload');
@@ -101,19 +101,19 @@ describe('Use case: Analysing Android apps', () => {
             cy.contains('Irish Data Protection Commission').click();
 
             cy.contains('How to contact the DPA about the app?');
-            if (useCase === 'informal-complaint') cy.contains('Informally ask the DPA to look in the app').click();
+            if (useCase === 'informal-complaint') cy.contains('Informally ask the DPA to look into the app').click();
             else cy.contains('Check whether I am personally affected').click();
 
             if (useCase === 'formal-complaint') {
                 cy.contains('Prove that you are affected by the tracking');
 
                 cy.get('#upload').selectFile('cypress/fixtures/qd/trackercontrol.csv');
-                cy.get('button').contains('Upload').click();
+                cy.get('button').contains('Upload').scrollIntoView().click({ force: true });
 
                 cy.contains('How did you install the app?');
                 cy.contains('through the Google Play Store').click();
 
-                cy.contains('Do you have a SIM card in your phone?');
+                cy.contains('Do you have a SIM card in your device?');
                 cy.contains('I have a SIM card').click();
             }
 

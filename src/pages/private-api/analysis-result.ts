@@ -49,9 +49,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     const deleteRequestedAnalysis = () =>
         e
-            .delete(e.RequestedAnalysis, () => ({
+            .update(e.Proceeding, () => ({
                 // eslint-disable-next-line camelcase
-                filter_single: { id: requestedAnalysis.id },
+                filter_single: { id: proceeding.id },
+                set: {
+                    requestedAnalysis: null,
+                },
             }))
             .run(client);
 
@@ -68,21 +71,24 @@ export const POST: APIRoute = async ({ request }) => {
     if (app.id !== proceeding.app.appId) throw new Error('The HAR file contains traffic for a different app.');
 
     await e
-        .insert(e.Analysis, {
-            proceeding: e
-                // eslint-disable-next-line camelcase
-                .select(e.Proceeding, () => ({ filter_single: { id: proceeding.id } })),
-            type: requestedAnalysis.type,
+        .update(e.Proceeding, () => ({
+            // eslint-disable-next-line camelcase
+            filter_single: { id: proceeding.id },
+            set: {
+                [requestedAnalysis.type === 'initial' ? 'initialAnalysis' : 'secondAnalysis']: e.insert(e.Analysis, {
+                    type: requestedAnalysis.type,
 
-            startDate: new Date(res.har.log._tweasel.startDate),
-            endDate: new Date(res.har.log._tweasel.endDate),
+                    startDate: new Date(res.har.log._tweasel.startDate),
+                    endDate: new Date(res.har.log._tweasel.endDate),
 
-            appVersion: app.version,
-            appVersionCode: app.versionCode,
+                    appVersion: app.version,
+                    appVersionCode: app.versionCode,
 
-            har: JSON.stringify(res.har),
-            trackHarResult: res.trackHarResult,
-        })
+                    har: JSON.stringify(res.har),
+                    trackHarResult: res.trackHarResult,
+                }),
+            },
+        }))
         .run(client);
 
     await deleteRequestedAnalysis();
